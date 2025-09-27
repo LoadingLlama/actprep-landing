@@ -496,6 +496,23 @@
             background: rgba(0, 122, 255, 0.15);
         }
 
+        .nav-tab.highlight {
+            background: rgba(0, 122, 255, 0.1);
+            animation: pulse-tab 1s ease-in-out infinite;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+        }
+
+        @keyframes pulse-tab {
+            0%, 100% {
+                background: rgba(0, 122, 255, 0.1);
+                box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+            }
+            50% {
+                background: rgba(0, 122, 255, 0.2);
+                box-shadow: 0 0 0 6px rgba(0, 122, 255, 0.15);
+            }
+        }
+
         .dashboard-content {
             flex: 1;
             padding: 3rem 2rem;
@@ -1437,10 +1454,10 @@
                                             <div class="card-title" style="margin-top: 0.5rem;">Current Score</div>
                                         </div>
 
-                                        <div class="dashboard-card" style="text-align: center;">
+                                        <div class="dashboard-card" id="weakAreaCard" style="text-align: center; border: 2px solid #ff9500; background: linear-gradient(135deg, #fff9f0, #ffffff);">
                                             <div class="card-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">⚠️</div>
-                                            <div class="card-metric" style="font-size: 1.5rem; color: #ff9500;">Quadratics</div>
-                                            <div class="card-title" style="margin-top: 0.5rem;">Needs Practice</div>
+                                            <div class="card-metric" style="font-size: 1.5rem; color: #ff9500; font-weight: 700;">Quadratics</div>
+                                            <div class="card-title" style="margin-top: 0.5rem; color: #ff9500; font-weight: 600;">Needs Practice</div>
                                         </div>
                                     </div>
 
@@ -1470,6 +1487,46 @@
                                             </div>
 
                                             <!-- Interactive Teaching Elements with JavaScript positioning -->
+                                        </div>
+
+                                        <!-- Answer Input Box -->
+                                        <div class="answer-section" style="margin: 2rem 0; text-align: center;">
+                                            <div style="margin-bottom: 1rem;">
+                                                <label style="display: block; color: #6e6e73; font-weight: 500; margin-bottom: 0.5rem;">Your Answer:</label>
+                                                <input
+                                                    type="text"
+                                                    id="answerInput"
+                                                    placeholder="Enter x values (e.g., x = 2, 4)"
+                                                    style="
+                                                        width: 280px;
+                                                        padding: 0.8rem 1rem;
+                                                        border: 2px solid #e5e5e7;
+                                                        border-radius: 12px;
+                                                        font-size: 1rem;
+                                                        text-align: center;
+                                                        transition: all 0.3s ease;
+                                                        background: #fafafa;
+                                                    "
+                                                    onkeypress="if(event.key === 'Enter') checkAnswer()"
+                                                />
+                                                <div style="margin-top: 0.5rem;">
+                                                    <button
+                                                        onclick="askForHelp()"
+                                                        style="
+                                                            background: #007aff;
+                                                            color: white;
+                                                            border: none;
+                                                            padding: 0.6rem 1.2rem;
+                                                            border-radius: 8px;
+                                                            font-size: 0.9rem;
+                                                            cursor: pointer;
+                                                            transition: all 0.3s ease;
+                                                        "
+                                                    >
+                                                        💬 Ask AI Tutor for Help
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <!-- Teaching Steps - Hidden by default -->
@@ -1653,11 +1710,20 @@
                 return;
             }
 
-            // After 1.5 seconds, click on Math Practice tab
+            // After 1.5 seconds, highlight Math Practice tab
+            setTimeout(() => {
+                console.log('Highlighting Math Practice tab...');
+                const mathTab = document.getElementById('mathPracticeTab');
+                if (mathTab) {
+                    mathTab.classList.add('highlight');
+                }
+            }, 1500);
+
+            // After 2 seconds, click on Math Practice tab
             setTimeout(() => {
                 console.log('Clicking Math Practice tab...');
                 clickMathPracticeTab();
-            }, 1500);
+            }, 2000);
         }
 
         // Simulate clicking the Math Practice tab
@@ -1668,7 +1734,8 @@
                 return;
             }
 
-            // Add click animation
+            // Remove highlight and add click animation
+            mathTab.classList.remove('highlight');
             mathTab.classList.add('clicking');
 
             // After click animation, transition to lesson
@@ -2268,6 +2335,16 @@
                     }, 2200);
                 }, 200);
             }, 4400);
+        }
+
+        // Helper function for answer input interaction
+        function askForHelp() {
+            console.log('User clicked Ask AI Tutor for Help');
+            // Trigger the AI chat if not already active
+            const chatPanel = document.getElementById('chatPanel');
+            if (chatPanel && !chatPanel.classList.contains('expanded')) {
+                toggleChat();
+            }
         }
 
         // Initialize everything
