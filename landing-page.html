@@ -136,65 +136,81 @@
 
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #a1a1a6;
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto 3rem;
-            line-height: 1.4;
+            line-height: 1.5;
             animation: fadeInUp 0.8s ease 0.6s both;
             font-weight: 400;
         }
 
         .hero-cta {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             align-items: center;
             animation: fadeInUp 0.8s ease 0.8s both;
-            margin-bottom: 1rem;
+            margin-bottom: 0.3rem;
         }
 
         .btn-primary {
             background: #007aff;
             color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 1.2rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 400;
+            padding: 1rem 1.5rem;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
-            min-width: 180px;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 48px;
+            width: 160px;
+            white-space: nowrap;
         }
 
         .btn-primary:hover {
             background: #0056cc;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 32px rgba(0, 122, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 122, 255, 0.3);
         }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.08);
             color: #f5f5f7;
-            font-size: 1.1rem;
-            font-weight: 500;
-            padding: 1.2rem 2.5rem;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 400;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(20px);
-            min-width: 180px;
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 48px;
+            width: 160px;
+            white-space: nowrap;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
         }
 
         /* Social Proof */
@@ -203,7 +219,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
             animation: fadeInUp 0.8s ease 1.2s both;
         }
 
@@ -264,9 +280,10 @@
         .section-subtitle {
             font-size: 1.1rem;
             color: #6e6e73;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
             font-weight: 400;
+            line-height: 1.4;
         }
 
         .features-grid {
@@ -279,29 +296,38 @@
 
         .feature-card {
             background: white;
-            border-radius: 18px;
-            padding: 2rem;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
             text-align: center;
+            border: 1px solid rgba(0, 122, 255, 0.05);
         }
 
         .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.12);
+            border-color: rgba(0, 122, 255, 0.15);
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, #007aff, #00d4ff);
-            border-radius: 16px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin: 0 auto 1.5rem;
             color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.25);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 122, 255, 0.35);
         }
 
         .feature-title {
@@ -319,48 +345,428 @@
 
         /* Interactive Demo Section */
         .demo-section {
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             background: #000000;
             color: #f5f5f7;
         }
 
         .demo-container {
-            max-width: 800px;
+            max-width: 1800px;
             margin: 0 auto;
             text-align: center;
+            padding: 0 2rem;
         }
 
         .demo-showcase {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin-top: 2.5rem;
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .demo-screen {
-            background: #1d1d1f;
-            border-radius: 14px;
-            padding: 1.5rem;
+            background: linear-gradient(135deg, #1d1d1f, #2a2a2a);
+            border-radius: 16px;
+            padding: 0;
             margin-bottom: 1.5rem;
-            min-height: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            min-height: 400px;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .demo-content {
             width: 100%;
-            animation: slideInUp 0.8s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .demo-interface {
+            width: 100%;
+            max-width: 1600px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            animation: slideInUp 1s ease 0.5s forwards;
+            display: flex;
+            height: 700px;
+            position: relative;
+        }
+
+        .lesson-panel {
+            flex: 1;
+            padding: 2rem;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+        }
+
+        .lesson-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #6e6e73;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .lesson-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .problem-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 1rem;
+        }
+
+        .math-problem {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid #007aff;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #1d1d1f;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.1);
+            position: relative;
+            overflow: visible;
+        }
+
+        .math-equation {
+            position: relative;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .highlight-box {
+            position: absolute;
+            background: rgba(255, 149, 0, 0.3);
+            border-radius: 6px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+            pointer-events: none;
+            animation: pulse-highlight 2s ease-in-out infinite;
+        }
+
+        .highlight-box.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .highlight-box.green {
+            background: rgba(52, 199, 89, 0.3);
+        }
+
+        .highlight-box.blue {
+            background: rgba(0, 122, 255, 0.3);
+        }
+
+        @keyframes pulse-highlight {
+            0%, 100% {
+                background-opacity: 0.3;
+            }
+            50% {
+                background-opacity: 0.5;
+            }
+        }
+
+        .teaching-popup {
+            position: absolute;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            color: white;
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(15px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+            z-index: 15;
+            max-width: 200px;
+            line-height: 1.4;
+        }
+
+        .teaching-popup::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #007aff;
+        }
+
+        .teaching-popup.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .step-highlight {
+            background: rgba(0, 122, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.25rem 0.5rem;
+            display: inline-block;
+            position: relative;
+            animation: glow-text 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-text {
+            from { background: rgba(0, 122, 255, 0.1); }
+            to { background: rgba(0, 122, 255, 0.2); }
+        }
+
+        .solution-steps {
+            margin-top: 1.5rem;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .solution-steps.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step {
+            background: rgba(0, 122, 255, 0.05);
+            border-left: 3px solid #007aff;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .step.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step-number {
+            color: #007aff;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .ai-pointer {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #007aff;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+            animation: pulse-pointer 2s infinite;
+        }
+
+        .ai-pointer::after {
+            content: '🤖';
+            position: absolute;
+            top: -25px;
+            left: -8px;
+            font-size: 0.8rem;
+        }
+
+        .ai-pointer.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @keyframes pulse-pointer {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(0, 122, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 122, 255, 0);
+            }
+        }
+
+        .chat-panel {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            width: 60px;
+            height: 60px;
+            background: #007aff;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+            z-index: 20;
+            overflow: hidden;
+            opacity: 1;
+        }
+
+        .chat-panel.expanded {
+            width: 320px;
+            height: 400px;
+            border-radius: 20px;
+            flex-direction: column;
+            cursor: default;
+        }
+
+        .chat-toggle {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .chat-panel.expanded .chat-toggle {
+            display: none;
+        }
+
+        .chat-header {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .chat-panel.expanded .chat-header {
+            display: flex;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.8rem;
+            overflow-y: auto;
+            background: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .chat-panel.expanded .chat-messages {
+            display: flex;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            opacity: 0;
+        }
+
+        .user-message {
+            background: #e5e5e7;
+            color: #1d1d1f;
+            align-self: flex-end;
+        }
+
+        .ai-message {
+            background: #007aff;
+            color: white;
+            align-self: flex-start;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6e6e73;
+            font-size: 0.85rem;
+            opacity: 0;
+            animation: fadeInLeft 0.3s ease 2s forwards;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .typing-dot {
+            width: 4px;
+            height: 4px;
+            background: #007aff;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .demo-status {
+            color: #a1a1a6;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 8s forwards;
         }
 
         /* Stats Section */
         .stats-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #f5f5f7, #ffffff);
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
             color: #1d1d1f;
         }
 
@@ -374,18 +780,33 @@
         }
 
         .stat-card {
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 122, 255, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 122, 255, 0.08);
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 700;
             background: linear-gradient(135deg, #007aff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-number {
+            transform: scale(1.05);
         }
 
         .stat-label {
@@ -472,48 +893,78 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            opacity: 0;
+        }
+
+        .modal.show {
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            opacity: 1;
         }
 
         .modal-content {
             background: white;
-            margin: 5% auto;
-            padding: 2rem;
-            border-radius: 20px;
+            margin: 8% auto;
+            padding: 2.5rem;
+            border-radius: 24px;
             width: 90%;
-            max-width: 450px;
+            max-width: 420px;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(20px) scale(0.96);
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0) scale(1);
         }
 
         .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: #1d1d1f;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             text-align: center;
         }
 
+        .modal-subtitle {
+            color: #6e6e73;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .form-input {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #d2d2d7;
-            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border: 1.5px solid #e5e5e7;
+            border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: #f5f5f7;
+            background: #fafafa;
+            font-family: inherit;
         }
 
         .form-input:focus {
             outline: none;
             border-color: #007aff;
             background: white;
-            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .form-input::placeholder {
+            color: #a1a1a6;
+            font-weight: 400;
         }
 
         /* Animations */
@@ -607,6 +1058,26 @@
             .total-signups {
                 font-size: 0.8rem;
             }
+
+            .demo-interface {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .lesson-panel {
+                flex: none;
+                padding: 1.5rem;
+            }
+
+            .chat-panel {
+                flex: none;
+                min-height: 300px;
+            }
+
+            .math-problem {
+                padding: 1rem;
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -627,27 +1098,32 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-badge">Coming Soon • Invitation Only</div>
+        <div class="hero-badge">Coming Soon • Early 2025</div>
         <h1 class="hero-title">
             Revolutionize your ACT with
             <br>
             <span id="dynamicText" class="dynamic-text">Elite Preparation</span>
         </h1>
         <p class="hero-subtitle">
-            The most advanced ACT preparation platform ever created.
+            Personalized AI tutoring that adapts to your learning style.
             Built by Ivy League graduates who achieved perfect scores.
         </p>
         <div class="hero-cta">
-            <button class="btn-primary" onclick="openModal()">Join Free Waitlist</button>
-            <button class="btn-secondary" onclick="startDemo()">Watch Demo</button>
+            <button class="btn-primary" onclick="openModal()">Join Waitlist</button>
+            <a href="#demo" class="btn-secondary" style="text-decoration: none;">Watch Demo</a>
         </div>
-        <div class="social-proof">
+        <div style="text-align: center; margin-top: 0.2rem; opacity: 0; animation: fadeInUp 0.8s ease 1s both;">
+            <p style="font-size: 0.8rem; color: #a1a1a6; margin: 0;">
+                Waitlist gets full access for <strong style="color: #34c759;">FREE</strong> • Normally <span style="text-decoration: line-through; color: #6e6e73;">$999</span>
+            </p>
+        </div>
+        <div class="social-proof" style="margin-top: 0.8rem;">
             <div class="recent-signup" id="recentSignup">
                 <span class="signup-dot"></span>
                 <span class="signup-text">Sarah from California just joined</span>
             </div>
             <div class="total-signups">
-                <span id="signupCount">2,847</span> students on waitlist
+                <span id="signupCount">2,847+</span> students on waitlist
             </div>
         </div>
     </section>
@@ -656,7 +1132,7 @@
     <section id="features" class="features-section">
         <div class="section-header">
             <h2 class="section-title">Breakthrough Technology</h2>
-            <p class="section-subtitle">Revolutionary features that adapt to your learning style and maximize your potential</p>
+            <p class="section-subtitle">Advanced AI technology that personalizes your study experience and accelerates your progress</p>
         </div>
 
         <div class="features-grid">
@@ -703,15 +1179,84 @@
         <div class="demo-container">
             <div class="section-header">
                 <h2 class="section-title">Experience the Future</h2>
-                <p class="section-subtitle">See how our AI-powered platform transforms ACT preparation</p>
+                <p class="section-subtitle">Watch AI tutoring in action – no signup required</p>
             </div>
 
             <div class="demo-showcase">
                 <div class="demo-screen" id="demoScreen">
                     <div class="demo-content">
-                        <h3>Interactive AI Tutor</h3>
-                        <p>Watch as our AI adapts to your learning style in real-time</p>
-                        <button class="btn-primary" onclick="startDemo()">Start Interactive Demo</button>
+                        <div class="demo-interface">
+                            <!-- Lesson Panel -->
+                            <!-- Lesson Panel -->
+                            <div class="lesson-panel">
+                                <div class="lesson-header">
+                                    📚 ACT Math • Quadratic Equations
+                                </div>
+                                <div class="lesson-content">
+                                    <div class="problem-title">Practice Problem #12</div>
+                                    <div class="math-problem">
+                                        <div style="margin-bottom: 1rem;">Solve for x:</div>
+                                        <div class="math-equation" style="position: relative; font-size: 1.4rem; font-weight: bold; text-align: center; margin: 1rem 0; display: flex; justify-content: center; align-items: center; min-height: 60px;">
+                                            <div style="position: relative; display: inline-flex; align-items: center; gap: 8px;">
+                                                <span id="term1" style="position: relative; padding: 4px; background: transparent;">x²</span>
+                                                <span> - </span>
+                                                <span id="term2" style="position: relative; padding: 4px; background: transparent;">6x</span>
+                                                <span> + </span>
+                                                <span id="term3" style="position: relative; padding: 4px; background: transparent;">8</span>
+                                                <span> = 0</span>
+                                            </div>
+
+                                            <!-- Interactive Teaching Elements with JavaScript positioning -->
+                                        </div>
+
+                                        <!-- Teaching Steps - Hidden by default -->
+                                        <div class="solution-steps" id="solutionSteps" style="opacity: 0;">
+                                            <div class="step" id="step1" style="opacity: 0;">
+                                                <span class="step-number">Step 1:</span> Factor: <span class="step-highlight">(x - 4)(x - 2) = 0</span>
+                                            </div>
+                                            <div class="step" id="step2" style="opacity: 0;">
+                                                <span class="step-number">Step 2:</span> Solve each factor: x - 4 = 0 → x = 4, x - 2 = 0 → x = 2
+                                            </div>
+                                            <div class="step" id="step3" style="opacity: 0;">
+                                                <span class="step-number">Answer:</span> <strong>x = 4 or x = 2</strong> ✅
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Tutor Chat Bar -->
+                            <div class="chat-panel" id="chatPanel" onclick="toggleChat()">
+                                <div class="chat-toggle">🤖</div>
+                                <div class="chat-header">
+                                    🤖 AI Tutor
+                                </div>
+                                <div class="chat-messages" id="chatMessages">
+                                    <div class="message user-message">
+                                        Can you teach me this step by step?
+                                    </div>
+
+                                    <div class="message ai-message">
+                                        Absolutely! I'll guide you through each step with visual hints.
+                                    </div>
+
+                                    <div class="message user-message">
+                                        That's so helpful! 🎯
+                                    </div>
+
+                                    <div class="message ai-message">
+                                        Watch as I highlight and explain each part above!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="demo-status">
+                            ✨ AI adapts to your learning pace and style
+                        </div>
+
+                        <!-- Debug button -->
+                        <button onclick="startAIDemo()" style="position: absolute; top: 10px; right: 10px; background: red; color: white; padding: 10px; border: none; border-radius: 5px; z-index: 100;">Test Demo</button>
                     </div>
                 </div>
             </div>
@@ -758,20 +1303,12 @@
                 <div class="university-name">Harvard</div>
             </div>
             <div class="university">
-                <div class="university-logo">⚗️</div>
-                <div class="university-name">MIT</div>
-            </div>
-            <div class="university">
                 <div class="university-logo">🌲</div>
                 <div class="university-name">Stanford</div>
             </div>
             <div class="university">
                 <div class="university-logo">🦁</div>
                 <div class="university-name">Princeton</div>
-            </div>
-            <div class="university">
-                <div class="university-logo">🔵</div>
-                <div class="university-name">Yale</div>
             </div>
             <div class="university">
                 <div class="university-logo">🐻</div>
@@ -785,7 +1322,7 @@
         <div class="cta-content">
             <h2 class="cta-title">Ready to Transform Your Future?</h2>
             <p class="cta-subtitle">Join the waitlist now and get free access when we launch - limited time only.</p>
-            <button class="btn-primary" onclick="openModal()" style="background: white; color: #007aff;">Join Free Waitlist</button>
+            <button class="btn-primary" onclick="openModal()" style="background: white; color: #007aff;">Join Waitlist</button>
         </div>
     </section>
 
@@ -797,9 +1334,9 @@
     <!-- Modal -->
     <div id="accessModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()" style="position: absolute; top: 1rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: #6e6e73;">&times;</span>
+            <span class="close" onclick="closeModal()" style="position: absolute; top: 1.2rem; right: 1.8rem; font-size: 1.3rem; cursor: pointer; color: #a1a1a6; transition: color 0.2s ease;">&times;</span>
             <h2 class="modal-title">Join the Waitlist</h2>
-            <p style="text-align: center; color: #6e6e73; margin-bottom: 1.5rem;">Get free access when we launch - no payment required</p>
+            <p class="modal-subtitle">Get free access when we launch - no payment required</p>
 
             <form id="accessForm">
                 <div class="form-group">
@@ -807,6 +1344,9 @@
                 </div>
                 <div class="form-group">
                     <input type="email" class="form-input" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-input" id="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-input" id="school" placeholder="High School" required>
@@ -828,62 +1368,56 @@
 
     <script>
 
-        // Demo functionality
-        function startDemo() {
-            const demoScreen = document.getElementById('demoScreen');
-            const demoContents = [
-                {
-                    title: 'AI Diagnostic Assessment',
-                    description: 'Watch our AI analyze your learning patterns',
-                    content: '<div style="background: #007aff; color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;"><h4>Analyzing Performance...</h4><div style="background: rgba(255,255,255,0.2); height: 10px; border-radius: 5px; margin: 1rem 0;"><div style="background: white; height: 100%; width: 75%; border-radius: 5px; transition: width 2s ease;"></div></div><p>Identifying strengths and improvement areas</p></div>'
-                },
-                {
-                    title: 'Personalized Study Plan',
-                    description: 'See how we create your custom learning path',
-                    content: '<div style="background: #34c759; color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;"><h4>Generated Study Plan</h4><ul style="list-style: none; padding: 0;"><li>✓ Math: Focus on Algebra II concepts</li><li>✓ English: Grammar fundamentals</li><li>✓ Reading: Speed improvement exercises</li><li>✓ Science: Data interpretation practice</li></ul></div>'
-                },
-                {
-                    title: 'Real-time Feedback',
-                    description: 'Experience instant explanations and corrections',
-                    content: '<div style="background: #ff9500; color: white; padding: 2rem; border-radius: 12px; margin: 1rem 0;"><h4>Question Analysis</h4><p><strong>Correct Answer:</strong> B</p><p><strong>Explanation:</strong> The quadratic formula requires identifying coefficients a, b, and c correctly...</p><p><strong>Next:</strong> Practice 3 similar problems</p></div>'
-                }
-            ];
-
-            let currentDemo = 0;
-
-            function showDemoContent() {
-                if (currentDemo < demoContents.length) {
-                    const demo = demoContents[currentDemo];
-                    demoScreen.innerHTML = `
-                        <div class="demo-content">
-                            <h3>${demo.title}</h3>
-                            <p>${demo.description}</p>
-                            ${demo.content}
-                        </div>
-                    `;
-                    currentDemo++;
-                    setTimeout(showDemoContent, 3000);
-                } else {
-                    demoScreen.innerHTML = `
-                        <div class="demo-content">
-                            <h3>Ready to Experience This?</h3>
-                            <p>Join the waitlist to get free access to your personalized ACT journey</p>
-                            <button class="btn-primary" onclick="openModal()">Join Waitlist</button>
-                        </div>
-                    `;
-                }
-            }
-
-            showDemoContent();
+        // Auto-start seamless demo
+        function initSeamlessDemo() {
+            // Start demo immediately - no delays
+            setTimeout(() => {
+                console.log('Starting AI demo...');
+                startAIDemo();
+            }, 500);
         }
 
-        // Modal functionality
+        // Start the complete AI demo sequence
+        function startAIDemo() {
+            console.log('Starting AI demo sequence...');
+
+            // First make sure chat button is visible
+            const chatPanel = document.getElementById('chatPanel');
+            if (chatPanel) {
+                console.log('Chat panel found, expanding immediately...');
+
+                // Expand the chat immediately
+                setTimeout(() => {
+                    console.log('Expanding chat...');
+                    toggleChat();
+                }, 300);
+            } else {
+                console.log('Chat panel not found!');
+            }
+        }
+
+        // Modal functionality with smooth transitions
         function openModal() {
-            document.getElementById('accessModal').style.display = 'block';
+            const modal = document.getElementById('accessModal');
+            modal.style.display = 'block';
+
+            // Trigger reflow to ensure display:block is applied
+            modal.offsetHeight;
+
+            // Add show class for smooth animation
+            requestAnimationFrame(() => {
+                modal.classList.add('show');
+            });
         }
 
         function closeModal() {
-            document.getElementById('accessModal').style.display = 'none';
+            const modal = document.getElementById('accessModal');
+            modal.classList.remove('show');
+
+            // Wait for animation to complete before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400);
         }
 
         window.onclick = function(event) {
@@ -900,13 +1434,14 @@
             const formData = {
                 name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
                 school: document.getElementById('school').value.trim(),
                 grade: document.getElementById('grade').value.trim(),
                 score: document.getElementById('score').value.trim(),
                 timestamp: new Date().toISOString()
             };
 
-            if (!formData.name || !formData.email || !formData.school || !formData.grade) {
+            if (!formData.name || !formData.email || !formData.phone || !formData.school || !formData.grade) {
                 alert('Please fill in all required fields');
                 return;
             }
@@ -997,7 +1532,7 @@
                     if (Math.random() < 0.2) {
                         count += Math.floor(Math.random() * 3) + 1;
                         if (signupCount) {
-                            signupCount.textContent = count.toLocaleString();
+                            signupCount.textContent = count.toLocaleString() + '+';
                         }
                     }
                 }, 300);
@@ -1007,15 +1542,408 @@
             setInterval(rotateSignups, 12000);
         }
 
+        // Chat toggle functionality
+        function toggleChat() {
+            const chatPanel = document.getElementById('chatPanel');
+            const chatMessages = document.getElementById('chatMessages');
+
+            console.log('toggleChat called');
+            console.log('chatPanel:', chatPanel);
+            console.log('chatMessages:', chatMessages);
+
+            if (chatPanel && !chatPanel.classList.contains('expanded')) {
+                console.log('Expanding chat panel...');
+                chatPanel.classList.add('expanded');
+
+                // Animate messages after expansion - much slower
+                setTimeout(() => {
+                    const messages = chatMessages.querySelectorAll('.message');
+                    console.log('Found messages:', messages.length);
+
+                    messages.forEach((msg, index) => {
+                        setTimeout(() => {
+                            console.log(`Showing message ${index + 1}`);
+                            msg.style.animation = `fadeInUp 0.4s ease forwards`;
+                            msg.style.opacity = '1';
+                        }, index * 600); // 0.6 seconds between each message
+                    });
+
+                    // Start the teaching sequence immediately after last message
+                    setTimeout(() => {
+                        console.log('All messages shown, starting teaching sequence...');
+                        startTeachingSequence();
+                    }, messages.length * 600 + 200); // Only 0.2 second delay after last message
+                }, 500);
+            } else {
+                console.log('Chat panel not found or already expanded');
+            }
+        }
+
+        // Helper function to hide all popups
+        function hideAllPopups() {
+            const popups = ['popup1', 'popup2', 'popup3'];
+            popups.forEach(id => {
+                const popup = document.getElementById(id);
+                if (popup) {
+                    popup.style.opacity = '0';
+                    popup.classList.remove('show');
+                }
+            });
+        }
+
+        // Helper function to hide all highlights
+        function hideAllHighlights() {
+            const highlights = ['highlight1', 'highlight2', 'highlight3'];
+            highlights.forEach(id => {
+                const highlight = document.getElementById(id);
+                if (highlight) {
+                    highlight.style.opacity = '0';
+                    highlight.classList.remove('show');
+                }
+            });
+        }
+
+        // Create highlights dynamically based on term positions
+        function createHighlights() {
+            const mathEquation = document.querySelector('.math-equation');
+            const term1 = document.getElementById('term1');
+            const term2 = document.getElementById('term2');
+            const term3 = document.getElementById('term3');
+
+            if (!mathEquation || !term1 || !term2 || !term3) {
+                console.log('ERROR: Cannot find equation or terms!');
+                return;
+            }
+
+            // Create highlight and popup for term1 (x²)
+            const highlight1 = document.createElement('div');
+            highlight1.id = 'highlight1';
+            highlight1.className = 'highlight-box';
+            highlight1.style.cssText = `
+                position: absolute;
+                background: rgba(255, 149, 0, 0.3);
+                border-radius: 6px;
+                opacity: 0;
+                z-index: 1;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            `;
+
+            const popup1 = document.createElement('div');
+            popup1.id = 'popup1';
+            popup1.className = 'teaching-popup';
+            popup1.innerHTML = 'This is x² (coefficient a = 1)';
+            popup1.style.cssText = `
+                position: absolute;
+                background: linear-gradient(135deg, #007aff, #00d4ff);
+                color: white;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                opacity: 0;
+                z-index: 15;
+                max-width: 200px;
+                line-height: 1.4;
+                box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+            `;
+
+            // Add arrow pointing up to the highlighted text
+            const arrow1 = document.createElement('div');
+            arrow1.style.cssText = `
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #007aff;
+                z-index: 16;
+            `;
+            popup1.appendChild(arrow1);
+
+            // Create highlight and popup for term2 (6x)
+            const highlight2 = document.createElement('div');
+            highlight2.id = 'highlight2';
+            highlight2.className = 'highlight-box green';
+            highlight2.style.cssText = `
+                position: absolute;
+                background: rgba(52, 199, 89, 0.3);
+                border-radius: 6px;
+                opacity: 0;
+                z-index: 1;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            `;
+
+            const popup2 = document.createElement('div');
+            popup2.id = 'popup2';
+            popup2.className = 'teaching-popup';
+            popup2.innerHTML = 'This is 6x (coefficient b = 6)';
+            popup2.style.cssText = `
+                position: absolute;
+                background: linear-gradient(135deg, #34c759, #30d158);
+                color: white;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                opacity: 0;
+                z-index: 15;
+                max-width: 200px;
+                line-height: 1.4;
+                box-shadow: 0 8px 24px rgba(52, 199, 89, 0.3);
+            `;
+
+            // Add arrow pointing up to the highlighted text
+            const arrow2 = document.createElement('div');
+            arrow2.style.cssText = `
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #34c759;
+                z-index: 16;
+            `;
+            popup2.appendChild(arrow2);
+
+            // Create highlight and popup for term3 (8)
+            const highlight3 = document.createElement('div');
+            highlight3.id = 'highlight3';
+            highlight3.className = 'highlight-box blue';
+            highlight3.style.cssText = `
+                position: absolute;
+                background: rgba(0, 122, 255, 0.3);
+                border-radius: 6px;
+                opacity: 0;
+                z-index: 1;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            `;
+
+            const popup3 = document.createElement('div');
+            popup3.id = 'popup3';
+            popup3.className = 'teaching-popup';
+            popup3.innerHTML = 'This is 8 (coefficient c = 8)';
+            popup3.style.cssText = `
+                position: absolute;
+                background: linear-gradient(135deg, #007aff, #00d4ff);
+                color: white;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                opacity: 0;
+                z-index: 15;
+                max-width: 200px;
+                line-height: 1.4;
+                box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+            `;
+
+            // Add arrow pointing up to the highlighted text
+            const arrow3 = document.createElement('div');
+            arrow3.style.cssText = `
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #007aff;
+                z-index: 16;
+            `;
+            popup3.appendChild(arrow3);
+
+            // Position highlights based on actual term positions
+            function positionHighlights() {
+                const equationRect = mathEquation.getBoundingClientRect();
+                const term1Rect = term1.getBoundingClientRect();
+                const term2Rect = term2.getBoundingClientRect();
+                const term3Rect = term3.getBoundingClientRect();
+
+                // Position highlight1 over term1
+                highlight1.style.left = `${term1Rect.left - equationRect.left - 2}px`;
+                highlight1.style.top = `${term1Rect.top - equationRect.top - 2}px`;
+                highlight1.style.width = `${term1Rect.width + 4}px`;
+                highlight1.style.height = `${term1Rect.height + 4}px`;
+
+                // Center popup1 under term1
+                popup1.style.left = `${term1Rect.left - equationRect.left + (term1Rect.width / 2) - 100}px`;
+                popup1.style.top = `${term1Rect.bottom - equationRect.top + 15}px`;
+
+                // Position highlight2 over term2
+                highlight2.style.left = `${term2Rect.left - equationRect.left - 2}px`;
+                highlight2.style.top = `${term2Rect.top - equationRect.top - 2}px`;
+                highlight2.style.width = `${term2Rect.width + 4}px`;
+                highlight2.style.height = `${term2Rect.height + 4}px`;
+
+                // Center popup2 under term2
+                popup2.style.left = `${term2Rect.left - equationRect.left + (term2Rect.width / 2) - 100}px`;
+                popup2.style.top = `${term2Rect.bottom - equationRect.top + 15}px`;
+
+                // Position highlight3 over term3
+                highlight3.style.left = `${term3Rect.left - equationRect.left - 2}px`;
+                highlight3.style.top = `${term3Rect.top - equationRect.top - 2}px`;
+                highlight3.style.width = `${term3Rect.width + 4}px`;
+                highlight3.style.height = `${term3Rect.height + 4}px`;
+
+                // Center popup3 under term3
+                popup3.style.left = `${term3Rect.left - equationRect.left + (term3Rect.width / 2) - 100}px`;
+                popup3.style.top = `${term3Rect.bottom - equationRect.top + 15}px`;
+            }
+
+            // Add elements to DOM
+            mathEquation.appendChild(highlight1);
+            mathEquation.appendChild(popup1);
+            mathEquation.appendChild(highlight2);
+            mathEquation.appendChild(popup2);
+            mathEquation.appendChild(highlight3);
+            mathEquation.appendChild(popup3);
+
+            // Position highlights after a short delay to ensure rendering
+            setTimeout(positionHighlights, 100);
+
+            return true;
+        }
+
+        // Teaching sequence with much slower timing and no overlaps
+        function startTeachingSequence() {
+            console.log('*** STARTING TEACHING SEQUENCE ***');
+
+            // Create highlights first
+            if (!createHighlights()) {
+                console.log('Failed to create highlights');
+                return;
+            }
+
+            // Step 1: Highlight x² term - immediate start
+            setTimeout(() => {
+                console.log('Step 1: Highlighting x² term');
+                const highlight1 = document.getElementById('highlight1');
+                const popup1 = document.getElementById('popup1');
+
+                if (highlight1) {
+                    console.log('Setting highlight1 visible');
+                    highlight1.style.opacity = '1';
+                    highlight1.style.transform = 'scale(1)';
+                } else {
+                    console.log('ERROR: highlight1 not found!');
+                }
+
+                setTimeout(() => {
+                    if (popup1) {
+                        console.log('Setting popup1 visible');
+                        popup1.style.opacity = '1';
+                        popup1.style.transform = 'translateY(0) scale(1)';
+                    } else {
+                        console.log('ERROR: popup1 not found!');
+                    }
+                }, 300);
+            }, 400);
+
+            // Step 2: Hide previous, show -6x term (1.5 seconds later)
+            setTimeout(() => {
+                console.log('Step 2: Highlighting -6x term');
+                hideAllPopups();
+                hideAllHighlights();
+
+                setTimeout(() => {
+                    const highlight2 = document.getElementById('highlight2');
+                    const popup2 = document.getElementById('popup2');
+                    if (highlight2) {
+                        highlight2.style.opacity = '1';
+                        highlight2.classList.add('show');
+                    }
+                    setTimeout(() => {
+                        if (popup2) {
+                            popup2.style.opacity = '1';
+                            popup2.classList.add('show');
+                        }
+                    }, 300);
+                }, 200);
+            }, 1900);
+
+            // Step 3: Hide previous, show +8 term (1.5 seconds later)
+            setTimeout(() => {
+                console.log('Step 3: Highlighting +8 term');
+                hideAllPopups();
+                hideAllHighlights();
+
+                setTimeout(() => {
+                    const highlight3 = document.getElementById('highlight3');
+                    const popup3 = document.getElementById('popup3');
+                    if (highlight3) {
+                        highlight3.style.opacity = '1';
+                        highlight3.classList.add('show');
+                    }
+                    setTimeout(() => {
+                        if (popup3) {
+                            popup3.style.opacity = '1';
+                            popup3.classList.add('show');
+                        }
+                    }, 300);
+                }, 200);
+            }, 3400);
+
+            // Step 4: Hide highlights, show solution steps (1 second later)
+            setTimeout(() => {
+                console.log('Step 4: Showing solution steps');
+                hideAllPopups();
+                hideAllHighlights();
+
+                setTimeout(() => {
+                    const steps = document.getElementById('solutionSteps');
+                    if (steps) {
+                        steps.style.opacity = '1';
+                        steps.classList.add('show');
+                    }
+
+                    // Show each step quickly - 800ms between steps
+                    setTimeout(() => {
+                        const step1 = document.getElementById('step1');
+                        if (step1) {
+                            step1.style.opacity = '1';
+                            step1.classList.add('show');
+                        }
+                    }, 600);
+
+                    setTimeout(() => {
+                        const step2 = document.getElementById('step2');
+                        if (step2) {
+                            step2.style.opacity = '1';
+                            step2.classList.add('show');
+                        }
+                    }, 1400);
+
+                    setTimeout(() => {
+                        const step3 = document.getElementById('step3');
+                        if (step3) {
+                            step3.style.opacity = '1';
+                            step3.classList.add('show');
+                        }
+                    }, 2200);
+                }, 200);
+            }, 4400);
+        }
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             observeElements();
             initSocialProof();
+            initSeamlessDemo();
 
             // Clean text animation
             const texts = [
                 'Elite Preparation',
-                'Expert Tutors',
+                'Expert Personal Tutors',
                 'Science-Based Methods',
                 'Full-Tailored Courses',
                 'Precision Analytics',
