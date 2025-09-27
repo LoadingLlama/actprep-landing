@@ -403,6 +403,212 @@
             position: relative;
         }
 
+        /* Dashboard Interface */
+        .dashboard-interface {
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .dashboard-interface.hidden {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            background: #fafafa;
+        }
+
+        .app-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 1.1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #6e6e73;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #e5e5e7;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 1rem 2rem;
+            color: #6e6e73;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-tab:hover {
+            color: #1d1d1f;
+            background: rgba(0, 122, 255, 0.05);
+        }
+
+        .nav-tab.active {
+            color: #007aff;
+            border-bottom-color: #007aff;
+            background: rgba(0, 122, 255, 0.05);
+        }
+
+        .nav-tab.clicking {
+            transform: scale(0.98);
+            background: rgba(0, 122, 255, 0.15);
+        }
+
+        .dashboard-content {
+            flex: 1;
+            padding: 2rem;
+            background: #f8f9fa;
+            overflow-y: auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.08);
+            border-color: rgba(0, 122, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.2rem;
+        }
+
+        .card-metric {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #007aff;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: #6e6e73;
+            font-size: 0.85rem;
+        }
+
+        .recent-activity {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0f0f0;
+        }
+
+        .activity-header {
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            color: #1d1d1f;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .activity-time {
+            color: #6e6e73;
+            font-size: 0.8rem;
+        }
+
         .lesson-panel {
             flex: 1;
             padding: 2rem;
@@ -411,6 +617,8 @@
             flex-direction: column;
             width: 100%;
             position: relative;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform: translateX(50px);
         }
 
         .lesson-header {
@@ -1186,9 +1394,107 @@
                 <div class="demo-screen" id="demoScreen">
                     <div class="demo-content">
                         <div class="demo-interface">
-                            <!-- Lesson Panel -->
-                            <!-- Lesson Panel -->
-                            <div class="lesson-panel">
+                            <!-- Dashboard Interface - Shows First -->
+                            <div class="dashboard-interface" id="dashboardInterface">
+                                <div class="app-header">
+                                    <div class="app-logo">
+                                        🚀 Launch Prep
+                                    </div>
+                                    <div class="user-info">
+                                        <span>Sarah Chen</span>
+                                        <div class="user-avatar">SC</div>
+                                    </div>
+                                </div>
+
+                                <div class="nav-tabs">
+                                    <div class="nav-tab active">
+                                        <span>📊</span> Dashboard
+                                    </div>
+                                    <div class="nav-tab">
+                                        <span>📝</span> Tests
+                                    </div>
+                                    <div class="nav-tab">
+                                        <span>📚</span> Lessons
+                                    </div>
+                                    <div class="nav-tab" id="mathPracticeTab">
+                                        <span>🧮</span> Math Practice
+                                    </div>
+                                    <div class="nav-tab">
+                                        <span>📈</span> Analytics
+                                    </div>
+                                    <div class="nav-tab">
+                                        <span>🎯</span> Goals
+                                    </div>
+                                </div>
+
+                                <div class="dashboard-content">
+                                    <div class="dashboard-grid">
+                                        <div class="dashboard-card">
+                                            <div class="card-header">
+                                                <div class="card-title">Current Score</div>
+                                                <div class="card-icon">🎯</div>
+                                            </div>
+                                            <div class="card-metric">28</div>
+                                            <div class="card-description">+3 from last practice test</div>
+                                        </div>
+
+                                        <div class="dashboard-card">
+                                            <div class="card-header">
+                                                <div class="card-title">Study Streak</div>
+                                                <div class="card-icon">🔥</div>
+                                            </div>
+                                            <div class="card-metric">12</div>
+                                            <div class="card-description">days in a row</div>
+                                        </div>
+
+                                        <div class="dashboard-card">
+                                            <div class="card-header">
+                                                <div class="card-title">Weak Areas</div>
+                                                <div class="card-icon">⚠️</div>
+                                            </div>
+                                            <div class="card-metric">3</div>
+                                            <div class="card-description">Quadratic equations needs work</div>
+                                        </div>
+
+                                        <div class="dashboard-card">
+                                            <div class="card-header">
+                                                <div class="card-title">Next Test</div>
+                                                <div class="card-icon">📅</div>
+                                            </div>
+                                            <div class="card-metric">23</div>
+                                            <div class="card-description">days until ACT</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="recent-activity">
+                                        <div class="activity-header">Recent Activity</div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon">📝</div>
+                                            <div class="activity-details">
+                                                <div class="activity-title">Completed Practice Test #5</div>
+                                                <div class="activity-time">2 hours ago</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon">🧮</div>
+                                            <div class="activity-details">
+                                                <div class="activity-title">Math Practice - Algebra</div>
+                                                <div class="activity-time">1 day ago</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon">📚</div>
+                                            <div class="activity-details">
+                                                <div class="activity-title">Watched: Quadratic Formulas</div>
+                                                <div class="activity-time">2 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Lesson Panel - Shows After Dashboard -->
+                            <div class="lesson-panel" id="lessonPanel" style="display: none; opacity: 0; width: 100%; position: absolute; top: 0; left: 0; height: 100%; background: white;">
                                 <div class="lesson-header">
                                     📚 ACT Math • Quadratic Equations
                                 </div>
@@ -1256,7 +1562,7 @@
                         </div>
 
                         <!-- Debug button -->
-                        <button onclick="startAIDemo()" style="position: absolute; top: 10px; right: 10px; background: red; color: white; padding: 10px; border: none; border-radius: 5px; z-index: 100;">Test Demo</button>
+                        <button onclick="startDashboardDemo()" style="position: absolute; top: 10px; right: 10px; background: red; color: white; padding: 10px; border: none; border-radius: 5px; z-index: 100;">Test Demo</button>
                     </div>
                 </div>
             </div>
@@ -1370,14 +1676,87 @@
 
         // Auto-start seamless demo
         function initSeamlessDemo() {
-            // Start demo immediately - no delays
+            // Start with dashboard view first
             setTimeout(() => {
-                console.log('Starting AI demo...');
-                startAIDemo();
-            }, 500);
+                console.log('Starting complete demo sequence...');
+                startDashboardDemo();
+            }, 1000); // Give time for the interface to load
         }
 
-        // Start the complete AI demo sequence
+        // Start the complete demo sequence from dashboard
+        function startDashboardDemo() {
+            console.log('Starting dashboard demo...');
+
+            // Show dashboard first - it's already visible
+            const dashboard = document.getElementById('dashboardInterface');
+            const lessonPanel = document.getElementById('lessonPanel');
+
+            if (!dashboard || !lessonPanel) {
+                console.log('Dashboard or lesson panel not found!');
+                return;
+            }
+
+            // After 1.5 seconds, click on Math Practice tab
+            setTimeout(() => {
+                console.log('Clicking Math Practice tab...');
+                clickMathPracticeTab();
+            }, 1500);
+        }
+
+        // Simulate clicking the Math Practice tab
+        function clickMathPracticeTab() {
+            const mathTab = document.getElementById('mathPracticeTab');
+            if (!mathTab) {
+                console.log('Math Practice tab not found!');
+                return;
+            }
+
+            // Add click animation
+            mathTab.classList.add('clicking');
+
+            // After click animation, transition to lesson
+            setTimeout(() => {
+                mathTab.classList.remove('clicking');
+                transitionToLesson();
+            }, 300);
+        }
+
+        // Transition from dashboard to lesson panel
+        function transitionToLesson() {
+            console.log('Transitioning to lesson panel...');
+
+            const dashboard = document.getElementById('dashboardInterface');
+            const lessonPanel = document.getElementById('lessonPanel');
+
+            if (!dashboard || !lessonPanel) {
+                console.log('Dashboard or lesson panel not found!');
+                return;
+            }
+
+            // Hide dashboard with smooth transition
+            dashboard.classList.add('hidden');
+
+            // Show lesson panel after dashboard transitions out
+            setTimeout(() => {
+                dashboard.style.display = 'none';
+                lessonPanel.style.display = 'flex';
+                lessonPanel.style.flexDirection = 'column';
+
+                // Animate lesson panel in
+                setTimeout(() => {
+                    lessonPanel.style.opacity = '1';
+                    lessonPanel.style.transform = 'translateX(0)';
+
+                    // Start the AI demo after lesson panel is visible
+                    setTimeout(() => {
+                        console.log('Starting AI tutoring demo...');
+                        startAIDemo();
+                    }, 500);
+                }, 100);
+            }, 600);
+        }
+
+        // Start the AI demo sequence (original function, but now called after lesson transition)
         function startAIDemo() {
             console.log('Starting AI demo sequence...');
 
