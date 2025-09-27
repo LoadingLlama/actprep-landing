@@ -343,6 +343,121 @@
             font-size: 0.95rem;
         }
 
+        /* New Visual Features */
+        .features-visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+        }
+
+        .feature-visual-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-visual-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 122, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-visual-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #007aff;
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.15);
+        }
+
+        .feature-visual-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-visual-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-visual-card:hover .feature-visual-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-visual-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-visual-metric {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-showcase {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-demo {
+            background: linear-gradient(135deg, #1d1d1f, #2a2a2a);
+            border-radius: 16px;
+            padding: 3rem;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-placeholder {
+            text-align: center;
+            color: #a1a1a6;
+        }
+
+        .pulse-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(0, 122, 255, 0);
+            }
+        }
+
         /* Interactive Demo Section */
         .demo-section {
             padding: 6rem 2rem;
@@ -1043,6 +1158,79 @@
             font-weight: 500;
         }
 
+        /* New Visual Stats */
+        .stats-visual-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stats-visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-visual-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .stat-visual-card:hover {
+            transform: translateY(-8px);
+            border-color: #007aff;
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.15);
+        }
+
+        .stat-visual-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce-subtle 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .stat-visual-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-visual-label {
+            font-size: 1rem;
+            color: #6e6e73;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-visual-progress {
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            border-radius: 3px;
+            width: 0;
+            transition: width 2s ease-out;
+        }
+
         /* Universities Section */
         .universities-section {
             padding: 4rem 2rem;
@@ -1077,6 +1265,90 @@
             font-weight: 500;
         }
 
+        /* New Universities Design */
+        .universities-showcase {
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .university-carousel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            animation: slideLoop 20s linear infinite;
+        }
+
+        @keyframes slideLoop {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+
+        .university-visual-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .university-visual-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #007aff, #00d4ff, #007aff);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .university-visual-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.2);
+        }
+
+        .university-visual-logo {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            filter: grayscale(100%);
+            transition: all 0.4s ease;
+        }
+
+        .university-visual-card:hover .university-visual-logo {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .university-visual-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f5f5f7;
+            margin-bottom: 0.5rem;
+        }
+
+        .university-visual-badge {
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 4rem 2rem;
@@ -1102,6 +1374,48 @@
             margin-bottom: 2rem;
             opacity: 0.9;
             font-weight: 400;
+        }
+
+        .cta-visual {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 30%;
+            right: 15%;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            66% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
         }
 
         /* Footer */
@@ -1359,45 +1673,42 @@
     <!-- Features Section -->
     <section id="features" class="features-section">
         <div class="section-header">
-            <h2 class="section-title">Breakthrough Technology</h2>
-            <p class="section-subtitle">Advanced AI technology that personalizes your study experience and accelerates your progress</p>
+            <h2 class="section-title">What Makes Us Different</h2>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🧠</div>
-                <h3 class="feature-title">Adaptive AI</h3>
-                <p class="feature-description">Personalized learning paths that evolve with your progress, identifying strengths and targeting weaknesses with precision.</p>
+        <div class="features-visual-grid">
+            <div class="feature-visual-card" data-feature="ai">
+                <div class="feature-visual-icon">🧠</div>
+                <div class="feature-visual-title">Smart AI</div>
+                <div class="feature-visual-metric">Personalized</div>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3 class="feature-title">Real-time Analytics</h3>
-                <p class="feature-description">Advanced performance tracking with predictive scoring and detailed insights into your test-day readiness.</p>
+            <div class="feature-visual-card" data-feature="speed">
+                <div class="feature-visual-icon">⚡</div>
+                <div class="feature-visual-title">Instant Help</div>
+                <div class="feature-visual-metric">< 1 sec</div>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Instant Feedback</h3>
-                <p class="feature-description">Get immediate explanations and corrections that help you learn from mistakes and reinforce correct thinking patterns.</p>
+            <div class="feature-visual-card" data-feature="precision">
+                <div class="feature-visual-icon">🎯</div>
+                <div class="feature-visual-title">Laser Focus</div>
+                <div class="feature-visual-metric">Targeted</div>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Precision Practice</h3>
-                <p class="feature-description">Thousands of questions that mirror the exact style, difficulty, and timing of the real ACT exam.</p>
+            <div class="feature-visual-card" data-feature="results">
+                <div class="feature-visual-icon">🏆</div>
+                <div class="feature-visual-title">Built to Win</div>
+                <div class="feature-visual-metric">Score Higher</div>
             </div>
+        </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3 class="feature-title">Proven Results</h3>
-                <p class="feature-description">Average score improvements of 7+ points with our comprehensive methodology and expert guidance.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🔬</div>
-                <h3 class="feature-title">Science-Backed</h3>
-                <p class="feature-description">Built on cognitive science research and learning theories proven to enhance retention and understanding.</p>
+        <!-- Interactive Feature Showcase -->
+        <div class="feature-showcase">
+            <div class="feature-demo" id="featureDemo">
+                <div class="demo-placeholder">
+                    <div class="pulse-circle"></div>
+                    <p>Hover over features above</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1513,17 +1824,20 @@
                                                     <button
                                                         onclick="askForHelp()"
                                                         style="
-                                                            background: #007aff;
-                                                            color: white;
-                                                            border: none;
-                                                            padding: 0.6rem 1.2rem;
-                                                            border-radius: 8px;
-                                                            font-size: 0.9rem;
+                                                            background: transparent;
+                                                            color: #a1a1a6;
+                                                            border: 1px solid #e5e5e7;
+                                                            padding: 0.4rem 0.8rem;
+                                                            border-radius: 6px;
+                                                            font-size: 0.8rem;
                                                             cursor: pointer;
                                                             transition: all 0.3s ease;
+                                                            opacity: 0.7;
                                                         "
+                                                        onmouseover="this.style.opacity='1'; this.style.color='#6e6e73'"
+                                                        onmouseout="this.style.opacity='0.7'; this.style.color='#a1a1a6'"
                                                     >
-                                                        💬 Ask AI Tutor for Help
+                                                        ? need help
                                                     </button>
                                                 </div>
                                             </div>
@@ -1586,26 +1900,46 @@
     <!-- Stats Section -->
     <section id="stats" class="stats-section">
         <div class="section-header">
-            <h2 class="section-title">Exceptional Results</h2>
-            <p class="section-subtitle">Our students consistently achieve breakthrough performance</p>
+            <h2 class="section-title">Our Goals for You</h2>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">36</div>
-                <div class="stat-label">Perfect Scores Achieved</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">+8.2</div>
-                <div class="stat-label">Average Point Increase</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">98%</div>
-                <div class="stat-label">Student Satisfaction</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">$2.1M</div>
-                <div class="stat-label">Scholarships Earned</div>
+        <div class="stats-visual-container">
+            <div class="stats-visual-grid">
+                <div class="stat-visual-card" data-stat="perfect">
+                    <div class="stat-visual-icon">🎯</div>
+                    <div class="stat-visual-number" data-target="36">0</div>
+                    <div class="stat-visual-label">Score Target</div>
+                    <div class="stat-visual-progress">
+                        <div class="progress-bar" data-percent="100"></div>
+                    </div>
+                </div>
+
+                <div class="stat-visual-card" data-stat="improvement">
+                    <div class="stat-visual-icon">📈</div>
+                    <div class="stat-visual-number" data-target="8">0</div>
+                    <div class="stat-visual-label">Point Goal</div>
+                    <div class="stat-visual-progress">
+                        <div class="progress-bar" data-percent="95"></div>
+                    </div>
+                </div>
+
+                <div class="stat-visual-card" data-stat="satisfaction">
+                    <div class="stat-visual-icon">⚡</div>
+                    <div class="stat-visual-number" data-target="24">0</div>
+                    <div class="stat-visual-label">Hour Course</div>
+                    <div class="stat-visual-progress">
+                        <div class="progress-bar" data-percent="98"></div>
+                    </div>
+                </div>
+
+                <div class="stat-visual-card" data-stat="scholarships">
+                    <div class="stat-visual-icon">🚀</div>
+                    <div class="stat-visual-number" data-target="100">0</div>
+                    <div class="stat-visual-label">AI Powered</div>
+                    <div class="stat-visual-progress">
+                        <div class="progress-bar" data-percent="85"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1613,26 +1947,31 @@
     <!-- Universities Section -->
     <section id="universities" class="universities-section">
         <div class="section-header">
-            <h2 class="section-title">Elite Academic Pedigree</h2>
-            <p class="section-subtitle">Created by graduates from the world's most prestigious institutions</p>
+            <h2 class="section-title">Built by Top Minds</h2>
         </div>
 
-        <div class="universities-grid">
-            <div class="university">
-                <div class="university-logo">🏛️</div>
-                <div class="university-name">Harvard</div>
-            </div>
-            <div class="university">
-                <div class="university-logo">🌲</div>
-                <div class="university-name">Stanford</div>
-            </div>
-            <div class="university">
-                <div class="university-logo">🦁</div>
-                <div class="university-name">Princeton</div>
-            </div>
-            <div class="university">
-                <div class="university-logo">🐻</div>
-                <div class="university-name">Berkeley</div>
+        <div class="universities-showcase">
+            <div class="university-carousel">
+                <div class="university-visual-card">
+                    <div class="university-visual-logo">🏛️</div>
+                    <div class="university-visual-name">Harvard</div>
+                    <div class="university-visual-badge">Perfect SAT</div>
+                </div>
+                <div class="university-visual-card">
+                    <div class="university-visual-logo">🌲</div>
+                    <div class="university-visual-name">Stanford</div>
+                    <div class="university-visual-badge">Valedictorian</div>
+                </div>
+                <div class="university-visual-card">
+                    <div class="university-visual-logo">🦁</div>
+                    <div class="university-visual-name">Princeton</div>
+                    <div class="university-visual-badge">Summa Cum Laude</div>
+                </div>
+                <div class="university-visual-card">
+                    <div class="university-visual-logo">🐻</div>
+                    <div class="university-visual-name">Berkeley</div>
+                    <div class="university-visual-badge">Phi Beta Kappa</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1640,9 +1979,14 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-content">
+            <div class="cta-visual">
+                <div class="floating-element">🚀</div>
+                <div class="floating-element" style="animation-delay: 0.5s;">⭐</div>
+                <div class="floating-element" style="animation-delay: 1s;">🎯</div>
+            </div>
             <h2 class="cta-title">Ready to Transform Your Future?</h2>
-            <p class="cta-subtitle">Join the waitlist now and get free access when we launch - limited time only.</p>
-            <button class="btn-primary" onclick="openModal()" style="background: white; color: #007aff;">Join Waitlist</button>
+            <p class="cta-subtitle">Join the waitlist • Get free access when we launch</p>
+            <button class="btn-primary" onclick="openModal()" style="background: white; color: #007aff; transform: scale(1.1); box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);">Join Waitlist</button>
         </div>
     </section>
 
@@ -2347,11 +2691,100 @@
             }
         }
 
+        // Animate stats when in view
+        function animateStats() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate numbers
+                        const numberElements = entry.target.querySelectorAll('.stat-visual-number');
+                        numberElements.forEach(el => {
+                            const target = parseFloat(el.getAttribute('data-target'));
+                            animateNumber(el, 0, target, 2000);
+                        });
+
+                        // Animate progress bars
+                        const progressBars = entry.target.querySelectorAll('.progress-bar');
+                        progressBars.forEach(bar => {
+                            const percent = bar.getAttribute('data-percent');
+                            setTimeout(() => {
+                                bar.style.width = percent + '%';
+                            }, 500);
+                        });
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const statsSection = document.querySelector('.stats-visual-container');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        }
+
+        // Animate number counting
+        function animateNumber(element, start, end, duration) {
+            const startTime = performance.now();
+            const isDecimal = end % 1 !== 0;
+
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function
+                const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+                const current = start + (end - start) * easeOutCubic;
+
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Add feature hover interactions
+        function initFeatureInteractions() {
+            const featureCards = document.querySelectorAll('.feature-visual-card');
+            const demoArea = document.getElementById('featureDemo');
+
+            const demoContent = {
+                ai: '<div style="text-align: center; color: #007aff;"><h3>🧠 Smart AI</h3><p>Learns your weaknesses and adapts in real-time</p></div>',
+                speed: '<div style="text-align: center; color: #007aff;"><h3>⚡ Instant Help</h3><p>Get answers faster than you can think</p></div>',
+                precision: '<div style="text-align: center; color: #007aff;"><h3>🎯 Laser Focus</h3><p>Target exactly what you need to improve</p></div>',
+                results: '<div style="text-align: center; color: #007aff;"><h3>🏆 Built to Win</h3><p>Designed by perfect scorers for perfect scores</p></div>'
+            };
+
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const feature = card.getAttribute('data-feature');
+                    if (demoArea && demoContent[feature]) {
+                        demoArea.innerHTML = demoContent[feature];
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    if (demoArea) {
+                        demoArea.innerHTML = '<div class="demo-placeholder"><div class="pulse-circle"></div><p>Hover over features above</p></div>';
+                    }
+                });
+            });
+        }
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             observeElements();
             initSocialProof();
             initSeamlessDemo();
+            animateStats();
+            initFeatureInteractions();
 
             // Clean text animation
             const texts = [
