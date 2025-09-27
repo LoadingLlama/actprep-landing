@@ -147,46 +147,54 @@
 
         .hero-cta {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
             animation: fadeInUp 0.8s ease 0.8s both;
+            margin-bottom: 1rem;
         }
 
         .btn-primary {
             background: #007aff;
             color: white;
             font-size: 1.1rem;
-            font-weight: 500;
-            padding: 1rem 2rem;
+            font-weight: 600;
+            padding: 1.2rem 2.5rem;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+            min-width: 180px;
         }
 
         .btn-primary:hover {
             background: #0056cc;
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.3);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 122, 255, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             color: #f5f5f7;
             font-size: 1.1rem;
             font-weight: 500;
-            padding: 1rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
+            padding: 1.2rem 2.5rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            min-width: 180px;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
         }
 
         /* Social Proof */
@@ -210,7 +218,8 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideInFromLeft 25s ease infinite;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 1;
         }
 
         .signup-dot {
@@ -232,11 +241,6 @@
             font-weight: 600;
         }
 
-        @keyframes slideInFromLeft {
-            0%, 92% { opacity: 1; transform: translateX(0); }
-            94%, 98% { opacity: 0; transform: translateX(-20px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
 
         /* Features Grid - Apple Style */
         .features-section {
@@ -627,7 +631,7 @@
         <h1 class="hero-title">
             Revolutionize your ACT with
             <br>
-            <span id="dynamicText" class="dynamic-text">AI-Powered Learning</span>
+            <span id="dynamicText" class="dynamic-text">Elite Preparation</span>
         </h1>
         <p class="hero-subtitle">
             The most advanced ACT preparation platform ever created.
@@ -966,20 +970,41 @@
 
             const signupText = document.querySelector('.signup-text');
             const signupCount = document.getElementById('signupCount');
+            const recentSignupElement = document.getElementById('recentSignup');
             let currentIndex = 0;
             let count = 2847;
 
-            // Rotate through recent signups
-            setInterval(() => {
-                signupText.textContent = recentSignups[currentIndex];
-                currentIndex = (currentIndex + 1) % recentSignups.length;
+            // Ensure initial state is correct
+            if (signupText) {
+                signupText.textContent = recentSignups[0];
+            }
 
-                // Increment count occasionally
-                if (Math.random() < 0.15) {
-                    count += 1;
-                    signupCount.textContent = count.toLocaleString();
-                }
-            }, 25000);
+            // Smooth rotation through recent signups
+            const rotateSignups = () => {
+                if (!signupText || !recentSignupElement) return;
+
+                // Add fade out effect
+                recentSignupElement.style.opacity = '0.3';
+
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % recentSignups.length;
+                    signupText.textContent = recentSignups[currentIndex];
+
+                    // Fade back in
+                    recentSignupElement.style.opacity = '1';
+
+                    // Increment count occasionally
+                    if (Math.random() < 0.2) {
+                        count += Math.floor(Math.random() * 3) + 1;
+                        if (signupCount) {
+                            signupCount.textContent = count.toLocaleString();
+                        }
+                    }
+                }, 300);
+            };
+
+            // Start the rotation
+            setInterval(rotateSignups, 12000);
         }
 
         // Initialize everything
@@ -988,7 +1013,14 @@
             initSocialProof();
 
             // Clean text animation
-            const texts = ['AI-Powered Learning', 'Expert Tutors'];
+            const texts = [
+                'Elite Preparation',
+                'Expert Tutors',
+                'Science-Based Methods',
+                'Full-Tailored Courses',
+                'Precision Analytics',
+                'AI-Powered Learning'
+            ];
             let currentIndex = 0;
             const textElement = document.getElementById('dynamicText');
 
@@ -1011,7 +1043,7 @@
             }
 
             // Start animation cycle
-            setInterval(animateText, 3000);
+            setInterval(animateText, 3750);
         });
     </script>
 </body>
