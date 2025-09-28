@@ -11,10 +11,27 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #007aff;
+            --primary-dark: #0056cc;
+            --accent-color: #34c759;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-light: #f5f5f7;
+            --text-muted: #a1a1a6;
+            --bg-dark: #000000;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-            background: #000000;
-            color: #f5f5f7;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            color: var(--text-light);
             line-height: 1.6;
             scroll-behavior: smooth;
             overflow-x: hidden;
@@ -27,7 +44,7 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
@@ -45,7 +62,7 @@
         .logo {
             font-size: 1.4rem;
             font-weight: 600;
-            color: #f5f5f7;
+            color: var(--text-light);
             letter-spacing: -0.01em;
         }
 
@@ -56,7 +73,7 @@
         }
 
         .nav-links a {
-            color: #f5f5f7;
+            color: var(--text-light);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 400;
@@ -68,7 +85,7 @@
         }
 
         .cta-nav {
-            background: #007aff;
+            background: var(--primary-color);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
@@ -80,7 +97,7 @@
         }
 
         .cta-nav:hover {
-            background: #0056cc;
+            background: var(--primary-dark);
             transform: scale(1.05);
         }
 
@@ -92,7 +109,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(ellipse at center, #1a1a1a 0%, #000000 70%);
+            background: radial-gradient(ellipse at center, #1a1a1a 0%, var(--bg-dark) 70%);
             position: relative;
             overflow: hidden;
             padding: 2rem;
@@ -105,16 +122,16 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(from 0deg, transparent, #007aff20, transparent, #ff9500, transparent);
+            background: conic-gradient(from 0deg, transparent, rgba(0, 122, 255, 0.1), transparent, rgba(52, 199, 89, 0.1), transparent);
             animation: rotate 20s linear infinite;
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
         .hero-badge {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #007aff;
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
             padding: 0.4rem 1.2rem;
             border-radius: 20px;
             font-weight: 500;
@@ -137,10 +154,10 @@
 
         .hero-subtitle {
             font-size: 1.3rem;
-            color: #a1a1a6;
+            color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto 3rem;
-            line-height: 1.5;
+            line-height: 1.6;
             animation: fadeInUp 0.8s ease 0.6s both;
             font-weight: 400;
         }
@@ -186,11 +203,11 @@
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.08);
-            color: #f5f5f7;
+            color: var(--text-light);
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 500;
             padding: 1rem 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -216,9 +233,9 @@
         /* Button Variants */
         .btn-primary.cta-special {
             background: white;
-            color: #007aff;
+            color: var(--primary-color);
             transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-heavy);
         }
 
         .btn-primary.form-submit {
@@ -268,12 +285,12 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.9rem;
-            color: #a1a1a6;
+            color: var(--text-muted);
             background: rgba(255, 255, 255, 0.05);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
             transition: opacity 0.3s ease-in-out;
             opacity: 1;
         }
@@ -281,19 +298,19 @@
         .signup-dot {
             width: 8px;
             height: 8px;
-            background: #34c759;
+            background: var(--accent-color);
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
         }
 
         .total-signups {
             font-size: 0.85rem;
-            color: #6e6e73;
+            color: var(--text-secondary);
             font-weight: 500;
         }
 
         .total-signups span {
-            color: #007aff;
+            color: var(--primary-color);
             font-weight: 600;
         }
 
@@ -322,11 +339,13 @@
 
         .section-subtitle {
             font-size: 1.2rem;
-            color: #6e6e73;
+            color: var(--text-secondary);
             max-width: 650px;
             margin: 0 auto;
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
 
         .features-grid {
@@ -528,7 +547,19 @@
         /* Learning Progress Section */
         .learning-progress-section {
             padding: 6rem 2rem;
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-white));
+            position: relative;
+        }
+
+        .learning-progress-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .progress-container {
@@ -538,6 +569,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: start;
+            position: relative;
+            z-index: 2;
         }
 
         .progress-explanation {
@@ -770,16 +803,32 @@
         /* Interactive Demo Section */
         .demo-section {
             padding: 6rem 2rem;
-            background: #000000;
-            color: #f5f5f7;
+            background: linear-gradient(180deg, rgba(248, 249, 250, 0.02) 0%, var(--bg-dark) 20%, var(--bg-dark) 80%, rgba(139, 69, 19, 0.02) 100%);
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .demo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, var(--bg-light) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .demo-section .section-title {
-            color: #f5f5f7;
+            color: var(--text-light);
+            position: relative;
+            z-index: 2;
         }
 
         .demo-section .section-subtitle {
-            color: #a1a1a6;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 2;
         }
 
         .demo-container {
@@ -787,6 +836,8 @@
             margin: 0 auto;
             text-align: center;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .demo-showcase {
@@ -1426,8 +1477,20 @@
         /* Stats Section */
         .stats-section {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            color: #1d1d1f;
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-white));
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .stats-grid {
@@ -1551,17 +1614,33 @@
         /* Universities Section */
         .universities-section {
             padding: 4rem 2rem;
-            background: #000000;
-            color: #f5f5f7;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, var(--bg-dark) 50%, rgba(248, 249, 250, 0.02) 100%);
+            color: var(--text-light);
             text-align: center;
+            position: relative;
+        }
+
+        .universities-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(0deg, var(--bg-light) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .universities-section .section-title {
-            color: #f5f5f7;
+            color: var(--text-light);
+            position: relative;
+            z-index: 2;
         }
 
         .universities-section .section-subtitle {
-            color: #a1a1a6;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 2;
         }
 
         .universities-grid {
@@ -1688,13 +1767,38 @@
         /* Pricing Section */
         .pricing-section {
             padding: 8rem 2rem;
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            color: #1d1d1f;
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-white));
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        .pricing-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(0deg, var(--primary-color) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .pricing-container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .pricing-cards {
@@ -1910,9 +2014,21 @@
         /* CTA Section */
         .cta-section {
             padding: 4rem 2rem;
-            background: linear-gradient(135deg, #007aff, #00d4ff);
+            background: linear-gradient(135deg, var(--primary-color), #00d4ff);
             color: white;
             text-align: center;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(180deg, var(--bg-white) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .cta-content {
