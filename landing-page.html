@@ -30,7 +30,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            background: #1a1a1a;
             color: var(--text-light);
             line-height: 1.6;
             scroll-behavior: smooth;
@@ -92,6 +92,7 @@
             border: none;
             font-size: 0.9rem;
             font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -128,16 +129,16 @@
         }
 
         .hero-badge {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            color: var(--primary-color);
+            background: transparent;
+            border: 2px solid #007aff;
+            color: #007aff;
             padding: 0.4rem 1.2rem;
             border-radius: 20px;
-            font-weight: 500;
+            font-weight: 400;
             margin-bottom: 1.2rem;
             font-size: 0.85rem;
             animation: fadeInUp 0.8s ease 0.2s both;
+            text-shadow: 0 0 1px #007aff;
         }
 
         .hero-title {
@@ -176,6 +177,7 @@
             color: white;
             font-size: 1rem;
             font-weight: 400;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
             padding: 1rem 1.5rem;
             border: none;
             border-radius: 12px;
@@ -206,6 +208,7 @@
             color: var(--text-light);
             font-size: 1rem;
             font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
             padding: 1rem 1.5rem;
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -258,7 +261,8 @@
         }
 
         .free-highlight {
-            color: #34c759;
+            color: #6e6e73;
+            font-weight: 500;
         }
 
         .strikethrough {
@@ -316,10 +320,142 @@
 
 
         /* Features Grid - Apple Style */
+
         .features-section {
             padding: 6rem 2rem;
             background: #f5f5f7;
             color: #1d1d1f;
+        }
+
+        /* Science Section - Clean Design */
+        .science-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .method-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e5e5e7;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .method-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .method-traditional {
+            border-color: #ff6b35;
+        }
+
+        .method-launch {
+            border-color: #34c759;
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .method-icon {
+            font-size: 1.5rem;
+        }
+
+        .method-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0;
+        }
+
+        .method-process {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            background: #f8f9fa;
+            border: 1px solid #e5e5e7;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+
+        .process-arrow {
+            color: #6e6e73;
+            font-weight: 600;
+        }
+
+        .method-result {
+            color: #6e6e73;
+            font-style: italic;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .science-insight {
+            background: rgba(52, 199, 89, 0.1);
+            border: 1px solid rgba(52, 199, 89, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .insight-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .insight-text {
+            color: #1d1d1f;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .method-process {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .process-arrow {
+                transform: rotate(90deg);
+            }
+
+            .science-insight {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         .section-header {
@@ -547,20 +683,10 @@
         /* Learning Progress Section */
         .learning-progress-section {
             padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--bg-light), var(--bg-white));
+            background: var(--bg-light);
             position: relative;
         }
 
-        .learning-progress-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%);
-            z-index: 1;
-        }
 
         .progress-container {
             max-width: 1200px;
@@ -618,6 +744,9 @@
             padding: 3rem 2.5rem;
             box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
             border: 1px solid rgba(0, 0, 0, 0.05);
+            min-height: 270px;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Chart Styles for New Structure */
@@ -650,13 +779,17 @@
         .chart-wrapper {
             position: relative;
             margin-bottom: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .chart-graph {
             display: grid;
             grid-template-columns: 50px 1fr;
             gap: 0.5rem;
-            height: 160px;
+            min-height: 140px;
+            flex: 1;
         }
 
         .y-axis {
@@ -693,6 +826,22 @@
             height: 100%;
             flex: 1;
             justify-content: flex-end;
+        }
+
+        .week-label {
+            font-size: 0.8rem;
+            color: #6e6e73;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .week-label.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .week-bars {
@@ -808,16 +957,6 @@
             position: relative;
         }
 
-        .demo-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(180deg, var(--bg-light) 0%, transparent 100%);
-            z-index: 1;
-        }
 
         .demo-section .section-title {
             color: var(--text-light);
@@ -1477,21 +1616,11 @@
         /* Stats Section */
         .stats-section {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--bg-light), var(--bg-white));
+            background: var(--bg-light);
             color: var(--text-primary);
             position: relative;
         }
 
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%);
-            z-index: 1;
-        }
 
         .stats-grid {
             max-width: 900px;
@@ -1620,16 +1749,6 @@
             position: relative;
         }
 
-        .universities-section::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(0deg, var(--bg-light) 0%, transparent 100%);
-            z-index: 1;
-        }
 
         .universities-section .section-title {
             color: var(--text-light);
@@ -1748,7 +1867,7 @@
             margin-bottom: 0.8rem;
             letter-spacing: 0.02em;
             text-transform: uppercase;
-            font-family: 'Georgia', serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
         }
 
         .university-visual-badge {
@@ -1764,252 +1883,6 @@
             text-transform: uppercase;
         }
 
-        /* Pricing Section */
-        .pricing-section {
-            padding: 8rem 2rem;
-            background: linear-gradient(135deg, var(--bg-light), var(--bg-white));
-            color: var(--text-primary);
-            position: relative;
-        }
-
-        .pricing-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 100%);
-            z-index: 1;
-        }
-
-        .pricing-section::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(0deg, var(--primary-color) 0%, transparent 100%);
-            z-index: 1;
-        }
-
-        .pricing-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card.featured {
-            border-color: #007aff;
-            transform: scale(1.05);
-            box-shadow: 0 16px 48px rgba(0, 122, 255, 0.15);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #007aff, #00d4ff);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 0 0 12px 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1d1d1f;
-            margin-bottom: 1rem;
-        }
-
-        .pricing-price {
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .price-amount {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #1d1d1f;
-            line-height: 1;
-        }
-
-        .price-amount.original-price {
-            text-decoration: line-through;
-            color: #6e6e73;
-            font-size: 1.5rem;
-        }
-
-        .price-period {
-            font-size: 1rem;
-            color: #6e6e73;
-            font-weight: 500;
-        }
-
-        .waitlist-offer {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, #34c759, #30b050);
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .offer-badge {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .free-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: white;
-            margin: 0.5rem 0;
-        }
-
-        .offer-text {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .pricing-features {
-            margin: 2rem 0;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
-        }
-
-        .feature.disabled {
-            opacity: 0.5;
-        }
-
-        .feature-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .feature:not(.disabled) .feature-icon {
-            background: #34c759;
-            color: white;
-        }
-
-        .feature.disabled .feature-icon {
-            background: #e5e5e7;
-            color: #6e6e73;
-        }
-
-        .pricing-button {
-            width: 100%;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .free-button {
-            background: #f8f9fa;
-            color: #1d1d1f;
-            border: 2px solid #e5e5e7;
-        }
-
-        .free-button:hover {
-            background: #e5e5e7;
-            transform: translateY(-2px);
-        }
-
-        .pro-button {
-            background: linear-gradient(135deg, #007aff, #00d4ff);
-            color: white;
-            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
-        }
-
-        .pro-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.4);
-        }
-
-        .pricing-guarantee {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(52, 199, 89, 0.1), rgba(48, 176, 80, 0.05));
-            border-radius: 16px;
-            padding: 1.5rem 2rem;
-            margin-top: 3rem;
-            border: 1px solid rgba(52, 199, 89, 0.2);
-        }
-
-        .guarantee-icon {
-            font-size: 1.5rem;
-        }
-
-        .guarantee-text {
-            font-size: 0.95rem;
-            color: #1d1d1f;
-            text-align: center;
-        }
 
         /* CTA Section */
         .cta-section {
@@ -2020,16 +1893,6 @@
             position: relative;
         }
 
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(180deg, var(--bg-white) 0%, transparent 100%);
-            z-index: 1;
-        }
 
         .cta-content {
             max-width: 600px;
@@ -2212,14 +2075,50 @@
             }
         }
 
+        .hero .spinning-light {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            animation: rotate 15s linear infinite;
+            transform-origin: 50% 50%;
+        }
+
+        .hero .spinning-light::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                transparent 30deg,
+                rgba(255, 165, 0, 0.05) 40deg,
+                rgba(255, 180, 30, 0.12) 50deg,
+                rgba(255, 195, 60, 0.18) 60deg,
+                rgba(255, 210, 90, 0.22) 70deg,
+                rgba(255, 220, 100, 0.25) 80deg,
+                rgba(255, 210, 90, 0.22) 90deg,
+                rgba(255, 195, 60, 0.18) 100deg,
+                rgba(255, 180, 30, 0.12) 110deg,
+                rgba(255, 165, 0, 0.05) 120deg,
+                transparent 130deg,
+                transparent 360deg
+            );
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+        }
+
 
         .dynamic-text {
             display: inline-block;
-            background: linear-gradient(135deg, #007aff, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: #007aff;
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 400 !important;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             opacity: 1;
             transform: translateY(0px);
@@ -2313,12 +2212,13 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="position: relative;">
+        <div class="spinning-light"></div>
         <div class="hero-badge">Coming Soon • Early December</div>
         <h1 class="hero-title">
-            Revolutionize your ACT with
+            <span style="font-weight: 700; color: white;">Master your ACT with</span>
             <br>
-            <span id="dynamicText" class="dynamic-text">Elite Preparation</span>
+            <span id="dynamicText" class="dynamic-text" style="font-weight: 400; color: rgba(255, 255, 255, 0.8);">AI-Powered Learning</span>
         </h1>
         <p class="hero-subtitle">
             Personalized AI tutoring that adapts to your learning style.
@@ -2351,36 +2251,48 @@
             <p class="section-subtitle">Most prep courses only teach you what you get wrong. We teach you everything you need to know.</p>
         </div>
 
-        <div class="methodology-container">
-            <!-- Simple Side-by-Side Comparison -->
-            <div class="approach-comparison">
-                <div class="approach-card traditional">
-                    <div class="approach-header">
-                        <span class="approach-icon">❌</span>
-                        <h3>Most Courses</h3>
+
+        <div class="science-container">
+            <!-- Clean comparison cards -->
+            <div class="comparison-grid">
+                <div class="method-card method-traditional">
+                    <div class="method-header">
+                        <div class="method-icon">❌</div>
+                        <h3 class="method-title">Most Courses</h3>
                     </div>
-                    <p><strong>Test → Fix mistakes → Plateau at 80%</strong></p>
-                    <p><em>Gaps remain, can't reach perfection</em></p>
+                    <div class="method-process">
+                        <div class="process-step">Test</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Fix mistakes</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Plateau at 80%</div>
+                    </div>
+                    <p class="method-result">Gaps remain, can't reach perfection</p>
                 </div>
 
-                <div class="vs-divider">VS</div>
-
-                <div class="approach-card launch-prep">
-                    <div class="approach-header">
-                        <span class="approach-icon">✅</span>
-                        <h3>Launch Prep</h3>
+                <div class="method-card method-launch">
+                    <div class="method-header">
+                        <div class="method-icon">✅</div>
+                        <h3 class="method-title">Launch Prep</h3>
                     </div>
-                    <p><strong>Build foundation → Fill gaps → Reach 100%</strong></p>
-                    <p><em>Complete mastery through foundations</em></p>
+                    <div class="method-process">
+                        <div class="process-step">Build foundation</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Fill gaps</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Reach 100%</div>
+                    </div>
+                    <p class="method-result">Complete mastery through foundations</p>
                 </div>
             </div>
 
-            <!-- Key Insight -->
-            <div class="methodology-insight">
+            <!-- Bottom insight -->
+            <div class="science-insight">
                 <div class="insight-icon">💡</div>
-                <div class="insight-content">
-                    <p><strong>Bottom-up learning beats top-down 23% of the time.</strong> We build foundations first instead of rushing to practice tests.</p>
-                </div>
+                <p class="insight-text">
+                    <strong>Bottom-up learning beats top-down 23% of the time.</strong>
+                    We build foundations first instead of rushing to practice tests.
+                </p>
             </div>
         </div>
     </section>
@@ -2398,21 +2310,21 @@
                     <div class="point-number">1</div>
                     <div class="point-content">
                         <h4>Weeks 1-3: Foundation Building</h4>
-                        <p>We build complete understanding while others rush to practice tests. Slower start, stronger foundation.</p>
+                        <p>We build complete understanding while others rush to practice tests. Our methodical approach creates unshakeable foundations that enable exponential growth later, while others plateau from knowledge gaps.</p>
                     </div>
                 </div>
                 <div class="explanation-point">
                     <div class="point-number">2</div>
                     <div class="point-content">
                         <h4>Weeks 4-6: Acceleration Phase</h4>
-                        <p>Everything connects. Learning accelerates while others plateau from gaps.</p>
+                        <p>Everything connects as concepts build seamlessly. Learning velocity accelerates dramatically while traditional students hit walls from fundamental gaps. This is where our foundation-first approach shows its true power.</p>
                     </div>
                 </div>
                 <div class="explanation-point">
                     <div class="point-number">3</div>
                     <div class="point-content">
                         <h4>Weeks 7-9: Perfect Mastery</h4>
-                        <p>Reach 100% while others hit their ceiling at 80%. Complete foundations unlock perfect scores.</p>
+                        <p>Students reach 100% mastery while others hit their ceiling at 80%. Complete foundations unlock perfect scores that seemed impossible. Advanced concepts become intuitive and complex problems feel manageable.</p>
                     </div>
                 </div>
             </div>
@@ -2494,19 +2406,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="chart-legend">
-                    <div class="legend-item">
-                        <div class="legend-color traditional"></div>
-                        <span>Traditional Quick-Fix Methods</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color launch-prep"></div>
-                        <span>Launch Prep Foundation Method</span>
-                    </div>
-                </div>
-                <div class="chart-insight">
-                    <p><strong>Result:</strong> Others plateau at 82%, we reach 100% through complete foundations.</p>
                 </div>
             </div>
         </div>
@@ -2773,96 +2672,6 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section">
-        <div class="pricing-container">
-            <div class="section-header">
-                <h2 class="section-title">Simple, Transparent Pricing</h2>
-                <p class="section-subtitle">Choose your path to ACT mastery</p>
-            </div>
-
-            <div class="pricing-cards">
-                <div class="pricing-card free-tier">
-                    <div class="pricing-header">
-                        <h3 class="pricing-title">Free Tier</h3>
-                        <div class="pricing-price">
-                            <span class="price-amount">$0</span>
-                            <span class="price-period">/month</span>
-                        </div>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Basic practice tests</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Score tracking</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Limited AI feedback</span>
-                        </div>
-                        <div class="feature disabled">
-                            <span class="feature-icon">✗</span>
-                            <span>Complete foundation building</span>
-                        </div>
-                        <div class="feature disabled">
-                            <span class="feature-icon">✗</span>
-                            <span>Personal AI tutor</span>
-                        </div>
-                    </div>
-                    <button class="pricing-button free-button">Get Started Free</button>
-                </div>
-
-                <div class="pricing-card pro-tier featured">
-                    <div class="pricing-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3 class="pricing-title">Pro Tier</h3>
-                        <div class="pricing-price">
-                            <span class="price-amount original-price">$99</span>
-                            <span class="price-period">/month</span>
-                        </div>
-                        <div class="waitlist-offer">
-                            <div class="offer-badge">WAITLIST SPECIAL</div>
-                            <div class="free-price">FREE</div>
-                            <div class="offer-text">Join waitlist now, get Pro free forever</div>
-                        </div>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Complete foundation building</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Personal AI tutor</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Unlimited practice tests</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Advanced analytics</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-icon">✓</span>
-                            <span>Priority support</span>
-                        </div>
-                    </div>
-                    <button class="pricing-button pro-button" onclick="openModal()">Join Waitlist - Get Pro FREE</button>
-                </div>
-            </div>
-
-            <div class="pricing-guarantee">
-                <div class="guarantee-icon">🛡️</div>
-                <div class="guarantee-text">
-                    <strong>Waitlist Promise:</strong> First 1,000 users get Pro tier completely free, forever. No credit card required.
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
@@ -3676,13 +3485,22 @@
                         const chartContainer = entry.target.querySelector('.progress-chart-container');
                         if (chartContainer) {
                             const chartBars = chartContainer.querySelectorAll('.bar');
+                            const weekLabels = chartContainer.querySelectorAll('.week-label');
+
                             chartBars.forEach((bar, index) => {
                                 setTimeout(() => {
                                     const height = bar.getAttribute('data-height');
                                     if (height) {
-                                        bar.style.height = (height * 2.5) + 'px'; // Convert percentage to pixels for better control
+                                        bar.style.height = (height * 2.0) + 'px'; // Convert percentage to pixels for better control
                                     }
                                 }, 800 + (index * 150));
+                            });
+
+                            // Animate week labels with slight delay after bars
+                            weekLabels.forEach((label, index) => {
+                                setTimeout(() => {
+                                    label.classList.add('animate');
+                                }, 1200 + (index * 100));
                             });
                         }
 
@@ -3717,6 +3535,7 @@
                 'Science-Based Methods',
                 'Full-Tailored Courses',
                 'Precision Analytics',
+                'Diagnostic Test',
                 'AI-Powered Learning'
             ];
             let currentIndex = 0;
