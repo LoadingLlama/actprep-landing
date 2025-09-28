@@ -47,7 +47,8 @@
       "Bash(npm ls:*)",
       "Bash(npm cache clean:*)",
       "Bash(xargs kill:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git submodule:*)"
     ],
     "deny": [],
     "ask": []

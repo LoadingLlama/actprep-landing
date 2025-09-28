@@ -28,6 +28,15 @@
             --shadow-heavy: 0 16px 48px rgba(0, 0, 0, 0.15);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
             background: #1a1a1a;
@@ -35,6 +44,217 @@
             line-height: 1.6;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* Interactive hover effects */
+        .method-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .method-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .dashboard-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.15);
+        }
+
+        .explanation-point {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .explanation-point:hover {
+            background: rgba(0, 122, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .university-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .university-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.2);
+        }
+
+        /* Interactive chart bars */
+        .bar {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.1);
+            filter: brightness(1.1);
+        }
+
+        /* Interactive buttons with enhanced effects */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 122, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Floating animation for CTA elements */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(-10px) rotate(-3deg); }
+        }
+
+        /* Interactive navigation */
+        .nav a {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav a:hover {
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        /* Progress chart interactive tooltips */
+        .week-column {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .week-column:hover {
+            transform: scale(1.05);
+        }
+
+        .week-column::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .week-column:hover::before {
+            opacity: 1;
+        }
+
+        /* Pulse effect for important elements */
+        .signup-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Interactive demo interface */
+        .demo-interface {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .demo-interface:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Remove border from last section */
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* Smooth section fade-in animations */
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero section should be visible immediately */
+        .hero {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Apple-style Header */
@@ -42,11 +262,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: saturate(180%) blur(30px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0.6rem 0;
             transition: all 0.3s ease;
         }
 
@@ -60,7 +280,7 @@
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--text-light);
             letter-spacing: -0.01em;
@@ -157,10 +377,21 @@
             font-size: 1.3rem;
             color: var(--text-muted);
             max-width: 600px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 1.5rem;
             line-height: 1.6;
             animation: fadeInUp 0.8s ease 0.6s both;
             font-weight: 400;
+        }
+
+        .guarantee-text {
+            font-size: 1.1rem;
+            color: #ffffff;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.5;
+            animation: fadeInUp 0.8s ease 0.8s both;
+            font-weight: 500;
+            text-align: center;
         }
 
         .hero-cta {
@@ -465,7 +696,7 @@
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
             font-weight: 700;
             margin-bottom: 1.2rem;
             letter-spacing: -0.02em;
@@ -689,20 +920,45 @@
 
 
         .progress-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 4rem;
-            align-items: start;
             position: relative;
             z-index: 2;
         }
 
+        .progress-summary {
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .summary-text {
+            font-size: 1.1rem;
+            color: #6e6e73;
+            line-height: 1.5;
+            margin: 0;
+        }
+
         .progress-explanation {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            width: 100%;
+            max-width: 900px;
         }
 
         .explanation-point {
@@ -741,12 +997,21 @@
         .progress-chart-container {
             background: white;
             border-radius: 24px;
-            padding: 2rem 2rem;
+            padding: 3rem 2rem;
             box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            min-height: 240px;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
+            width: 100%;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scale(0.8);
+            opacity: 0.6;
+        }
+
+        .progress-chart-container.scroll-in-view {
+            transform: scale(1);
+            opacity: 1;
         }
 
         /* Chart Styles for New Structure */
@@ -950,7 +1215,7 @@
 
         /* Interactive Demo Section */
         .demo-section {
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             background: linear-gradient(180deg, rgba(248, 249, 250, 0.02) 0%, var(--bg-dark) 20%, var(--bg-dark) 80%, rgba(139, 69, 19, 0.02) 100%);
             color: var(--text-light);
             position: relative;
@@ -969,8 +1234,47 @@
             z-index: 2;
         }
 
+        .demo-section .section-header {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .demo-section .section-subtitle {
+            margin: 0;
+            text-align: left;
+        }
+
+
+        .demo-section .section-title {
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-header {
+            text-align: left;
+            margin-bottom: 1rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+            flex-shrink: 0;
+        }
+
         .demo-container {
-            max-width: 1800px;
+            max-width: 1200px;
             margin: 0 auto;
             text-align: center;
             padding: 0 2rem;
@@ -979,24 +1283,19 @@
         }
 
         .demo-showcase {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 2rem;
-            margin-top: 3rem;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: transparent;
+            padding: 0;
+            margin-top: 1.5rem;
         }
 
         .demo-screen {
-            background: linear-gradient(135deg, #1d1d1f, #2a2a2a);
-            border-radius: 16px;
+            background: transparent;
             padding: 0;
-            margin-bottom: 1.5rem;
-            min-height: 400px;
+            margin-bottom: 0;
+            min-height: 280px;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: none;
         }
 
         .demo-content {
@@ -1012,15 +1311,15 @@
 
         .demo-interface {
             width: 100%;
-            max-width: 1600px;
+            max-width: 900px;
             background: white;
-            border-radius: 20px;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: none;
             opacity: 0;
             animation: slideInUp 1s ease 0.5s forwards;
             display: flex;
-            height: 700px;
+            height: 550px;
             position: relative;
         }
 
@@ -1040,11 +1339,16 @@
             transform: translateX(-50px);
         }
 
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
         .app-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.5rem 2rem;
+            padding: 0.8rem 1.2rem;
             border-bottom: 1px solid #f0f0f0;
             background: #fafafa;
         }
@@ -1052,10 +1356,10 @@
         .app-logo {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
             font-weight: 600;
             color: #1d1d1f;
-            font-size: 1.1rem;
+            font-size: 0.85rem;
         }
 
         .user-info {
@@ -1087,10 +1391,10 @@
         }
 
         .nav-tab {
-            padding: 1rem 2rem;
+            padding: 0.6rem 1.2rem;
             color: #6e6e73;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             cursor: pointer;
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
@@ -1136,7 +1440,7 @@
 
         .dashboard-content {
             flex: 1;
-            padding: 3rem 2rem;
+            padding: 1.5rem 1.2rem;
             background: #f8f9fa;
             overflow-y: auto;
             display: flex;
@@ -1146,9 +1450,11 @@
 
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         .dashboard-card {
@@ -1252,7 +1558,7 @@
 
         .lesson-panel {
             flex: 1;
-            padding: 2rem;
+            padding: 1rem;
             background: #f8f9fa;
             display: flex;
             flex-direction: column;
@@ -1260,15 +1566,16 @@
             position: relative;
             transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
             transform: translateX(50px);
+            transform-origin: center center;
         }
 
         .lesson-header {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            gap: 0.3rem;
+            margin-bottom: 0.8rem;
             color: #6e6e73;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             font-weight: 500;
         }
 
@@ -1280,18 +1587,18 @@
         }
 
         .problem-title {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: #1d1d1f;
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
 
         .math-problem {
             background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 2px solid #007aff;
-            margin-bottom: 1rem;
+            border-radius: 8px;
+            padding: 0.8rem;
+            border: 1px solid #007aff;
+            margin-bottom: 0.6rem;
             text-align: center;
             font-size: 1.2rem;
             color: #1d1d1f;
@@ -1481,8 +1788,8 @@
         }
 
         .chat-panel.expanded {
-            width: 320px;
-            height: 400px;
+            width: 280px;
+            height: 320px;
             border-radius: 20px;
             flex-direction: column;
             cursor: default;
@@ -2215,13 +2522,12 @@
         <div class="spinning-light"></div>
         <div class="hero-badge">Coming Soon • Early December</div>
         <h1 class="hero-title">
-            <span style="font-weight: 700; color: white;">Master your ACT with</span>
+            <span style="font-weight: 700; color: white;">Master the ACT with</span>
             <br>
             <span id="dynamicText" class="dynamic-text" style="font-weight: 400; color: rgba(255, 255, 255, 0.8);">AI-Powered Learning</span>
         </h1>
-        <p class="hero-subtitle">
-            Personalized AI tutoring that adapts to your learning style.
-            Built by Ivy League graduates who achieved perfect scores.
+        <p class="hero-subtitle guarantee-text">
+            Guaranteed 35+ ACT score or your money back.*
         </p>
         <div class="hero-cta">
             <button class="btn-primary" onclick="openModal()">Join Waitlist</button>
@@ -2298,36 +2604,7 @@
 
     <!-- Learning Progress Section -->
     <section class="learning-progress-section">
-        <div class="section-header">
-            <h2 class="section-title">Start Slower. Finish Stronger.</h2>
-            <p class="section-subtitle">Other courses give quick wins but can't get you to mastery. We build the foundation for perfect scores.</p>
-        </div>
-
         <div class="progress-container">
-            <div class="progress-explanation">
-                <div class="explanation-point">
-                    <div class="point-number">1</div>
-                    <div class="point-content">
-                        <h4>Weeks 1-3: Foundation Building</h4>
-                        <p>We build solid foundations while others rush to practice tests. This creates exponential growth later.</p>
-                    </div>
-                </div>
-                <div class="explanation-point">
-                    <div class="point-number">2</div>
-                    <div class="point-content">
-                        <h4>Weeks 4-6: Acceleration Phase</h4>
-                        <p>Everything connects and learning accelerates dramatically while others hit walls from gaps.</p>
-                    </div>
-                </div>
-                <div class="explanation-point">
-                    <div class="point-number">3</div>
-                    <div class="point-content">
-                        <h4>Weeks 7-9: Perfect Mastery</h4>
-                        <p>Reach 100% mastery while others plateau at 80%. Complete foundations unlock perfect scores.</p>
-                    </div>
-                </div>
-            </div>
-
             <div class="progress-chart-container">
                 <h3 class="chart-title">Score Progress: Foundation vs. Quick Fixes</h3>
                 <div class="chart-wrapper">
@@ -2340,24 +2617,24 @@
                             <div class="y-label">0%</div>
                         </div>
                         <div class="chart-container">
-                            <div class="week-column">
+                            <div class="week-column" data-tooltip="Traditional: 45% vs Launch Prep: 35%">
                                 <div class="week-bars">
                                     <div class="bar traditional-bar" data-height="45" data-value="45%"></div>
-                                    <div class="bar launch-prep-bar" data-height="15" data-value="15%"></div>
+                                    <div class="bar launch-prep-bar" data-height="35" data-value="35%"></div>
                                 </div>
                                 <div class="week-label">Week 1</div>
                             </div>
-                            <div class="week-column">
+                            <div class="week-column" data-tooltip="Traditional: 60% vs Launch Prep: 40%">
                                 <div class="week-bars">
                                     <div class="bar traditional-bar" data-height="60" data-value="60%"></div>
-                                    <div class="bar launch-prep-bar" data-height="25" data-value="25%"></div>
+                                    <div class="bar launch-prep-bar" data-height="40" data-value="40%"></div>
                                 </div>
                                 <div class="week-label">Week 2</div>
                             </div>
-                            <div class="week-column">
+                            <div class="week-column" data-tooltip="Traditional: 70% vs Launch Prep: 45%">
                                 <div class="week-bars">
                                     <div class="bar traditional-bar" data-height="70" data-value="70%"></div>
-                                    <div class="bar launch-prep-bar" data-height="35" data-value="35%"></div>
+                                    <div class="bar launch-prep-bar" data-height="45" data-value="45%"></div>
                                 </div>
                                 <div class="week-label">Week 3</div>
                             </div>
@@ -2407,18 +2684,51 @@
                     </div>
                 </div>
             </div>
+
+            <div class="progress-summary">
+                <h2 class="summary-title">Start Slower. Finish Stronger.</h2>
+                <p class="summary-text">We build foundations for perfect scores while others rush to quick fixes.</p>
+            </div>
+
+            <div class="progress-explanation">
+                <div class="explanation-point">
+                    <div class="point-number">1</div>
+                    <div class="point-content">
+                        <h4>Weeks 1-3: Foundation Building</h4>
+                        <p>We build solid foundations while others rush to practice tests. This creates exponential growth later.</p>
+                    </div>
+                </div>
+                <div class="explanation-point">
+                    <div class="point-number">2</div>
+                    <div class="point-content">
+                        <h4>Weeks 4-6: Acceleration Phase</h4>
+                        <p>Everything connects and learning accelerates dramatically while others hit walls from gaps.</p>
+                    </div>
+                </div>
+                <div class="explanation-point">
+                    <div class="point-number">3</div>
+                    <div class="point-content">
+                        <h4>Weeks 7-9: Perfect Mastery</h4>
+                        <p>Reach 100% mastery while others plateau at 80%. Complete foundations unlock perfect scores.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Demo Section -->
     <section id="demo" class="demo-section">
         <div class="demo-container">
-            <div class="section-header">
-                <h2 class="section-title">Experience the Future</h2>
-                <p class="section-subtitle">Watch AI tutoring in action – no signup required</p>
-            </div>
-
             <div class="demo-showcase">
+                <div class="demo-header">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem;">
+                            <span class="new-badge">New</span>
+                            <h2 class="section-title" style="margin-bottom: 0;">See Launch Prep in Action</h2>
+                        </div>
+                        <p class="section-subtitle">Live demo of our AI-powered ACT prep platform</p>
+                    </div>
+                </div>
                 <div class="demo-screen" id="demoScreen">
                     <div class="demo-content">
                         <div class="demo-interface">
@@ -2450,27 +2760,41 @@
                                 </div>
 
                                 <div class="dashboard-content">
-                                    <div style="text-align: center; margin: 3rem 0;">
-                                        <h2 style="font-size: 1.8rem; font-weight: 600; color: #1d1d1f; margin-bottom: 0.5rem;">Welcome back, Sarah!</h2>
-                                        <p style="color: #6e6e73; font-size: 1rem; margin-bottom: 3rem;">Ready to improve your ACT score?</p>
+                                    <div style="text-align: center; margin: 1.5rem 0;">
+                                        <h2 style="font-size: 1.2rem; font-weight: 600; color: #1d1d1f; margin-bottom: 0.3rem;">Welcome back, Sarah!</h2>
+                                        <p style="color: #6e6e73; font-size: 0.8rem; margin-bottom: 1.5rem;">Ready to improve your ACT score?</p>
                                     </div>
 
-                                    <div class="dashboard-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 600px; margin: 0 auto;">
-                                        <div class="dashboard-card" style="text-align: center;">
-                                            <div class="card-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
-                                            <div class="card-metric" style="font-size: 2.5rem;">28</div>
-                                            <div class="card-title" style="margin-top: 0.5rem;">Current Score</div>
+                                    <div class="dashboard-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 450px; margin: 0 auto;">
+                                        <div class="dashboard-card" style="text-align: center; padding: 1rem;">
+                                            <div class="card-icon" style="font-size: 1.8rem; margin-bottom: 0.6rem;">🎯</div>
+                                            <div class="card-metric" style="font-size: 1.8rem;">28</div>
+                                            <div class="card-title" style="margin-top: 0.3rem; font-size: 0.8rem;">Current Score</div>
                                         </div>
 
-                                        <div class="dashboard-card" id="weakAreaCard" style="text-align: center; border: 2px solid #ff9500; background: linear-gradient(135deg, #fff9f0, #ffffff);">
-                                            <div class="card-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">⚠️</div>
-                                            <div class="card-metric" style="font-size: 1.5rem; color: #ff9500; font-weight: 700;">Quadratics</div>
-                                            <div class="card-title" style="margin-top: 0.5rem; color: #ff9500; font-weight: 600;">Needs Practice</div>
+                                        <div class="dashboard-card" id="weakAreaCard" style="text-align: center; border: 2px solid #ff9500; background: linear-gradient(135deg, #fff9f0, #ffffff); padding: 1rem;">
+                                            <div class="card-icon" style="font-size: 1.8rem; margin-bottom: 0.6rem;">⚠️</div>
+                                            <div class="card-metric" style="font-size: 1.1rem; color: #ff9500; font-weight: 700;">Quadratics</div>
+                                            <div class="card-title" style="margin-top: 0.3rem; color: #ff9500; font-weight: 600; font-size: 0.8rem;">Needs Practice</div>
                                         </div>
                                     </div>
 
-                                    <div style="text-align: center; margin-top: 3rem;">
-                                        <p style="color: #007aff; font-size: 1rem; font-weight: 500; margin-bottom: 1rem;">💡 Click "Math Practice" to improve quadratics</p>
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; max-width: 400px; margin: 1.5rem auto 0;">
+                                        <div class="dashboard-card action-button" onclick="startMathPractice()" style="text-align: center; cursor: pointer; background: #007aff; color: white; border: none; padding: 0.8rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 122, 255, 0.15); transition: all 0.3s ease;">
+                                            <div class="card-icon" style="font-size: 1.1rem; margin-bottom: 0.3rem; color: white;">🧮</div>
+                                            <div class="card-title" style="font-weight: 600; font-size: 0.75rem; line-height: 1.3; color: white;">Continue ACT Math Practice</div>
+                                            <div style="font-size: 0.6rem; margin-top: 0.2rem; opacity: 0.9; color: white;">Resume where you left off</div>
+                                        </div>
+
+                                        <div class="dashboard-card action-button" style="text-align: center; cursor: pointer; background: #f8f9fa; color: #1d1d1f; border: 1px solid #e5e5e7; padding: 0.8rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); transition: all 0.3s ease;">
+                                            <div class="card-icon" style="font-size: 1.1rem; margin-bottom: 0.3rem;">📚</div>
+                                            <div class="card-title" style="font-weight: 600; font-size: 0.75rem; line-height: 1.3;">Start New ACT Lesson</div>
+                                            <div style="font-size: 0.6rem; margin-top: 0.2rem; opacity: 0.7;">Learn new concepts</div>
+                                        </div>
+                                    </div>
+
+                                    <div style="text-align: center; margin-top: 1rem;">
+                                        <p style="color: #007aff; font-size: 0.65rem; font-weight: 500; margin-bottom: 0.5rem;">💡 Click "Math Practice" above or in the tab to improve quadratics</p>
                                     </div>
                                 </div>
                             </div>
@@ -2483,8 +2807,8 @@
                                 <div class="lesson-content">
                                     <div class="problem-title">Practice Problem #12</div>
                                     <div class="math-problem">
-                                        <div style="margin-bottom: 1rem;">Solve for x:</div>
-                                        <div class="math-equation" style="position: relative; font-size: 1.4rem; font-weight: bold; text-align: center; margin: 1rem 0; display: flex; justify-content: center; align-items: center; min-height: 60px;">
+                                        <div style="margin-bottom: 0.5rem; font-size: 0.8rem;">Solve for x:</div>
+                                        <div class="math-equation" style="position: relative; font-size: 1rem; font-weight: bold; text-align: center; margin: 0.5rem 0; display: flex; justify-content: center; align-items: center; min-height: 40px;">
                                             <div style="position: relative; display: inline-flex; align-items: center; gap: 8px;">
                                                 <span id="term1" style="position: relative; padding: 4px; background: transparent;">x²</span>
                                                 <span> - </span>
@@ -2784,6 +3108,12 @@
                 console.log('Clicking Math Practice tab...');
                 clickMathPracticeTab();
             }, 2000);
+        }
+
+        // Function for the "Continue ACT Math Practice" button
+        function startMathPractice() {
+            console.log('Starting math practice from dashboard button...');
+            clickMathPracticeTab();
         }
 
         // Simulate clicking the Math Practice tab
@@ -3559,6 +3889,53 @@
             // Start animation cycle
             setInterval(animateText, 3750);
         });
+
+        // Chart scroll animation
+        function initChartScrollAnimation() {
+            const chartContainer = document.querySelector('.progress-chart-container');
+            if (!chartContainer) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('scroll-in-view');
+                    } else {
+                        entry.target.classList.remove('scroll-in-view');
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '0px 0px -10% 0px'
+            });
+
+            observer.observe(chartContainer);
+        }
+
+        // Initialize chart scroll animation
+        initChartScrollAnimation();
+
+        // Section fade-in animation
+        function initSectionFadeIn() {
+            const sections = document.querySelectorAll('section:not(.hero)');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Initialize section animations
+        initSectionFadeIn();
     </script>
 </body>
 </html>
