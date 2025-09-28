@@ -322,7 +322,7 @@
         /* Features Grid - Apple Style */
 
         .features-section {
-            padding: 6rem 2rem;
+            padding: 3rem 2rem;
             background: #f5f5f7;
             color: #1d1d1f;
         }
@@ -682,7 +682,7 @@
 
         /* Learning Progress Section */
         .learning-progress-section {
-            padding: 6rem 2rem;
+            padding: 3rem 2rem;
             background: var(--bg-light);
             position: relative;
         }
@@ -741,10 +741,10 @@
         .progress-chart-container {
             background: white;
             border-radius: 24px;
-            padding: 3rem 2.5rem;
+            padding: 2rem 2rem;
             box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            min-height: 270px;
+            min-height: 240px;
             display: flex;
             flex-direction: column;
         }
@@ -772,13 +772,13 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: #1d1d1f;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             letter-spacing: -0.01em;
         }
 
         .chart-wrapper {
             position: relative;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -815,7 +815,7 @@
             display: flex;
             align-items: flex-end;
             gap: 0.6rem;
-            padding: 0 0.5rem 1rem 0.5rem;
+            padding: 0 0.5rem 0 0.5rem;
             position: relative;
         }
 
@@ -826,22 +826,27 @@
             height: 100%;
             flex: 1;
             justify-content: flex-end;
+            position: relative;
         }
 
         .week-label {
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             color: #6e6e73;
             font-weight: 500;
-            margin-top: 0.5rem;
             text-align: center;
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.4s ease;
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            white-space: nowrap;
         }
 
         .week-label.animate {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0);
         }
 
         .week-bars {
@@ -852,12 +857,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .week-label {
-            font-size: 0.8rem;
-            color: #6e6e73;
-            font-weight: 500;
-            text-align: center;
-        }
 
         .bar {
             width: 20px;
@@ -951,7 +950,7 @@
 
         /* Interactive Demo Section */
         .demo-section {
-            padding: 6rem 2rem;
+            padding: 3rem 2rem;
             background: linear-gradient(180deg, rgba(248, 249, 250, 0.02) 0%, var(--bg-dark) 20%, var(--bg-dark) 80%, rgba(139, 69, 19, 0.02) 100%);
             color: var(--text-light);
             position: relative;
@@ -1615,7 +1614,7 @@
 
         /* Stats Section */
         .stats-section {
-            padding: 5rem 2rem;
+            padding: 2.5rem 2rem;
             background: var(--bg-light);
             color: var(--text-primary);
             position: relative;
@@ -1742,7 +1741,7 @@
 
         /* Universities Section */
         .universities-section {
-            padding: 4rem 2rem;
+            padding: 2.5rem 2rem;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, var(--bg-dark) 50%, rgba(248, 249, 250, 0.02) 100%);
             color: var(--text-light);
             text-align: center;
@@ -1886,7 +1885,7 @@
 
         /* CTA Section */
         .cta-section {
-            padding: 4rem 2rem;
+            padding: 2.5rem 2rem;
             background: linear-gradient(135deg, var(--primary-color), #00d4ff);
             color: white;
             text-align: center;
@@ -2239,7 +2238,7 @@
                 <span class="signup-text">Sarah from California just joined</span>
             </div>
             <div class="total-signups">
-                <span id="signupCount">2,847+</span> students on waitlist
+                <span id="signupCount">7,567</span> students on waitlist
             </div>
         </div>
     </section>
@@ -2247,7 +2246,7 @@
     <!-- Features Section -->
     <section id="features" class="features-section">
         <div class="section-header">
-            <h2 class="section-title">The Science Behind Our Approach</h2>
+            <h2 class="section-title">Science Based Learning</h2>
             <p class="section-subtitle">Most prep courses only teach you what you get wrong. We teach you everything you need to know.</p>
         </div>
 
@@ -2310,21 +2309,21 @@
                     <div class="point-number">1</div>
                     <div class="point-content">
                         <h4>Weeks 1-3: Foundation Building</h4>
-                        <p>We build complete understanding while others rush to practice tests. Our methodical approach creates unshakeable foundations that enable exponential growth later, while others plateau from knowledge gaps.</p>
+                        <p>We build solid foundations while others rush to practice tests. This creates exponential growth later.</p>
                     </div>
                 </div>
                 <div class="explanation-point">
                     <div class="point-number">2</div>
                     <div class="point-content">
                         <h4>Weeks 4-6: Acceleration Phase</h4>
-                        <p>Everything connects as concepts build seamlessly. Learning velocity accelerates dramatically while traditional students hit walls from fundamental gaps. This is where our foundation-first approach shows its true power.</p>
+                        <p>Everything connects and learning accelerates dramatically while others hit walls from gaps.</p>
                     </div>
                 </div>
                 <div class="explanation-point">
                     <div class="point-number">3</div>
                     <div class="point-content">
                         <h4>Weeks 7-9: Perfect Mastery</h4>
-                        <p>Students reach 100% mastery while others hit their ceiling at 80%. Complete foundations unlock perfect scores that seemed impossible. Advanced concepts become intuitive and complex problems feel manageable.</p>
+                        <p>Reach 100% mastery while others plateau at 80%. Complete foundations unlock perfect scores.</p>
                     </div>
                 </div>
             </div>
@@ -2971,7 +2970,7 @@
             const signupCount = document.getElementById('signupCount');
             const recentSignupElement = document.getElementById('recentSignup');
             let currentIndex = 0;
-            let count = 2847;
+            let count = 7567;
 
             // Ensure initial state is correct
             if (signupText) {
@@ -2992,12 +2991,10 @@
                     // Fade back in
                     recentSignupElement.style.opacity = '1';
 
-                    // Increment count occasionally
-                    if (Math.random() < 0.2) {
-                        count += Math.floor(Math.random() * 3) + 1;
-                        if (signupCount) {
-                            signupCount.textContent = count.toLocaleString() + '+';
-                        }
+                    // Increment count by 1 each time
+                    count += 1;
+                    if (signupCount) {
+                        signupCount.textContent = count.toLocaleString();
                     }
                 }, 300);
             };
