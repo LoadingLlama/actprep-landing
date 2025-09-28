@@ -2480,13 +2480,33 @@
 
     <script>
 
-        // Auto-start seamless demo
-        function initSeamlessDemo() {
-            // Start with dashboard view first
-            setTimeout(() => {
-                console.log('Starting complete demo sequence...');
-                startDashboardDemo();
-            }, 1000); // Give time for the interface to load
+        // Initialize demo intersection observer
+        function initDemoObserver() {
+            const demoSection = document.getElementById('demo');
+            if (!demoSection) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.hasAttribute('data-demo-started')) {
+                        // Mark as started to prevent multiple triggers
+                        entry.target.setAttribute('data-demo-started', 'true');
+
+                        // Start demo after a short delay to ensure section is fully visible
+                        setTimeout(() => {
+                            console.log('Demo section visible, starting demo...');
+                            startDashboardDemo();
+                        }, 500);
+
+                        // Stop observing once demo has started
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.3, // Start when 30% of the demo section is visible
+                rootMargin: '0px 0px -10% 0px' // Start slightly before it's fully visible
+            });
+
+            observer.observe(demoSection);
         }
 
         // Start the complete demo sequence from dashboard
@@ -3246,7 +3266,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             observeElements();
             initSocialProof();
-            initSeamlessDemo();
+            initDemoObserver();
             animateStats();
             initMethodologyAnimations();
 
