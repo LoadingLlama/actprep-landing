@@ -275,6 +275,7 @@
             font-weight: 700;
             margin-bottom: 0.8rem;
             letter-spacing: -0.02em;
+            color: #1d1d1f;
         }
 
         .section-subtitle {
@@ -349,54 +350,119 @@
             margin: 0 auto;
         }
 
-        /* Simple Inline Comparison */
+        /* Comprehensive Comparison */
         .simple-comparison {
             background: white;
             border-radius: 20px;
-            padding: 2rem;
+            padding: 3rem 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             margin: 0 auto;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
-        .comparison-flow {
+        .approach-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: stretch;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        .approach-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .approach-card.traditional {
+            border-color: #ff6b35;
+            background: linear-gradient(135deg, #fff5f2, #ffffff);
+        }
+
+        .approach-card.launch-prep {
+            border-color: #007aff;
+            background: linear-gradient(135deg, #f0f8ff, #ffffff);
+            transform: scale(1.02);
+        }
+
+        .approach-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
         }
 
-        .approach-inline {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem 1.5rem;
-            background: #f8f9fa;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .approach-inline.highlight {
-            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(0, 212, 255, 0.05));
-            border: 2px solid #007aff;
+        .approach-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0;
         }
 
         .approach-icon {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
-        .approach-text {
+        .approach-card p {
             font-size: 0.95rem;
-            font-weight: 500;
             color: #1d1d1f;
+            line-height: 1.6;
+            margin: 0.5rem 0;
         }
 
-        .vs-text {
-            font-size: 1.2rem;
+        .approach-card p em {
+            color: #6e6e73;
+            font-size: 0.9rem;
+        }
+
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 700;
-            color: #007aff;
-            padding: 0.5rem;
+            font-size: 1.1rem;
+            color: #6e6e73;
+            background: #f8f9fa;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin: auto;
+        }
+
+        .methodology-insight {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-left: 4px solid #007aff;
+        }
+
+        .insight-icon {
+            font-size: 1.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .insight-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .insight-content p {
+            font-size: 0.95rem;
+            color: #6e6e73;
+            line-height: 1.6;
+            margin: 0;
         }
 
         /* Learning Progress Section */
@@ -478,63 +544,98 @@
             justify-content: center;
         }
 
-        .graph-title {
+        .chart-title {
             text-align: center;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: #1d1d1f;
+            margin-bottom: 1rem;
+        }
+
+        .chart-wrapper {
+            position: relative;
             margin-bottom: 2rem;
         }
 
-        .graph-chart {
+        .chart-graph {
             display: grid;
             grid-template-columns: auto 1fr;
             gap: 1rem;
-            margin-bottom: 2rem;
+            height: 200px;
         }
 
-        .chart-y-axis {
+        .y-axis {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             justify-content: space-between;
-            height: 300px;
+            height: 100%;
             font-size: 0.8rem;
             color: #6e6e73;
             padding-right: 0.5rem;
         }
 
-        .chart-area {
-            height: 300px;
+        .y-label {
+            line-height: 1;
+        }
+
+        .chart-container {
+            height: 100%;
             border-left: 2px solid #e5e5e7;
             border-bottom: 2px solid #e5e5e7;
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            padding: 0 1rem 2rem 1rem;
             position: relative;
         }
 
-        .chart-bars {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 1rem;
-            height: 100%;
-            align-items: end;
-            padding: 1rem 0.5rem 2rem;
-        }
-
-        .bar-group {
+        .week-column {
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100%;
+            flex: 1;
             justify-content: flex-end;
         }
 
-        .bar {
-            width: 100%;
-            max-width: 24px;
-            border-radius: 6px 6px 0 0;
-            transition: height 1.5s ease-out;
-            height: 0;
+        .week-bars {
+            display: flex;
+            gap: 6px;
+            align-items: flex-end;
+            height: calc(100% - 30px);
             margin-bottom: 0.5rem;
+        }
+
+        .week-label {
+            font-size: 0.8rem;
+            color: #6e6e73;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .bar {
+            width: 20px;
+            border-radius: 6px 6px 0 0;
+            transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .bar:hover::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.2s;
         }
 
         .traditional-bar {
@@ -556,6 +657,7 @@
             display: flex;
             justify-content: center;
             gap: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .legend-item {
@@ -578,6 +680,24 @@
 
         .legend-color.launch-prep {
             background: linear-gradient(135deg, #007aff, #00d4ff);
+        }
+
+        .chart-insight {
+            background: #f8f9fa;
+            border-left: 4px solid #007aff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .chart-insight p {
+            color: #1d1d1f;
+            margin: 0;
+        }
+
+        .chart-insight strong {
+            color: #1d1d1f;
         }
 
         /* Interactive Demo Section */
@@ -1800,18 +1920,34 @@
         </div>
 
         <div class="methodology-container">
-            <!-- Simple One-Line Comparison -->
-            <div class="simple-comparison">
-                <div class="comparison-flow">
-                    <div class="approach-inline">
+            <!-- Simple Side-by-Side Comparison -->
+            <div class="approach-comparison">
+                <div class="approach-card traditional">
+                    <div class="approach-header">
                         <span class="approach-icon">❌</span>
-                        <span class="approach-text">Most prep courses: Test → Fix mistakes → Plateau at 85%</span>
+                        <h3>Most Courses</h3>
                     </div>
-                    <div class="vs-text">VS</div>
-                    <div class="approach-inline highlight">
+                    <p><strong>Test → Fix mistakes → Plateau at 80%</strong></p>
+                    <p><em>Gaps remain, can't reach perfection</em></p>
+                </div>
+
+                <div class="vs-divider">VS</div>
+
+                <div class="approach-card launch-prep">
+                    <div class="approach-header">
                         <span class="approach-icon">✅</span>
-                        <span class="approach-text">Launch Prep: Build foundation → Master everything → Reach 100%</span>
+                        <h3>Launch Prep</h3>
                     </div>
+                    <p><strong>Build foundation → Fill gaps → Reach 100%</strong></p>
+                    <p><em>Complete mastery through foundations</em></p>
+                </div>
+            </div>
+
+            <!-- Key Insight -->
+            <div class="methodology-insight">
+                <div class="insight-icon">💡</div>
+                <div class="insight-content">
+                    <p><strong>Bottom-up learning beats top-down 23% of the time.</strong> We build foundations first instead of rushing to practice tests.</p>
                 </div>
             </div>
         </div>
@@ -1829,79 +1965,100 @@
                 <div class="explanation-point">
                     <div class="point-number">1</div>
                     <div class="point-content">
-                        <h4>Week 1-2: Building Blocks</h4>
-                        <p>While others rush into practice tests, we're building your complete foundation. Yes, you'll score lower initially.</p>
+                        <h4>Weeks 1-3: Foundation Building</h4>
+                        <p>We build complete understanding while others rush to practice tests. Slower start, stronger foundation.</p>
                     </div>
                 </div>
                 <div class="explanation-point">
                     <div class="point-number">2</div>
                     <div class="point-content">
-                        <h4>Week 3-4: Rapid Growth</h4>
-                        <p>With a solid foundation, everything clicks. Your understanding accelerates exponentially.</p>
+                        <h4>Weeks 4-6: Acceleration Phase</h4>
+                        <p>Everything connects. Learning accelerates while others plateau from gaps.</p>
                     </div>
                 </div>
                 <div class="explanation-point">
                     <div class="point-number">3</div>
                     <div class="point-content">
-                        <h4>Week 5-6: Mastery</h4>
-                        <p>You reach 100% understanding while traditional students plateau. You have the building blocks they lack.</p>
+                        <h4>Weeks 7-9: Perfect Mastery</h4>
+                        <p>Reach 100% while others hit their ceiling at 80%. Complete foundations unlock perfect scores.</p>
                     </div>
                 </div>
             </div>
 
             <div class="progress-chart-container">
-                <h3 class="chart-title">Learning Progress Comparison</h3>
-                <div class="graph-chart" id="learningChart">
-                    <div class="chart-y-axis">
-                        <span>100%</span>
-                        <span>75%</span>
-                        <span>50%</span>
-                        <span>25%</span>
-                        <span>0%</span>
-                    </div>
-                    <div class="chart-area">
-                        <div class="chart-bars">
-                            <div class="week-group">
-                                <div class="bar-pair">
-                                    <div class="bar traditional-bar" data-height="75"></div>
-                                    <div class="bar launch-prep-bar" data-height="35"></div>
+                <h3 class="chart-title">Score Progress: Foundation vs. Quick Fixes</h3>
+                <div class="chart-wrapper">
+                    <div class="chart-graph" id="progressChart">
+                        <div class="y-axis">
+                            <div class="y-label">100%</div>
+                            <div class="y-label">75%</div>
+                            <div class="y-label">50%</div>
+                            <div class="y-label">25%</div>
+                            <div class="y-label">0%</div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="45" data-value="45%"></div>
+                                    <div class="bar launch-prep-bar" data-height="15" data-value="15%"></div>
                                 </div>
-                                <div class="bar-label-bottom">Week 1</div>
+                                <div class="week-label">Week 1</div>
                             </div>
-                            <div class="week-group">
-                                <div class="bar-pair">
-                                    <div class="bar traditional-bar" data-height="85"></div>
-                                    <div class="bar launch-prep-bar" data-height="45"></div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="60" data-value="60%"></div>
+                                    <div class="bar launch-prep-bar" data-height="25" data-value="25%"></div>
                                 </div>
-                                <div class="bar-label-bottom">Week 2</div>
+                                <div class="week-label">Week 2</div>
                             </div>
-                            <div class="week-group">
-                                <div class="bar-pair">
-                                    <div class="bar traditional-bar" data-height="88"></div>
-                                    <div class="bar launch-prep-bar" data-height="65"></div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="70" data-value="70%"></div>
+                                    <div class="bar launch-prep-bar" data-height="35" data-value="35%"></div>
                                 </div>
-                                <div class="bar-label-bottom">Week 3</div>
+                                <div class="week-label">Week 3</div>
                             </div>
-                            <div class="week-group">
-                                <div class="bar-pair">
-                                    <div class="bar traditional-bar" data-height="89"></div>
-                                    <div class="bar launch-prep-bar" data-height="82"></div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="75" data-value="75%"></div>
+                                    <div class="bar launch-prep-bar" data-height="50" data-value="50%"></div>
                                 </div>
-                                <div class="bar-label-bottom">Week 4</div>
+                                <div class="week-label">Week 4</div>
                             </div>
-                            <div class="week-group">
-                                <div class="bar-pair">
-                                    <div class="bar traditional-bar" data-height="90"></div>
-                                    <div class="bar launch-prep-bar" data-height="96"></div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="78" data-value="78%"></div>
+                                    <div class="bar launch-prep-bar" data-height="65" data-value="65%"></div>
                                 </div>
-                                <div class="bar-label-bottom">Week 5</div>
+                                <div class="week-label">Week 5</div>
                             </div>
-                            <div class="week-group">
-                                <div class="bar-pair">
-                                    <div class="bar traditional-bar" data-height="91"></div>
-                                    <div class="bar launch-prep-bar" data-height="100"></div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="80" data-value="80%"></div>
+                                    <div class="bar launch-prep-bar" data-height="78" data-value="78%"></div>
                                 </div>
-                                <div class="bar-label-bottom">Week 6</div>
+                                <div class="week-label">Week 6</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="81" data-value="81%"></div>
+                                    <div class="bar launch-prep-bar" data-height="88" data-value="88%"></div>
+                                </div>
+                                <div class="week-label">Week 7</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="82" data-value="82%"></div>
+                                    <div class="bar launch-prep-bar" data-height="95" data-value="95%"></div>
+                                </div>
+                                <div class="week-label">Week 8</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="82" data-value="82%"></div>
+                                    <div class="bar launch-prep-bar" data-height="100" data-value="100%"></div>
+                                </div>
+                                <div class="week-label">Week 9</div>
                             </div>
                         </div>
                     </div>
@@ -1909,12 +2066,15 @@
                 <div class="chart-legend">
                     <div class="legend-item">
                         <div class="legend-color traditional"></div>
-                        <span>Traditional Methods</span>
+                        <span>Traditional Quick-Fix Methods</span>
                     </div>
                     <div class="legend-item">
                         <div class="legend-color launch-prep"></div>
-                        <span>Launch Prep Method</span>
+                        <span>Launch Prep Foundation Method</span>
                     </div>
+                </div>
+                <div class="chart-insight">
+                    <p><strong>Result:</strong> Others plateau at 82%, we reach 100% through complete foundations.</p>
                 </div>
             </div>
         </div>
@@ -2972,13 +3132,18 @@
                         });
 
                         // Animate chart bars
-                        const chartBars = entry.target.querySelectorAll('.bar');
-                        chartBars.forEach((bar, index) => {
-                            setTimeout(() => {
-                                const height = bar.getAttribute('data-height');
-                                bar.style.height = height + '%';
-                            }, 1000 + (index * 200));
-                        });
+                        const chartContainer = entry.target.querySelector('.progress-chart-container');
+                        if (chartContainer) {
+                            const chartBars = chartContainer.querySelectorAll('.bar');
+                            chartBars.forEach((bar, index) => {
+                                setTimeout(() => {
+                                    const height = bar.getAttribute('data-height');
+                                    if (height) {
+                                        bar.style.height = (height * 2.5) + 'px'; // Convert percentage to pixels for better control
+                                    }
+                                }, 800 + (index * 150));
+                            });
+                        }
 
                         observer.unobserve(entry.target);
                     }
