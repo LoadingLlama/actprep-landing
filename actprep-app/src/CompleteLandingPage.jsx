@@ -22,6 +22,8 @@ const CompleteLandingPage = () => {
   const [showLesson, setShowLesson] = useState(false);
   const [highlightMathTab, setHighlightMathTab] = useState(false);
   const [animationStep, setAnimationStep] = useState(0);
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [dashboardFadeOut, setDashboardFadeOut] = useState(false);
 
   // Refs for intersection observers
   const demoSectionRef = useRef(null);
@@ -133,7 +135,7 @@ const CompleteLandingPage = () => {
 
   // Teaching sequence
   const startTeachingSequence = useCallback(() => {
-    const steps = [0, 1900, 3400, 4400, 5200, 6000, 6800];
+    const steps = [0, 2800, 5000, 6500, 8000, 9500, 11000];
     steps.forEach((delay, index) => {
       setTimeout(() => setAnimationStep(index), delay);
     });
@@ -144,18 +146,29 @@ const CompleteLandingPage = () => {
     if (isDemoStarted) return;
     setIsDemoStarted(true);
 
-    setTimeout(() => setHighlightMathTab(true), 1500);
+    // Highlight and click the Continue Learning button
     setTimeout(() => {
-      setHighlightMathTab(false);
+      setButtonClicked(true);
+      setTimeout(() => setButtonClicked(false), 300);
+    }, 1500);
+
+    // Start fade out animation
+    setTimeout(() => {
+      setDashboardFadeOut(true);
+    }, 2000);
+
+    // Transition to lesson after fade completes
+    setTimeout(() => {
       setShowDashboard(false);
+      setDashboardFadeOut(false);
       setTimeout(() => {
         setShowLesson(true);
         setTimeout(() => {
           setIsChatExpanded(true);
           setTimeout(() => startTeachingSequence(), 3500);
         }, 500);
-      }, 600);
-    }, 2000);
+      }, 100);
+    }, 2500);
   }, [isDemoStarted, startTeachingSequence]);
 
   // Intersection observer for demo
@@ -210,7 +223,7 @@ const CompleteLandingPage = () => {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -100px 0px' }
     );
 
     sections.forEach(section => observer.observe(section));
@@ -241,14 +254,14 @@ const CompleteLandingPage = () => {
           <h1 className="hero-title">
             <span className="hero-title-main">Master the ACT with</span>
             <br />
-            <span className="dynamic-text">{dynamicTexts[dynamicTextIndex]}</span>
+            <span key={dynamicTextIndex} className="dynamic-text">{dynamicTexts[dynamicTextIndex]}</span>
           </h1>
           <p className="hero-subtitle guarantee-text">
             Guaranteed 35+ ACT score or your money back.*
           </p>
           <div className="hero-cta">
-            <button className="btn-primary" onClick={openModal}>Join Waitlist</button>
-            <a href="#demo" className="btn-secondary" onClick={(e) => handleSmoothScroll(e, '#demo')}>Watch Demo</a>
+            <button className="btn btn-primary" onClick={openModal}>Join Waitlist</button>
+            <a href="#demo" className="btn btn-secondary" onClick={(e) => handleSmoothScroll(e, '#demo')}>Watch Demo</a>
           </div>
           <div className="waitlist-offer">
             <p className="offer-text">
@@ -278,7 +291,7 @@ const CompleteLandingPage = () => {
           <div className="journey-layout">
             <div className="journey-explanation">
               <div className="explanation-item">
-                <div className="explanation-number">1</div>
+                <div className="explanation-number">Week 1</div>
                 <div className="explanation-content">
                   <h3>Comprehensive Diagnostic</h3>
                   <p>Full-length practice test to identify your specific strengths and knowledge gaps across all ACT sections.</p>
@@ -286,7 +299,7 @@ const CompleteLandingPage = () => {
               </div>
 
               <div className="explanation-item">
-                <div className="explanation-number">2</div>
+                <div className="explanation-number">Weeks 2-4</div>
                 <div className="explanation-content">
                   <h3>Foundation Building</h3>
                   <p>Targeted lessons addressing your weak areas while reinforcing core concepts and test-taking strategies.</p>
@@ -294,7 +307,7 @@ const CompleteLandingPage = () => {
               </div>
 
               <div className="explanation-item">
-                <div className="explanation-number">3</div>
+                <div className="explanation-number">Weeks 5-7</div>
                 <div className="explanation-content">
                   <h3>Advanced Application</h3>
                   <p>Practice with increasingly difficult problems, timing strategies, and section-specific optimization techniques.</p>
@@ -302,7 +315,7 @@ const CompleteLandingPage = () => {
               </div>
 
               <div className="explanation-item">
-                <div className="explanation-number">4</div>
+                <div className="explanation-number">Week 8</div>
                 <div className="explanation-content">
                   <h3>Score Mastery</h3>
                   <p>Final preparation with full practice tests, review sessions, and confidence-building exercises.</p>
@@ -490,7 +503,7 @@ const CompleteLandingPage = () => {
                 <div className="demo-interface">
                   {/* Dashboard Interface */}
                   {showDashboard && (
-                    <div className="dashboard-interface">
+                    <div className={`dashboard-interface ${dashboardFadeOut ? 'fade-out' : ''}`}>
                       <div className="app-header">
                         <div className="app-logo">Launch Prep</div>
                         <div className="user-info">
@@ -508,36 +521,60 @@ const CompleteLandingPage = () => {
 
                       <div className="dashboard-content">
                         <div className="dashboard-welcome">
-                          <h2 className="welcome-title">Welcome back, Sarah!</h2>
-                          <p className="welcome-subtitle">Ready to improve your ACT score?</p>
+                          <h2 className="welcome-title">Welcome back, Sarah! 👋</h2>
+                          <p className="welcome-subtitle">You're making great progress</p>
                         </div>
 
-                        <div className="dashboard-grid">
-                          <div className="dashboard-card dashboard-card-center">
-                            <div className="card-metric">28</div>
-                            <div className="card-title card-title-small">Current Score</div>
+                        <div className="dashboard-stats">
+                          <div className="stat-card">
+                            <div className="stat-icon">📊</div>
+                            <div className="stat-value">28</div>
+                            <div className="stat-label">Current Score</div>
+                            <div className="stat-change positive">+3 from last week</div>
                           </div>
 
-                          <div className="dashboard-card dashboard-card-center dashboard-card-warning">
-                            <div className="card-metric card-metric-warning">Quadratics</div>
-                            <div className="card-title card-title-small card-title-warning">Needs Practice</div>
+                          <div className="stat-card">
+                            <div className="stat-icon">🎯</div>
+                            <div className="stat-value">36</div>
+                            <div className="stat-label">Target Score</div>
+                            <div className="stat-progress">8 points to goal</div>
+                          </div>
+
+                          <div className="stat-card">
+                            <div className="stat-icon">📚</div>
+                            <div className="stat-value">47</div>
+                            <div className="stat-label">Lessons Completed</div>
+                            <div className="stat-change positive">12 this week</div>
                           </div>
                         </div>
 
-                        <div className="dashboard-actions">
-                          <div className="dashboard-card action-button action-button-primary">
-                            <div className="card-title action-title">Continue Practice</div>
-                            <div className="action-subtitle">Math • Quadratics</div>
+                        <div className="focus-area">
+                          <div className="focus-header">
+                            <span className="focus-badge">Focus Area</span>
+                            <h3 className="focus-title">Quadratic Equations</h3>
                           </div>
-
-                          <div className="dashboard-card action-button action-button-secondary">
-                            <div className="card-title action-title">Start Lesson</div>
-                            <div className="action-subtitle">Learn new concepts</div>
+                          <div className="focus-progress-bar">
+                            <div className="focus-progress-fill" style={{width: '65%'}}></div>
                           </div>
+                          <p className="focus-description">65% mastery • 5 more problems to complete</p>
                         </div>
 
-                        <div className="dashboard-hint">
-                          <p className="hint-text">Click "Math Practice" to improve quadratics</p>
+                        <div className="quick-actions">
+                          <button className={`quick-action-btn primary-action ${buttonClicked ? 'clicked' : ''}`}>
+                            <span className="action-icon">▶️</span>
+                            <div className="action-text">
+                              <div className="action-title">Continue Learning</div>
+                              <div className="action-subtitle">Math • Quadratics</div>
+                            </div>
+                          </button>
+
+                          <button className="quick-action-btn secondary-action">
+                            <span className="action-icon">📝</span>
+                            <div className="action-text">
+                              <div className="action-title">Practice Test</div>
+                              <div className="action-subtitle">Full-length ACT</div>
+                            </div>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -678,7 +715,7 @@ const CompleteLandingPage = () => {
         <div className="cta-content">
           <h2 className="cta-title">Ready to Transform Your Future?</h2>
           <p className="cta-subtitle">Join the waitlist • Get free access when we launch</p>
-          <button className="btn-primary cta-special" onClick={openModal}>Join Waitlist</button>
+          <button className="btn btn-primary cta-special" onClick={openModal}>Join Waitlist</button>
         </div>
       </section>
 
@@ -715,7 +752,7 @@ const CompleteLandingPage = () => {
                 <div className="form-group">
                   <input type="text" className="form-input" id="score" placeholder="Current ACT Score (or 'Not taken')" value={formData.score} onChange={handleInputChange} />
                 </div>
-                <button type="submit" className="btn-primary form-submit">Join Waitlist</button>
+                <button type="submit" className="btn btn-primary form-submit">Join Waitlist</button>
               </form>
             ) : (
               <div className="success-message">
