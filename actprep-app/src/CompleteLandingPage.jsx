@@ -25,10 +25,30 @@ const CompleteLandingPage = () => {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [dashboardFadeOut, setDashboardFadeOut] = useState(false);
   const [visibleMessages, setVisibleMessages] = useState(0);
+  const [userAnswer, setUserAnswer] = useState('');
+  const [answerStatus, setAnswerStatus] = useState(''); // 'correct', 'incorrect', or ''
 
   // Refs for intersection observers
   const demoSectionRef = useRef(null);
   const chartContainerRef = useRef(null);
+
+  // Handle answer input
+  const handleAnswerChange = useCallback((e) => {
+    const value = e.target.value;
+    setUserAnswer(value);
+
+    // Check if answer is correct (accepts various formats)
+    const normalized = value.toLowerCase().replace(/\s/g, '');
+    if (normalized.includes('2') && normalized.includes('4') ||
+        normalized.includes('x=2') && normalized.includes('x=4') ||
+        normalized === '2,4' || normalized === '4,2') {
+      setAnswerStatus('correct');
+    } else if (value.length > 0) {
+      setAnswerStatus('incorrect');
+    } else {
+      setAnswerStatus('');
+    }
+  }, []);
 
   // Memoized data
   const recentSignups = useMemo(() => [
@@ -136,7 +156,7 @@ const CompleteLandingPage = () => {
 
   // Teaching sequence
   const startTeachingSequence = useCallback(() => {
-    const steps = [0, 2800, 5000, 6500, 8000, 9500, 11000];
+    const steps = [0, 1200, 2400, 3600, 4800, 6000, 7200];
     steps.forEach((delay, index) => {
       setTimeout(() => setAnimationStep(index), delay);
     });
@@ -623,39 +643,55 @@ const CompleteLandingPage = () => {
                           <div className="problem-instruction">Solve for x:</div>
                           <div className="math-equation">
                             <div className="equation-terms">
-                              <span id="term1" className={animationStep >= 1 ? 'highlighted-term' : ''}>x²</span>
+                              <span id="term1" className={animationStep >= 1 ? 'highlighted-term' : ''}>
+                                x²
+                                {animationStep >= 1 && (
+                                  <span className="term-tooltip">Quadratic term</span>
+                                )}
+                              </span>
                               <span> - </span>
-                              <span id="term2" className={animationStep >= 2 ? 'highlighted-term green' : ''}>6x</span>
+                              <span id="term2" className={animationStep >= 2 ? 'highlighted-term green' : ''}>
+                                6x
+                                {animationStep >= 2 && (
+                                  <span className="term-tooltip">Linear coefficient</span>
+                                )}
+                              </span>
                               <span> + </span>
-                              <span id="term3" className={animationStep >= 3 ? 'highlighted-term blue' : ''}>8</span>
+                              <span id="term3" className={animationStep >= 3 ? 'highlighted-term blue' : ''}>
+                                8
+                                {animationStep >= 3 && (
+                                  <span className="term-tooltip">Constant term</span>
+                                )}
+                              </span>
                               <span> = 0</span>
                             </div>
                           </div>
 
                           <div className="answer-section">
                             <div className="answer-wrapper">
-                              <label className="answer-label">Your Answer:</label>
                               <input
                                 type="text"
-                                placeholder="Enter x values (e.g., x = 2, 4)"
-                                className="answer-input"
+                                placeholder="Your answer..."
+                                className={`answer-input ${answerStatus}`}
+                                value={userAnswer}
+                                onChange={handleAnswerChange}
                               />
-                              <div className="help-button-wrapper">
-                                <button className="help-button">? need help</button>
-                              </div>
+                              {answerStatus === 'correct' && (
+                                <div className="answer-feedback correct">✓ Correct!</div>
+                              )}
                             </div>
                           </div>
 
                           {animationStep >= 4 && (
                             <div className="solution-steps show">
                               <div className={`step ${animationStep >= 4 ? 'show' : ''}`}>
-                                <span className="step-number">Step 1:</span> Factor: <span className="step-highlight">(x - 4)(x - 2) = 0</span>
+                                <span className="step-number">Hint 1:</span> Look for two numbers that multiply to 8 and add to -6
                               </div>
                               <div className={`step ${animationStep >= 5 ? 'show' : ''}`}>
-                                <span className="step-number">Step 2:</span> Solve each factor: x - 4 = 0 → x = 4, x - 2 = 0 → x = 2
+                                <span className="step-number">Hint 2:</span> Factor the equation into two binomials: (x - ?)(x - ?)
                               </div>
                               <div className={`step ${animationStep >= 6 ? 'show' : ''}`}>
-                                <span className="step-number">Answer:</span> <strong>x = 4 or x = 2</strong> ✅
+                                <span className="step-number">Hint 3:</span> Set each factor equal to zero and solve for x
                               </div>
                             </div>
                           )}
