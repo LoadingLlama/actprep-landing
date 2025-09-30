@@ -76,7 +76,8 @@ const CompleteLandingPage = () => {
     'Full-Tailored Courses',
     'Precision Analytics',
     'Diagnostic Test',
-    'AI-Powered Learning'
+    'Real Questions',
+    'Deep Personalization'
   ], []);
 
   const chartData = useMemo(() => [
@@ -483,6 +484,21 @@ const CompleteLandingPage = () => {
           <div className="particle particle-3"></div>
           <div className="particle particle-4"></div>
           <div className="particle particle-5"></div>
+          <div className="particle particle-6"></div>
+          <div className="particle particle-7"></div>
+          <div className="particle particle-8"></div>
+          <div className="particle particle-9"></div>
+          <div className="particle particle-10"></div>
+          <div className="particle particle-11"></div>
+          <div className="particle particle-12"></div>
+          <div className="particle particle-13"></div>
+          <div className="particle particle-14"></div>
+          <div className="particle particle-15"></div>
+        </div>
+        <div className="hero-gradient-orbs">
+          <div className="gradient-orb orb-1"></div>
+          <div className="gradient-orb orb-2"></div>
+          <div className="gradient-orb orb-3"></div>
         </div>
         <div className="hero-content">
           <div className="hero-badge">Coming Soon • Early December</div>
@@ -492,7 +508,7 @@ const CompleteLandingPage = () => {
             <span key={dynamicTextIndex} className="dynamic-text">{dynamicTexts[dynamicTextIndex]}</span>
           </h1>
           <p className="hero-subtitle guarantee-text">
-            Guaranteed 35+ ACT score or your money back.*
+            Science-backed system proven to maximize ACT performance
           </p>
           <div className="hero-cta">
             <button className="btn btn-primary" onClick={openModal}>Join Waitlist</button>
@@ -1063,7 +1079,7 @@ const CompleteLandingPage = () => {
           <div className="modal-content">
             <span className="close" onClick={closeModal}>&times;</span>
             <h2 className="modal-title">Join the Waitlist</h2>
-            <p className="modal-subtitle">Get free access when we launch - no payment required</p>
+            <p className="modal-subtitle">🎉 <strong>Free for Life</strong> - Join now and never pay. No credit card, no payment, ever.</p>
 
             {!showSuccess ? (
               <form onSubmit={handleSubmit}>
@@ -1089,7 +1105,7 @@ const CompleteLandingPage = () => {
               </form>
             ) : (
               <div className="success-message">
-                🎉 You're on the waitlist! You'll get free access when we launch - no payment required.
+                🎉 You're on the waitlist! You'll get <strong>free lifetime access</strong> when we launch - no payment ever required.
               </div>
             )}
           </div>
