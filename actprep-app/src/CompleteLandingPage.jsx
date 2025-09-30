@@ -24,6 +24,7 @@ const CompleteLandingPage = () => {
   const [animationStep, setAnimationStep] = useState(0);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [dashboardFadeOut, setDashboardFadeOut] = useState(false);
+  const [visibleMessages, setVisibleMessages] = useState(0);
 
   // Refs for intersection observers
   const demoSectionRef = useRef(null);
@@ -146,6 +147,9 @@ const CompleteLandingPage = () => {
     if (isDemoStarted) return;
     setIsDemoStarted(true);
 
+    // Reset messages
+    setVisibleMessages(0);
+
     // Highlight and click the Continue Learning button
     setTimeout(() => {
       setButtonClicked(true);
@@ -165,8 +169,21 @@ const CompleteLandingPage = () => {
         setShowLesson(true);
         setTimeout(() => {
           setIsChatExpanded(true);
-          setTimeout(() => startTeachingSequence(), 3500);
-        }, 500);
+          // Start showing messages one by one with slower timing
+          setTimeout(() => {
+            setVisibleMessages(1);
+            setTimeout(() => {
+              setVisibleMessages(2);
+              setTimeout(() => {
+                setVisibleMessages(3);
+                setTimeout(() => {
+                  setVisibleMessages(4);
+                  setTimeout(() => startTeachingSequence(), 1500);
+                }, 1400);
+              }, 1400);
+            }, 1400);
+          }, 1000);
+        }, 800);
       }, 100);
     }, 2500);
   }, [isDemoStarted, startTeachingSequence]);
@@ -291,6 +308,9 @@ const CompleteLandingPage = () => {
           <div className="journey-layout">
             <div className="journey-explanation">
               <div className="explanation-item">
+                <svg className="explanation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5M12 12H15M12 16H15M9 12H9.01M9 16H9.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
                 <div className="explanation-number">Week 1</div>
                 <div className="explanation-content">
                   <h3>Comprehensive Diagnostic</h3>
@@ -299,6 +319,10 @@ const CompleteLandingPage = () => {
               </div>
 
               <div className="explanation-item">
+                <svg className="explanation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 6.042C10.3516 4.56336 8.2144 3.74694 6 4.00002C4.85883 4.10942 3.75608 4.45813 2.753 5.02002C2.28112 5.28278 2.00005 5.76741 2 6.29002V17.29C2.00005 17.6417 2.12601 17.9816 2.35519 18.2467C2.58436 18.5118 2.90226 18.6847 3.249 18.733C5.39342 19.0238 7.58258 18.6436 9.529 17.64C9.82787 17.4869 10.1611 17.4061 10.5 17.4061C10.8389 17.4061 11.1721 17.4869 11.471 17.64C13.4174 18.6436 15.6066 19.0238 17.751 18.733C18.0977 18.6847 18.4156 18.5118 18.6448 18.2467C18.874 17.9816 19 17.6417 19 17.29V6.29002C18.9999 5.76741 18.7189 5.28278 18.247 5.02002C17.2439 4.45813 16.1412 4.10942 15 4.00002C12.7856 3.74694 10.6484 4.56336 9 6.04202" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12 6V17.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
                 <div className="explanation-number">Weeks 2-4</div>
                 <div className="explanation-content">
                   <h3>Foundation Building</h3>
@@ -307,6 +331,9 @@ const CompleteLandingPage = () => {
               </div>
 
               <div className="explanation-item">
+                <svg className="explanation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
                 <div className="explanation-number">Weeks 5-7</div>
                 <div className="explanation-content">
                   <h3>Advanced Application</h3>
@@ -315,6 +342,10 @@ const CompleteLandingPage = () => {
               </div>
 
               <div className="explanation-item">
+                <svg className="explanation-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8.21 13.89L7 23L12 20L17 23L15.79 13.88" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
                 <div className="explanation-number">Week 8</div>
                 <div className="explanation-content">
                   <h3>Score Mastery</h3>
@@ -639,10 +670,10 @@ const CompleteLandingPage = () => {
                       <div className="chat-toggle">🤖</div>
                       <div className="chat-header">🤖 AI Tutor</div>
                       <div className="chat-messages">
-                        <div className="message user-message">Can you teach me this step by step?</div>
-                        <div className="message ai-message">Absolutely! I'll guide you through each step with visual hints.</div>
-                        <div className="message user-message">That's so helpful! 🎯</div>
-                        <div className="message ai-message">Watch as I highlight and explain each part above!</div>
+                        {visibleMessages >= 1 && <div className="message user-message">Can you teach me this step by step?</div>}
+                        {visibleMessages >= 2 && <div className="message ai-message">Absolutely! I'll guide you through each step with visual hints.</div>}
+                        {visibleMessages >= 3 && <div className="message user-message">That's so helpful! 🎯</div>}
+                        {visibleMessages >= 4 && <div className="message ai-message">Watch as I highlight and explain each part above!</div>}
                       </div>
                     </div>
                   )}
@@ -691,20 +722,19 @@ const CompleteLandingPage = () => {
         <div className="universities-showcase">
           <div className="university-carousel">
             <div className="university-visual-card">
-              <div className="university-visual-name">Harvard</div>
-              <div className="university-visual-badge">Perfect SAT</div>
-            </div>
-            <div className="university-visual-card">
+              <img src="https://identity.stanford.edu/wp-content/uploads/sites/3/2020/07/block-s-right.png" alt="Stanford" className="university-logo" />
               <div className="university-visual-name">Stanford</div>
-              <div className="university-visual-badge">Valedictorian</div>
+              <div className="university-visual-badge">Perfect Scorer</div>
             </div>
             <div className="university-visual-card">
-              <div className="university-visual-name">Princeton</div>
-              <div className="university-visual-badge">Summa Cum Laude</div>
-            </div>
-            <div className="university-visual-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Seal_of_University_of_California%2C_Berkeley.svg/400px-Seal_of_University_of_California%2C_Berkeley.svg.png" alt="Berkeley" className="university-logo" />
               <div className="university-visual-name">Berkeley</div>
-              <div className="university-visual-badge">Phi Beta Kappa</div>
+              <div className="university-visual-badge">Perfect Scorer</div>
+            </div>
+            <div className="university-visual-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/440px-MIT_logo.svg.png" alt="MIT" className="university-logo" />
+              <div className="university-visual-name">MIT</div>
+              <div className="university-visual-badge">Perfect Scorer</div>
             </div>
           </div>
         </div>
