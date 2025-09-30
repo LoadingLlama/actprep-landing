@@ -1,0 +1,4376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch Prep - Revolutionizing ACT Preparation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #007aff;
+            --primary-dark: #0056cc;
+            --accent-color: #34c759;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-light: #f5f5f7;
+            --text-muted: #a1a1a6;
+            --bg-dark: #000000;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.4;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* Interactive hover effects */
+        .method-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .method-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .explanation-point {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .explanation-point:hover {
+            background: rgba(0, 122, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .university-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .university-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.2);
+        }
+
+        /* Interactive chart bars */
+        .bar {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.1);
+            filter: brightness(1.1);
+        }
+
+        /* Clean Apple-style buttons */
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Floating animation for CTA elements */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(-10px) rotate(-3deg); }
+        }
+
+        /* Interactive navigation */
+        .nav a {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav a:hover {
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        /* Progress chart interactive tooltips */
+        .week-column {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .week-column:hover {
+            transform: scale(1.05);
+        }
+
+        .week-column::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .week-column:hover::before {
+            opacity: 1;
+        }
+
+        /* Pulse effect for important elements */
+        .signup-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Interactive demo interface */
+        .demo-interface {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .demo-interface:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Remove border from last section */
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* Smooth section fade-in animations */
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero section should be visible immediately */
+        .hero {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Apple-style Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: saturate(180%) blur(30px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 0.6rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .cta-nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-nav:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Hero Section - Apple Style */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: #000000;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero-badge {
+            background: transparent;
+            border: 1px solid #007aff;
+            color: #007aff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 24px;
+            font-weight: 400;
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-title {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+        }
+
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #a1a1a6;
+            max-width: 560px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.5;
+            animation: fadeInUp 0.8s ease 0.6s both;
+            font-weight: 400;
+        }
+
+        .guarantee-text {
+            font-size: 1.1rem;
+            color: #ffffff;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.5;
+            animation: fadeInUp 0.8s ease 0.8s both;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease 0.8s both;
+            margin-bottom: 0.3rem;
+        }
+
+        .btn-primary {
+            background: #007aff;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            padding: 1.5rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 48px;
+            width: 160px;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            background: #0056cc;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            height: 48px;
+            width: 160px;
+            white-space: nowrap;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Button Variants */
+        .btn-primary.cta-special {
+            background: #007aff;
+            color: white;
+        }
+
+        .btn-primary.form-submit {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Hero Section Styles */
+        .waitlist-offer {
+            text-align: center;
+            margin-top: 0.2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s both;
+        }
+
+        .offer-text {
+            font-size: 0.8rem;
+            color: #a1a1a6;
+            margin: 0;
+        }
+
+        .free-highlight {
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            color: #6e6e73;
+        }
+
+        .hero-social-proof {
+            margin-top: 0.8rem;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeInUp 0.8s ease 1.2s both;
+        }
+
+        .recent-signup {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            transition: opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        .signup-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .total-signups {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .total-signups span {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+
+        /* Features Grid - Apple Style */
+
+        .features-section {
+            padding: 2rem 2rem;
+            background: #ffffff;
+            color: #1d1d1f;
+            position: relative;
+        }
+
+        /* Science Section - Clean Design */
+        .science-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .method-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            color: #1d1d1f;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .method-traditional {
+            border: 3px solid #1d1d1f;
+            background: #2c2c2e;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.25),
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            transform: translateY(-4px);
+        }
+
+        .method-traditional::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        .method-traditional::after {
+            content: '⚠️';
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            opacity: 0.9;
+        }
+
+        .method-launch {
+            border: 3px solid #007aff;
+            background: #007aff;
+            box-shadow:
+                0 20px 40px rgba(0, 122, 255, 0.3),
+                0 8px 16px rgba(0, 122, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            transform: translateY(-4px);
+        }
+
+        .method-launch::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        .method-launch::after {
+            content: '✓';
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            opacity: 1;
+            color: #ffffff;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .method-icon {
+            font-size: 1.5rem;
+        }
+
+        .method-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0;
+            margin-bottom: 3rem;
+        }
+
+        .method-process {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            transition: all 0.2s ease;
+        }
+
+        .method-traditional .process-step {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #1d1d1f;
+            font-weight: 700;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .method-traditional .method-title {
+            color: #ffffff;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .method-traditional .method-result {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .method-launch .process-step {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #004085;
+            font-weight: 700;
+            box-shadow: 0 4px 8px rgba(0, 122, 255, 0.2);
+        }
+
+        .method-launch .method-title {
+            color: #ffffff;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .method-launch .method-result {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .process-arrow {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .method-result {
+            color: #1d1d1f;
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 1rem 0 0 0;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .science-insight {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid rgba(0, 122, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .science-insight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 122, 255, 0.3), transparent);
+            opacity: 0.8;
+        }
+
+        .insight-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .insight-text {
+            color: #1d1d1f;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .method-process {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .process-arrow {
+                transform: rotate(90deg);
+            }
+
+            .science-insight {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+            color: #1d1d1f;
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #6e6e73;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .features-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            text-align: center;
+            border: 1px solid rgba(0, 122, 255, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.12);
+            border-color: rgba(0, 122, 255, 0.15);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: #007aff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 1rem;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 122, 255, 0.35);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1d1d1f;
+        }
+
+        .feature-description {
+            color: #6e6e73;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Methodology Comparison */
+        .methodology-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Comprehensive Comparison */
+        .simple-comparison {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .approach-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 3rem;
+            align-items: stretch;
+            max-width: 1100px;
+            margin: 4rem auto;
+        }
+
+        .approach-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach-card.traditional {
+            border-color: #ff3b30;
+            background: #ffffff;
+        }
+
+        .approach-card.launch-prep {
+            border-color: #007aff;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .approach-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .approach-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .approach-icon {
+            font-size: 1.5rem;
+        }
+
+        .approach-card p {
+            font-size: 1rem;
+            color: #1d1d1f;
+            line-height: 1.7;
+            margin: 1rem 0;
+        }
+
+        .approach-card p em {
+            color: #6e6e73;
+            font-size: 0.9rem;
+        }
+
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #ffffff;
+            background: #007aff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin: auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffffff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .methodology-insight {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-left: 3px solid #007aff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .insight-icon {
+            font-size: 1.5rem;
+            background: #007aff;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .insight-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .insight-content p {
+            font-size: 1.1rem;
+            color: #1d1d1f;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Learning Progress Section */
+        .learning-progress-section {
+            padding: 0;
+            background: var(--bg-light);
+            position: relative;
+        }
+
+
+        .progress-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-summary {
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+            margin-bottom: 1rem;
+            padding: 0;
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .summary-text {
+            font-size: 1.1rem;
+            color: #6e6e73;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .progress-explanation {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .explanation-point {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin: 0;
+            padding: 0;
+        }
+
+        .point-number {
+            width: 24px;
+            height: 24px;
+            background: #007aff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .point-content {
+            margin: 0;
+            padding: 0;
+        }
+
+        .point-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.3rem;
+            padding: 0;
+            line-height: 1.3;
+        }
+
+        .point-content p {
+            font-size: 0.95rem;
+            color: #6e6e73;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .progress-chart-container {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scale(0.8);
+            opacity: 0.6;
+        }
+
+        .progress-chart-container.scroll-in-view {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Chart Styles for New Structure */
+        .week-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar-pair {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+            height: 100%;
+            margin-bottom: 0.5rem;
+            justify-content: center;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-graph {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 0.5rem;
+            min-height: 140px;
+            flex: 1;
+        }
+
+        .y-axis {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            font-size: 0.8rem;
+            color: #6e6e73;
+            padding-right: 0.5rem;
+        }
+
+        .y-label {
+            line-height: 1;
+            color: #6e6e73;
+            font-size: 0.8rem;
+        }
+
+        .chart-container {
+            height: 100%;
+            border-left: 2px solid #e5e5e7;
+            border-bottom: 2px solid #e5e5e7;
+            display: flex;
+            align-items: flex-end;
+            gap: 0.6rem;
+            padding: 0 0.5rem 0 0.5rem;
+            position: relative;
+        }
+
+        .week-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            flex: 1;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .week-label {
+            font-size: 0.65rem;
+            color: #6e6e73;
+            font-weight: 500;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            white-space: nowrap;
+        }
+
+        .week-label.animate {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .week-bars {
+            display: flex;
+            gap: 6px;
+            align-items: flex-end;
+            height: calc(100% - 30px);
+            margin-bottom: 0.5rem;
+        }
+
+
+        .bar {
+            width: 20px;
+            border-radius: 6px 6px 0 0;
+            transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .bar:hover::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 1;
+            transition: opacity 0.2s;
+        }
+
+        .traditional-bar {
+            background: #d1d5db;
+        }
+
+        .launch-prep-bar {
+            background: #007aff;
+        }
+
+        .bar-label-bottom {
+            font-size: 0.7rem;
+            color: #6e6e73;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #6e6e73;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .legend-color.traditional {
+            background: #8e8e93;
+        }
+
+        .legend-color.launch-prep {
+            background: #007aff;
+        }
+
+        .chart-insight {
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+            border-left: 3px solid #007aff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+        }
+
+        .chart-insight p {
+            color: #1d1d1f;
+            margin: 0;
+        }
+
+        .chart-insight strong {
+            color: #1d1d1f;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: 3rem 2rem;
+            background: #000000;
+            color: #ffffff;
+            position: relative;
+        }
+
+
+        .demo-section .section-title {
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-section .section-subtitle {
+            color: #a1a1a6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-section .section-header {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .demo-section .section-subtitle {
+            margin: 0;
+            text-align: left;
+        }
+
+
+        .demo-section .section-title {
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-header {
+            text-align: left;
+            margin-bottom: 1rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .new-badge {
+            background: #007aff;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-showcase {
+            background: transparent;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+
+        .demo-screen {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 0;
+            min-height: 280px;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+
+        .demo-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .demo-interface {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            opacity: 0;
+            animation: slideInUp 1s ease 0.5s forwards;
+            display: flex;
+            height: 550px;
+            position: relative;
+        }
+
+        /* Dashboard Interface */
+        .dashboard-interface {
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .dashboard-interface.hidden {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .action-button {
+            padding: 0.8rem !important;
+            border-radius: 8px !important;
+            margin: 0 !important;
+            transform: none !important;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1.2rem;
+            border-bottom: 1px solid #f0f0f0;
+            background: #fafafa;
+        }
+
+        .app-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 0.85rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #6e6e73;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: #007aff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #e5e5e7;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 0.6rem 1.2rem;
+            color: #6e6e73;
+            font-weight: 500;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-tab:hover {
+            color: #1d1d1f;
+            background: rgba(0, 122, 255, 0.05);
+        }
+
+        .nav-tab.active {
+            color: #007aff;
+            border-bottom-color: #007aff;
+            background: rgba(0, 122, 255, 0.05);
+        }
+
+        .nav-tab.clicking {
+            transform: scale(0.98);
+            background: rgba(0, 122, 255, 0.15);
+        }
+
+        .nav-tab.highlight {
+            background: rgba(0, 122, 255, 0.1);
+            animation: pulse-tab 1s ease-in-out infinite;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+        }
+
+        @keyframes pulse-tab {
+            0%, 100% {
+                background: rgba(0, 122, 255, 0.1);
+                box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+            }
+            50% {
+                background: rgba(0, 122, 255, 0.2);
+                box-shadow: 0 0 0 6px rgba(0, 122, 255, 0.15);
+            }
+        }
+
+        .dashboard-content {
+            flex: 1;
+            padding: 1rem 1rem;
+            background: #f8f9fa;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .dashboard-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.08);
+            border-color: rgba(0, 122, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.2rem;
+        }
+
+        .card-metric {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #007aff;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: #6e6e73;
+            font-size: 0.85rem;
+        }
+
+        .recent-activity {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0f0f0;
+        }
+
+        .activity-header {
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            background: #007aff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            color: #1d1d1f;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .activity-time {
+            color: #6e6e73;
+            font-size: 0.8rem;
+        }
+
+        .lesson-panel {
+            flex: 1;
+            padding: 1rem;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform: translateX(50px);
+            transform-origin: center center;
+        }
+
+        .lesson-header {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 0.8rem;
+            color: #6e6e73;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .lesson-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .problem-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.6rem;
+        }
+
+        .math-problem {
+            background: white;
+            border-radius: 8px;
+            padding: 0.8rem;
+            border: 1px solid #007aff;
+            margin-bottom: 0.6rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #1d1d1f;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.1);
+            position: relative;
+            overflow: visible;
+        }
+
+        .math-equation {
+            position: relative;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .highlight-box {
+            position: absolute;
+            background: rgba(255, 149, 0, 0.3);
+            border-radius: 6px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+            pointer-events: none;
+            animation: pulse-highlight 2s ease-in-out infinite;
+        }
+
+        .highlight-box.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .highlight-box.green {
+            background: rgba(52, 199, 89, 0.3);
+        }
+
+        .highlight-box.blue {
+            background: rgba(0, 122, 255, 0.3);
+        }
+
+        @keyframes pulse-highlight {
+            0%, 100% {
+                background-opacity: 0.3;
+            }
+            50% {
+                background-opacity: 0.5;
+            }
+        }
+
+        .teaching-popup {
+            position: absolute;
+            background: linear-gradient(135deg, #007aff, #00d4ff);
+            color: white;
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(15px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+            z-index: 15;
+            max-width: 200px;
+            line-height: 1.4;
+        }
+
+        .teaching-popup::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #007aff;
+        }
+
+        .teaching-popup.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .step-highlight {
+            background: rgba(0, 122, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.25rem 0.5rem;
+            display: inline-block;
+            position: relative;
+            animation: glow-text 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-text {
+            from { background: rgba(0, 122, 255, 0.1); }
+            to { background: rgba(0, 122, 255, 0.2); }
+        }
+
+        .solution-steps {
+            margin-top: 1.5rem;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .solution-steps.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step {
+            background: rgba(0, 122, 255, 0.05);
+            border-left: 3px solid #007aff;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .step.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step-number {
+            color: #007aff;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .ai-pointer {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #007aff;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+            animation: pulse-pointer 2s infinite;
+        }
+
+        .ai-pointer::after {
+            content: '🤖';
+            position: absolute;
+            top: -25px;
+            left: -8px;
+            font-size: 0.8rem;
+        }
+
+        .ai-pointer.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @keyframes pulse-pointer {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(0, 122, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 122, 255, 0);
+            }
+        }
+
+        .chat-panel {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            width: 60px;
+            height: 60px;
+            background: #007aff;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+            z-index: 20;
+            overflow: hidden;
+            opacity: 1;
+        }
+
+        .chat-panel.expanded {
+            width: 280px;
+            height: 320px;
+            border-radius: 20px;
+            flex-direction: column;
+            cursor: default;
+        }
+
+        .chat-toggle {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .chat-panel.expanded .chat-toggle {
+            display: none;
+        }
+
+        .chat-header {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .chat-panel.expanded .chat-header {
+            display: flex;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.8rem;
+            overflow-y: auto;
+            background: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .chat-panel.expanded .chat-messages {
+            display: flex;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            opacity: 0;
+        }
+
+        .user-message {
+            background: #e5e5e7;
+            color: #1d1d1f;
+            align-self: flex-end;
+        }
+
+        .ai-message {
+            background: #007aff;
+            color: white;
+            align-self: flex-start;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6e6e73;
+            font-size: 0.85rem;
+            opacity: 0;
+            animation: fadeInLeft 0.3s ease 2s forwards;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .typing-dot {
+            width: 4px;
+            height: 4px;
+            background: #007aff;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .demo-status {
+            color: #a1a1a6;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 8s forwards;
+        }
+
+
+        /* Stats Section */
+        .stats-section {
+            padding: 2rem 2rem;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+        }
+
+        .goals-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .goals-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .goals-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 2rem;
+        }
+
+        .goal-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            flex: 1;
+        }
+
+        .goal-number {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        }
+
+        .goal-label {
+            font-size: 0.8rem;
+            color: #a1a1a6;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .goals-grid {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            .goal-item {
+                flex: 0 0 calc(50% - 0.5rem);
+            }
+        }
+
+
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 2rem 1.5rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 122, 255, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 122, 255, 0.08);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #007aff;
+            margin-bottom: 1rem;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-number {
+            transform: scale(1.05);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        /* New Visual Stats */
+        .stats-visual-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stats-visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-visual-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            min-height: 150px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-visual-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 122, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.15);
+        }
+        .stat-visual-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            opacity: 0.5;
+        }
+
+        .stat-visual-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce-subtle 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .stat-visual-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+            line-height: 0.9;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-visual-label {
+            font-size: 0.9rem;
+            color: #a1a1a6;
+            font-weight: 500;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-visual-progress {
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #007aff;
+            border-radius: 2px;
+            width: 0;
+            transition: width 2s ease-out;
+        }
+
+        /* Universities Section */
+        .universities-section {
+            padding: 8rem 2rem;
+            background: #ffffff;
+            color: #1d1d1f;
+            text-align: center;
+            position: relative;
+        }
+
+
+        .universities-section .section-title {
+            color: #1d1d1f;
+            position: relative;
+            z-index: 2;
+        }
+
+        .universities-section .section-subtitle {
+            color: #86868b;
+            position: relative;
+            z-index: 2;
+        }
+
+        .universities-grid {
+            max-width: 600px;
+            margin: 2.5rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 2rem;
+        }
+
+        .university-logo {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .university-logo:hover {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .university-name {
+            font-size: 0.85rem;
+            color: #a1a1a6;
+            font-weight: 500;
+        }
+
+        /* New Universities Design */
+        .universities-showcase {
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .university-carousel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            animation: slideLoop 20s linear infinite;
+        }
+
+        @keyframes slideLoop {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+
+        .university-visual-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 5rem 3rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            min-height: 350px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .university-visual-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            opacity: 0.8;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .university-visual-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 24px 48px rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+        }
+
+        .university-visual-logo {
+            font-size: 6rem;
+            margin-bottom: 3rem;
+            filter: grayscale(100%) brightness(0.9);
+            transition: all 0.5s ease;
+            opacity: 0.8;
+        }
+
+        .university-visual-card:hover .university-visual-logo {
+            filter: grayscale(70%) brightness(1.1);
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .university-visual-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+        }
+
+        .university-visual-badge {
+            background: linear-gradient(135deg, #007aff, #0066cc);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: inline-block;
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: #ffffff;
+            color: #1d1d1f;
+            text-align: center;
+            position: relative;
+            border: none;
+        }
+
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+        }
+
+        .cta-subtitle {
+            font-size: 2rem;
+            margin-bottom: 4rem;
+            opacity: 0.8;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #a1a1a6;
+        }
+
+        .cta-visual {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 30%;
+            right: 15%;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            66% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            padding: 2rem;
+            color: var(--text-muted);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            opacity: 0;
+        }
+
+        .modal.show {
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 1.5rem;
+            border-radius: 16px;
+            width: 85%;
+            max-width: 320px;
+            position: relative;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(20px) scale(0.96);
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+
+        .modal-subtitle {
+            color: #6e6e73;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1.5px solid #e5e5e7;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #007aff;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .form-input::placeholder {
+            color: #a1a1a6;
+            font-weight: 400;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero .spinning-light {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            animation: rotate 15s linear infinite;
+            transform-origin: 50% 50%;
+        }
+
+        .hero .spinning-light::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                transparent 30deg,
+                rgba(255, 165, 0, 0.05) 40deg,
+                rgba(255, 180, 30, 0.12) 50deg,
+                rgba(255, 195, 60, 0.18) 60deg,
+                rgba(255, 210, 90, 0.22) 70deg,
+                rgba(255, 220, 100, 0.25) 80deg,
+                rgba(255, 210, 90, 0.22) 90deg,
+                rgba(255, 195, 60, 0.18) 100deg,
+                rgba(255, 180, 30, 0.12) 110deg,
+                rgba(255, 165, 0, 0.05) 120deg,
+                transparent 130deg,
+                transparent 360deg
+            );
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+        }
+
+
+        .dynamic-text {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 400 !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 1;
+            transform: translateY(0px);
+        }
+
+        .dynamic-text.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .dynamic-text.fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .universities-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .social-proof {
+                margin-top: 2rem;
+                gap: 0.8rem;
+            }
+
+            .recent-signup {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .total-signups {
+                font-size: 0.8rem;
+            }
+
+            .demo-interface {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .lesson-panel {
+                flex: none;
+                padding: 1.5rem;
+            }
+
+            .chat-panel {
+                flex: none;
+                min-height: 300px;
+            }
+
+            .math-problem {
+                padding: 1rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        }
+        }
+        }
+
+        /* Timeline Section - Apple Staircase Style */
+        .timeline-section {
+            background: #ffffff;
+            padding: 4rem 2rem;
+            min-height: 400px;
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .timeline-description {
+            font-size: 1.1rem;
+            color: #6e6e73;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .journey-layout {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .journey-explanation {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .explanation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .explanation-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #007aff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .explanation-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .explanation-content p {
+            font-size: 0.95rem;
+            color: #6e6e73;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .staircase-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .staircase-timeline {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.75rem;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-4px);
+        }
+
+        .step-block {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .step:hover .step-block {
+            border-color: #007aff;
+            background: rgba(0, 122, 255, 0.05);
+        }
+
+        .step-0 .step-block {
+            width: 70px;
+            height: 40px;
+        }
+
+        .step-1 .step-block {
+            width: 80px;
+            height: 60px;
+        }
+
+        .step-2 .step-block {
+            width: 90px;
+            height: 80px;
+        }
+
+        .step-3 .step-block {
+            width: 100px;
+            height: 100px;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+        }
+
+        .step-subtitle {
+            font-size: 0.75rem;
+            color: #6e6e73;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-section {
+                padding: 3rem 1rem;
+            }
+
+            .journey-layout {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+
+            .explanation-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            .explanation-number {
+                align-self: center;
+            }
+
+            .staircase-timeline {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .step-0 .step-block,
+            .step-1 .step-block,
+            .step-2 .step-block,
+            .step-3 .step-block {
+                width: 65px;
+                height: 45px;
+            }
+
+            .step-label {
+                font-size: 0.8rem;
+            }
+
+            .step-subtitle {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Launch Prep</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#stats">Results</a></li>
+                <li><a href="#universities">Team</a></li>
+            </ul>
+            <button class="cta-nav" onclick="openModal()">Join Waitlist</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="position: relative;">
+        <div class="spinning-light"></div>
+        <div class="hero-badge">Coming Soon • Early December</div>
+        <h1 class="hero-title">
+            <span style="font-weight: 700; color: white;">Master the ACT with</span>
+            <br>
+            <span id="dynamicText" class="dynamic-text" style="font-weight: 400; color: rgba(255, 255, 255, 0.8);">AI-Powered Learning</span>
+        </h1>
+        <p class="hero-subtitle guarantee-text">
+            Guaranteed 35+ ACT score or your money back.*
+        </p>
+        <div class="hero-cta">
+            <button class="btn-primary" onclick="openModal()">Join Waitlist</button>
+            <a href="#demo" class="btn-secondary">Watch Demo</a>
+        </div>
+        <div class="waitlist-offer">
+            <p class="offer-text">
+                Waitlist gets full access for <strong class="free-highlight">FREE</strong> • Normally <span class="strikethrough">$999</span>
+            </p>
+        </div>
+        <div class="social-proof hero-social-proof">
+            <div class="recent-signup" id="recentSignup">
+                <span class="signup-dot"></span>
+                <span class="signup-text">Sarah from California just joined</span>
+            </div>
+            <div class="total-signups">
+                <span id="signupCount">7,567</span> students on waitlist
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Your Learning Journey</h2>
+                <p class="timeline-description">Four progressive steps designed to take you from baseline to perfect score</p>
+            </div>
+
+            <div class="journey-layout">
+                <div class="journey-explanation">
+                    <div class="explanation-item">
+                        <div class="explanation-number">1</div>
+                        <div class="explanation-content">
+                            <h3>Comprehensive Diagnostic</h3>
+                            <p>Full-length practice test to identify your specific strengths and knowledge gaps across all ACT sections.</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation-item">
+                        <div class="explanation-number">2</div>
+                        <div class="explanation-content">
+                            <h3>Foundation Building</h3>
+                            <p>Targeted lessons addressing your weak areas while reinforcing core concepts and test-taking strategies.</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation-item">
+                        <div class="explanation-number">3</div>
+                        <div class="explanation-content">
+                            <h3>Advanced Application</h3>
+                            <p>Practice with increasingly difficult problems, timing strategies, and section-specific optimization techniques.</p>
+                        </div>
+                    </div>
+
+                    <div class="explanation-item">
+                        <div class="explanation-number">4</div>
+                        <div class="explanation-content">
+                            <h3>Score Mastery</h3>
+                            <p>Final preparation with full practice tests, review sessions, and confidence-building exercises.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staircase-visual">
+                    <div class="staircase-timeline">
+                        <div class="step step-0">
+                            <div class="step-block">
+                                <div class="step-label">Start</div>
+                                <div class="step-subtitle">Baseline</div>
+                            </div>
+                        </div>
+
+                        <div class="step step-1">
+                            <div class="step-block">
+                                <div class="step-label">Build</div>
+                                <div class="step-subtitle">Foundation</div>
+                            </div>
+                        </div>
+
+                        <div class="step step-2">
+                            <div class="step-block">
+                                <div class="step-label">Apply</div>
+                                <div class="step-subtitle">Skills</div>
+                            </div>
+                        </div>
+
+                        <div class="step step-3">
+                            <div class="step-block">
+                                <div class="step-label">Master</div>
+                                <div class="step-subtitle">Perfect Score</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Innovative Learning Architecture</h2>
+            <p class="section-subtitle">Revolutionary methodology that builds complete mastery while competitors focus on isolated problem-solving.</p>
+        </div>
+
+
+        <div class="science-container">
+            <!-- Clean comparison cards -->
+            <div class="comparison-grid">
+                <div class="method-card method-traditional">
+                    <div class="method-header">
+                        <h3 class="method-title">Most Courses</h3>
+                    </div>
+                    <div class="method-process">
+                        <div class="process-step">Test</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Fix mistakes</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Plateau at 80%</div>
+                    </div>
+                    <p class="method-result">Gaps remain, can't reach perfection</p>
+                </div>
+
+                <div class="method-card method-launch">
+                    <div class="method-header">
+                        <h3 class="method-title">Launch Prep</h3>
+                    </div>
+                    <div class="method-process">
+                        <div class="process-step">Build foundation</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Fill gaps</div>
+                        <div class="process-arrow">→</div>
+                        <div class="process-step">Reach 100%</div>
+                    </div>
+                    <p class="method-result">Complete mastery through foundations</p>
+                </div>
+            </div>
+
+            <!-- Bottom insight -->
+            <div class="science-insight">
+                <p class="insight-text">
+                    <strong>Bottom-up learning beats top-down 23% of the time.</strong>
+                    We build foundations first instead of rushing to practice tests.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Progress Section -->
+    <section class="learning-progress-section">
+        <div class="progress-container">
+            <div class="progress-chart-container">
+                <h3 class="chart-title">Score Progress: Foundation vs. Quick Fixes</h3>
+                <div class="chart-legend" style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                    <div class="legend-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="width: 20px; height: 20px; background: #d1d5db; border-radius: 4px;"></div>
+                        <span style="font-size: 0.9rem; color: #6e6e73; font-weight: 500;">Traditional Method</span>
+                    </div>
+                    <div class="legend-item" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="width: 20px; height: 20px; background: #007aff; border-radius: 4px;"></div>
+                        <span style="font-size: 0.9rem; color: #6e6e73; font-weight: 500;">Launch Prep</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="chart-graph" id="progressChart">
+                        <div class="y-axis">
+                            <div class="y-label">100%</div>
+                            <div class="y-label">75%</div>
+                            <div class="y-label">50%</div>
+                            <div class="y-label">25%</div>
+                            <div class="y-label">0%</div>
+                        </div>
+                        <div class="chart-container">
+                            <div class="week-column" data-tooltip="Traditional: 45% vs Launch Prep: 35%">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="45" data-value="45%"></div>
+                                    <div class="bar launch-prep-bar" data-height="35" data-value="35%"></div>
+                                </div>
+                                <div class="week-label">Week 1</div>
+                            </div>
+                            <div class="week-column" data-tooltip="Traditional: 60% vs Launch Prep: 40%">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="60" data-value="60%"></div>
+                                    <div class="bar launch-prep-bar" data-height="40" data-value="40%"></div>
+                                </div>
+                                <div class="week-label">Week 2</div>
+                            </div>
+                            <div class="week-column" data-tooltip="Traditional: 70% vs Launch Prep: 45%">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="70" data-value="70%"></div>
+                                    <div class="bar launch-prep-bar" data-height="45" data-value="45%"></div>
+                                </div>
+                                <div class="week-label">Week 3</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="75" data-value="75%"></div>
+                                    <div class="bar launch-prep-bar" data-height="50" data-value="50%"></div>
+                                </div>
+                                <div class="week-label">Week 4</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="78" data-value="78%"></div>
+                                    <div class="bar launch-prep-bar" data-height="65" data-value="65%"></div>
+                                </div>
+                                <div class="week-label">Week 5</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="80" data-value="80%"></div>
+                                    <div class="bar launch-prep-bar" data-height="78" data-value="78%"></div>
+                                </div>
+                                <div class="week-label">Week 6</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="81" data-value="81%"></div>
+                                    <div class="bar launch-prep-bar" data-height="88" data-value="88%"></div>
+                                </div>
+                                <div class="week-label">Week 7</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="82" data-value="82%"></div>
+                                    <div class="bar launch-prep-bar" data-height="95" data-value="95%"></div>
+                                </div>
+                                <div class="week-label">Week 8</div>
+                            </div>
+                            <div class="week-column">
+                                <div class="week-bars">
+                                    <div class="bar traditional-bar" data-height="82" data-value="82%"></div>
+                                    <div class="bar launch-prep-bar" data-height="100" data-value="100%"></div>
+                                </div>
+                                <div class="week-label">Week 9</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-summary">
+                <h2 class="summary-title" style="font-size: 1.8rem; margin-bottom: 0.5rem; line-height: 1.2; font-weight: 700;">Start Slower. Finish Stronger.</h2>
+                <p class="summary-text" style="font-size: 1rem; color: #86868b; margin: 0; line-height: 1.4;">We build foundations for perfect scores while others rush to quick fixes.</p>
+            </div>
+
+            <div class="progress-explanation">
+                <div class="explanation-point">
+                    <div class="point-number">1</div>
+                    <div class="point-content">
+                        <h4>Weeks 1-3: Foundation Building</h4>
+                        <p>We build solid foundations while others rush to practice tests. This creates exponential growth later.</p>
+                    </div>
+                </div>
+                <div class="explanation-point">
+                    <div class="point-number">2</div>
+                    <div class="point-content">
+                        <h4>Weeks 4-6: Acceleration Phase</h4>
+                        <p>Everything connects and learning accelerates dramatically while others hit walls from gaps.</p>
+                    </div>
+                </div>
+                <div class="explanation-point">
+                    <div class="point-number">3</div>
+                    <div class="point-content">
+                        <h4>Weeks 7-9: Perfect Mastery</h4>
+                        <p>Reach 100% mastery while others plateau at 80%. Complete foundations unlock perfect scores.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="demo-container">
+            <div class="demo-showcase">
+                <div class="demo-header">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem;">
+                            <span class="new-badge">New</span>
+                            <h2 class="section-title" style="margin-bottom: 0;">See Launch Prep in Action</h2>
+                        </div>
+                        <p class="section-subtitle">Live demo of our AI-powered ACT prep platform</p>
+                    </div>
+                </div>
+                <div class="demo-screen" id="demoScreen">
+                    <div class="demo-content">
+                        <div class="demo-interface">
+                            <!-- Dashboard Interface - Shows First -->
+                            <div class="dashboard-interface" id="dashboardInterface">
+                                <div class="app-header">
+                                    <div class="app-logo">
+                                        Launch Prep
+                                    </div>
+                                    <div class="user-info">
+                                        <span>Sarah Chen</span>
+                                        <div class="user-avatar">SC</div>
+                                    </div>
+                                </div>
+
+                                <div class="nav-tabs">
+                                    <div class="nav-tab active">
+                                        Dashboard
+                                    </div>
+                                    <div class="nav-tab" id="mathPracticeTab">
+                                        Math Practice
+                                    </div>
+                                    <div class="nav-tab">
+                                        Tests
+                                    </div>
+                                    <div class="nav-tab">
+                                        Progress
+                                    </div>
+                                </div>
+
+                                <div class="dashboard-content">
+                                    <div style="text-align: center; margin: 1.5rem 0;">
+                                        <h2 style="font-size: 1.2rem; font-weight: 600; color: #1d1d1f; margin-bottom: 0.3rem;">Welcome back, Sarah!</h2>
+                                        <p style="color: #6e6e73; font-size: 0.8rem; margin-bottom: 1.5rem;">Ready to improve your ACT score?</p>
+                                    </div>
+
+                                    <div class="dashboard-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 450px; margin: 0 auto;">
+                                        <div class="dashboard-card" style="text-align: center;">
+                                            <div class="card-metric" style="font-size: 1.8rem; color: #007aff; font-weight: 600;">28</div>
+                                            <div class="card-title" style="margin-top: 0.3rem; font-size: 0.8rem;">Current Score</div>
+                                        </div>
+
+                                        <div class="dashboard-card" id="weakAreaCard" style="text-align: center; border: 1px solid #ff9500; background: #ffffff;">
+                                            <div class="card-metric" style="font-size: 1.1rem; color: #ff9500; font-weight: 600;">Quadratics</div>
+                                            <div class="card-title" style="margin-top: 0.3rem; color: #ff9500; font-weight: 600; font-size: 0.8rem;">Needs Practice</div>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; max-width: 400px; margin: 1.5rem auto 0;">
+                                        <div class="dashboard-card action-button" onclick="startMathPractice()" style="text-align: center; cursor: pointer; background: #007aff; color: white; border: none; padding: 0.8rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: all 0.2s ease;">
+                                            <div class="card-title" style="font-weight: 600; font-size: 0.8rem; line-height: 1.3; color: white; margin-bottom: 0.2rem;">Continue Practice</div>
+                                            <div style="font-size: 0.65rem; opacity: 0.9; color: white;">Math • Quadratics</div>
+                                        </div>
+
+                                        <div class="dashboard-card action-button" style="text-align: center; cursor: pointer; background: #f8f9fa; color: #1d1d1f; border: 1px solid #e5e5e7; padding: 0.8rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); transition: all 0.2s ease;">
+                                            <div class="card-title" style="font-weight: 600; font-size: 0.8rem; line-height: 1.3; margin-bottom: 0.2rem;">Start Lesson</div>
+                                            <div style="font-size: 0.65rem; opacity: 0.7;">Learn new concepts</div>
+                                        </div>
+                                    </div>
+
+                                    <div style="text-align: center; margin-top: 1rem;">
+                                        <p style="color: #007aff; font-size: 0.65rem; font-weight: 500; margin-bottom: 0.5rem;">Click "Math Practice" to improve quadratics</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Lesson Panel - Shows After Dashboard -->
+                            <div class="lesson-panel" id="lessonPanel" style="display: none; opacity: 0; width: 100%; position: absolute; top: 0; left: 0; height: 100%; background: white;">
+                                <div class="lesson-header">
+                                    📚 ACT Math • Quadratic Equations
+                                </div>
+                                <div class="lesson-content">
+                                    <div class="problem-title">Practice Problem #12</div>
+                                    <div class="math-problem">
+                                        <div style="margin-bottom: 0.5rem; font-size: 0.8rem;">Solve for x:</div>
+                                        <div class="math-equation" style="position: relative; font-size: 1rem; font-weight: bold; text-align: center; margin: 0.5rem 0; display: flex; justify-content: center; align-items: center; min-height: 40px;">
+                                            <div style="position: relative; display: inline-flex; align-items: center; gap: 8px;">
+                                                <span id="term1" style="position: relative; padding: 4px; background: transparent;">x²</span>
+                                                <span> - </span>
+                                                <span id="term2" style="position: relative; padding: 4px; background: transparent;">6x</span>
+                                                <span> + </span>
+                                                <span id="term3" style="position: relative; padding: 4px; background: transparent;">8</span>
+                                                <span> = 0</span>
+                                            </div>
+
+                                            <!-- Interactive Teaching Elements with JavaScript positioning -->
+                                        </div>
+
+                                        <!-- Answer Input Box -->
+                                        <div class="answer-section" style="margin: 2rem 0; text-align: center;">
+                                            <div style="margin-bottom: 1rem;">
+                                                <label style="display: block; color: #6e6e73; font-weight: 500; margin-bottom: 0.5rem;">Your Answer:</label>
+                                                <input
+                                                    type="text"
+                                                    id="answerInput"
+                                                    placeholder="Enter x values (e.g., x = 2, 4)"
+                                                    style="
+                                                        width: 280px;
+                                                        padding: 0.8rem 1rem;
+                                                        border: 2px solid #e5e5e7;
+                                                        border-radius: 12px;
+                                                        font-size: 1rem;
+                                                        text-align: center;
+                                                        transition: all 0.3s ease;
+                                                        background: #fafafa;
+                                                    "
+                                                    onkeypress="if(event.key === 'Enter') checkAnswer()"
+                                                />
+                                                <div style="margin-top: 0.5rem;">
+                                                    <button
+                                                        onclick="askForHelp()"
+                                                        style="
+                                                            background: transparent;
+                                                            color: #a1a1a6;
+                                                            border: 1px solid #e5e5e7;
+                                                            padding: 0.4rem 0.8rem;
+                                                            border-radius: 6px;
+                                                            font-size: 0.8rem;
+                                                            cursor: pointer;
+                                                            transition: all 0.3s ease;
+                                                            opacity: 0.7;
+                                                        "
+                                                        onmouseover="this.style.opacity='1'; this.style.color='#6e6e73'"
+                                                        onmouseout="this.style.opacity='0.7'; this.style.color='#a1a1a6'"
+                                                    >
+                                                        ? need help
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Teaching Steps - Hidden by default -->
+                                        <div class="solution-steps" id="solutionSteps" style="opacity: 0;">
+                                            <div class="step" id="step1" style="opacity: 0;">
+                                                <span class="step-number">Step 1:</span> Factor: <span class="step-highlight">(x - 4)(x - 2) = 0</span>
+                                            </div>
+                                            <div class="step" id="step2" style="opacity: 0;">
+                                                <span class="step-number">Step 2:</span> Solve each factor: x - 4 = 0 → x = 4, x - 2 = 0 → x = 2
+                                            </div>
+                                            <div class="step" id="step3" style="opacity: 0;">
+                                                <span class="step-number">Answer:</span> <strong>x = 4 or x = 2</strong> ✅
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Tutor Chat Bar -->
+                            <div class="chat-panel" id="chatPanel" onclick="toggleChat()">
+                                <div class="chat-toggle">🤖</div>
+                                <div class="chat-header">
+                                    🤖 AI Tutor
+                                </div>
+                                <div class="chat-messages" id="chatMessages">
+                                    <div class="message user-message">
+                                        Can you teach me this step by step?
+                                    </div>
+
+                                    <div class="message ai-message">
+                                        Absolutely! I'll guide you through each step with visual hints.
+                                    </div>
+
+                                    <div class="message user-message">
+                                        That's so helpful! 🎯
+                                    </div>
+
+                                    <div class="message ai-message">
+                                        Watch as I highlight and explain each part above!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="demo-status">
+                            ✨ AI adapts to your learning pace and style
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="goals-container">
+            <h2 class="goals-title">Our Goals for You</h2>
+            <div class="goals-grid">
+                <div class="goal-item">
+                    <span class="goal-number" data-target="36">36</span>
+                    <span class="goal-label">Score Target</span>
+                </div>
+                <div class="goal-item">
+                    <span class="goal-number" data-target="8">8</span>
+                    <span class="goal-label">Point Goal</span>
+                </div>
+                <div class="goal-item">
+                    <span class="goal-number" data-target="24">24</span>
+                    <span class="goal-label">Hour Course</span>
+                </div>
+                <div class="goal-item">
+                    <span class="goal-number" data-target="100">100%</span>
+                    <span class="goal-label">AI Powered</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Universities Section -->
+    <section id="universities" class="universities-section">
+        <div class="section-header">
+            <h2 class="section-title">Built by Top Minds</h2>
+        </div>
+
+        <div class="universities-showcase">
+            <div class="university-carousel">
+                <div class="university-visual-card">
+                    <div class="university-visual-name">Harvard</div>
+                    <div class="university-visual-badge">Perfect SAT</div>
+                </div>
+                <div class="university-visual-card">
+                    <div class="university-visual-name">Stanford</div>
+                    <div class="university-visual-badge">Valedictorian</div>
+                </div>
+                <div class="university-visual-card">
+                    <div class="university-visual-name">Princeton</div>
+                    <div class="university-visual-badge">Summa Cum Laude</div>
+                </div>
+                <div class="university-visual-card">
+                    <div class="university-visual-name">Berkeley</div>
+                    <div class="university-visual-badge">Phi Beta Kappa</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Transform Your Future?</h2>
+            <p class="cta-subtitle">Join the waitlist • Get free access when we launch</p>
+            <button class="btn-primary cta-special" onclick="openModal()">Join Waitlist</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Launch Prep. The future of test preparation.</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="accessModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()" style="position: absolute; top: 1.2rem; right: 1.8rem; font-size: 1.3rem; cursor: pointer; color: #a1a1a6; transition: color 0.2s ease;">&times;</span>
+            <h2 class="modal-title">Join the Waitlist</h2>
+            <p class="modal-subtitle">Get free access when we launch - no payment required</p>
+
+            <form id="accessForm">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-input" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="school" placeholder="High School" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="grade" placeholder="Current Grade (e.g., 11th grade)" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="score" placeholder="Current ACT Score (or 'Not taken')">
+                </div>
+                <button type="submit" class="btn-primary form-submit">Join Waitlist</button>
+            </form>
+
+            <div id="successMessage" style="display: none; background: #34c759; color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-top: 2rem;">
+                🎉 You're on the waitlist! You'll get free access when we launch - no payment required.
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // Initialize demo intersection observer
+        function initDemoObserver() {
+            const demoSection = document.getElementById('demo');
+            if (!demoSection) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.hasAttribute('data-demo-started')) {
+                        // Mark as started to prevent multiple triggers
+                        entry.target.setAttribute('data-demo-started', 'true');
+
+                        // Start demo after a short delay to ensure section is fully visible
+                        setTimeout(() => {
+                            console.log('Demo section visible, starting demo...');
+                            startDashboardDemo();
+                        }, 500);
+
+                        // Stop observing once demo has started
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.3, // Start when 30% of the demo section is visible
+                rootMargin: '0px 0px -10% 0px' // Start slightly before it's fully visible
+            });
+
+            observer.observe(demoSection);
+        }
+
+        // Start the complete demo sequence from dashboard
+        function startDashboardDemo() {
+            console.log('Starting dashboard demo...');
+
+            // Show dashboard first - it's already visible
+            const dashboard = document.getElementById('dashboardInterface');
+            const lessonPanel = document.getElementById('lessonPanel');
+
+            if (!dashboard || !lessonPanel) {
+                console.log('Dashboard or lesson panel not found!');
+                return;
+            }
+
+            // After 1.5 seconds, highlight Math Practice tab
+            setTimeout(() => {
+                console.log('Highlighting Math Practice tab...');
+                const mathTab = document.getElementById('mathPracticeTab');
+                if (mathTab) {
+                    mathTab.classList.add('highlight');
+                }
+            }, 1500);
+
+            // After 2 seconds, click on Math Practice tab
+            setTimeout(() => {
+                console.log('Clicking Math Practice tab...');
+                clickMathPracticeTab();
+            }, 2000);
+        }
+
+        // Function for the "Continue ACT Math Practice" button
+        function startMathPractice() {
+            console.log('Starting math practice from dashboard button...');
+            clickMathPracticeTab();
+        }
+
+        // Simulate clicking the Math Practice tab
+        function clickMathPracticeTab() {
+            const mathTab = document.getElementById('mathPracticeTab');
+            if (!mathTab) {
+                console.log('Math Practice tab not found!');
+                return;
+            }
+
+            // Remove highlight and add click animation
+            mathTab.classList.remove('highlight');
+            mathTab.classList.add('clicking');
+
+            // After click animation, transition to lesson
+            setTimeout(() => {
+                mathTab.classList.remove('clicking');
+                transitionToLesson();
+            }, 300);
+        }
+
+        // Transition from dashboard to lesson panel
+        function transitionToLesson() {
+            console.log('Transitioning to lesson panel...');
+
+            const dashboard = document.getElementById('dashboardInterface');
+            const lessonPanel = document.getElementById('lessonPanel');
+
+            if (!dashboard || !lessonPanel) {
+                console.log('Dashboard or lesson panel not found!');
+                return;
+            }
+
+            // Hide dashboard with smooth transition
+            dashboard.classList.add('hidden');
+
+            // Show lesson panel after dashboard transitions out
+            setTimeout(() => {
+                dashboard.style.display = 'none';
+                lessonPanel.style.display = 'flex';
+                lessonPanel.style.flexDirection = 'column';
+
+                // Animate lesson panel in
+                setTimeout(() => {
+                    lessonPanel.style.opacity = '1';
+                    lessonPanel.style.transform = 'translateX(0)';
+
+                    // Start the AI demo after lesson panel is visible
+                    setTimeout(() => {
+                        console.log('Starting AI tutoring demo...');
+                        startAIDemo();
+                    }, 500);
+                }, 100);
+            }, 600);
+        }
+
+        // Start the AI demo sequence (original function, but now called after lesson transition)
+        function startAIDemo() {
+            console.log('Starting AI demo sequence...');
+
+            // First make sure chat button is visible
+            const chatPanel = document.getElementById('chatPanel');
+            if (chatPanel) {
+                console.log('Chat panel found, expanding immediately...');
+
+                // Expand the chat immediately
+                setTimeout(() => {
+                    console.log('Expanding chat...');
+                    toggleChat();
+                }, 300);
+            } else {
+                console.log('Chat panel not found!');
+            }
+        }
+
+        // Modal functionality with smooth transitions
+        function openModal() {
+            const modal = document.getElementById('accessModal');
+            modal.style.display = 'block';
+
+            // Trigger reflow to ensure display:block is applied
+            modal.offsetHeight;
+
+            // Add show class for smooth animation
+            requestAnimationFrame(() => {
+                modal.classList.add('show');
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('accessModal');
+            modal.classList.remove('show');
+
+            // Wait for animation to complete before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('accessModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Form submission
+        document.getElementById('accessForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                school: document.getElementById('school').value.trim(),
+                grade: document.getElementById('grade').value.trim(),
+                score: document.getElementById('score').value.trim(),
+                timestamp: new Date().toISOString()
+            };
+
+            if (!formData.name || !formData.email || !formData.phone || !formData.school || !formData.grade) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const existingData = JSON.parse(localStorage.getItem('launchPrepApplications') || '[]');
+            existingData.push(formData);
+            localStorage.setItem('launchPrepApplications', JSON.stringify(existingData));
+
+            document.getElementById('successMessage').style.display = 'block';
+            document.querySelector('form').style.display = 'none';
+
+            setTimeout(() => {
+                closeModal();
+                document.querySelector('form').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('accessForm').reset();
+            }, 3000);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observeElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.8s ease both';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.feature-card, .stat-card, .university').forEach(el => {
+                observer.observe(el);
+            });
+        };
+
+        // Social Proof Animation
+        function initSocialProof() {
+            const recentSignups = [
+                'Sarah from California just joined',
+                'Michael from New York just joined',
+                'Emma from Texas just joined',
+                'David from Florida just joined',
+                'Ashley from Illinois just joined',
+                'Jordan from Pennsylvania just joined',
+                'Madison from Ohio just joined',
+                'Tyler from Georgia just joined'
+            ];
+
+            const signupText = document.querySelector('.signup-text');
+            const signupCount = document.getElementById('signupCount');
+            const recentSignupElement = document.getElementById('recentSignup');
+            let currentIndex = 0;
+            let count = 7567;
+
+            // Ensure initial state is correct
+            if (signupText) {
+                signupText.textContent = recentSignups[0];
+            }
+
+            // Smooth rotation through recent signups
+            const rotateSignups = () => {
+                if (!signupText || !recentSignupElement) return;
+
+                // Add fade out effect
+                recentSignupElement.style.opacity = '0.3';
+
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % recentSignups.length;
+                    signupText.textContent = recentSignups[currentIndex];
+
+                    // Fade back in
+                    recentSignupElement.style.opacity = '1';
+
+                    // Increment count by 1 each time
+                    count += 1;
+                    if (signupCount) {
+                        signupCount.textContent = count.toLocaleString();
+                    }
+                }, 300);
+            };
+
+            // Start the rotation
+            setInterval(rotateSignups, 12000);
+        }
+
+        // Chat toggle functionality
+        function toggleChat() {
+            const chatPanel = document.getElementById('chatPanel');
+            const chatMessages = document.getElementById('chatMessages');
+
+            console.log('toggleChat called');
+            console.log('chatPanel:', chatPanel);
+            console.log('chatMessages:', chatMessages);
+
+            if (chatPanel && !chatPanel.classList.contains('expanded')) {
+                console.log('Expanding chat panel...');
+                chatPanel.classList.add('expanded');
+
+                // Animate messages after expansion - much slower
+                setTimeout(() => {
+                    const messages = chatMessages.querySelectorAll('.message');
+                    console.log('Found messages:', messages.length);
+
+                    messages.forEach((msg, index) => {
+                        setTimeout(() => {
+                            console.log(`Showing message ${index + 1}`);
+                            msg.style.animation = `fadeInUp 0.4s ease forwards`;
+                            msg.style.opacity = '1';
+                        }, index * 600); // 0.6 seconds between each message
+                    });
+
+                    // Start the teaching sequence immediately after last message
+                    setTimeout(() => {
+                        console.log('All messages shown, starting teaching sequence...');
+                        startTeachingSequence();
+                    }, messages.length * 600 + 200); // Only 0.2 second delay after last message
+                }, 500);
+            } else {
+                console.log('Chat panel not found or already expanded');
+            }
+        }
+
+        // Helper function to hide all popups
+        function hideAllPopups() {
+            const popups = ['popup1', 'popup2', 'popup3'];
+            popups.forEach(id => {
+                const popup = document.getElementById(id);
+                if (popup) {
+                    popup.style.opacity = '0';
+                    popup.classList.remove('show');
+                }
+            });
+        }
+
+        // Helper function to hide all highlights
+        function hideAllHighlights() {
+            const highlights = ['highlight1', 'highlight2', 'highlight3'];
+            highlights.forEach(id => {
+                const highlight = document.getElementById(id);
+                if (highlight) {
+                    highlight.style.opacity = '0';
+                    highlight.classList.remove('show');
+                }
+            });
+        }
+
+        // Create highlights dynamically based on term positions
+        function createHighlights() {
+            const mathEquation = document.querySelector('.math-equation');
+            const term1 = document.getElementById('term1');
+            const term2 = document.getElementById('term2');
+            const term3 = document.getElementById('term3');
+
+            if (!mathEquation || !term1 || !term2 || !term3) {
+                console.log('ERROR: Cannot find equation or terms!');
+                return;
+            }
+
+            // Create highlight and popup for term1 (x²)
+            const highlight1 = document.createElement('div');
+            highlight1.id = 'highlight1';
+            highlight1.className = 'highlight-box';
+            highlight1.style.cssText = `
+                position: absolute;
+                background: rgba(255, 149, 0, 0.3);
+                border-radius: 6px;
+                opacity: 0;
+                z-index: 1;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            `;
+
+            const popup1 = document.createElement('div');
+            popup1.id = 'popup1';
+            popup1.className = 'teaching-popup';
+            popup1.innerHTML = 'This is x² (coefficient a = 1)';
+            popup1.style.cssText = `
+                position: absolute;
+                background: linear-gradient(135deg, #007aff, #00d4ff);
+                color: white;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                opacity: 0;
+                z-index: 15;
+                max-width: 200px;
+                line-height: 1.4;
+                box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+            `;
+
+            // Add arrow pointing up to the highlighted text
+            const arrow1 = document.createElement('div');
+            arrow1.style.cssText = `
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #007aff;
+                z-index: 16;
+            `;
+            popup1.appendChild(arrow1);
+
+            // Create highlight and popup for term2 (6x)
+            const highlight2 = document.createElement('div');
+            highlight2.id = 'highlight2';
+            highlight2.className = 'highlight-box green';
+            highlight2.style.cssText = `
+                position: absolute;
+                background: rgba(52, 199, 89, 0.3);
+                border-radius: 6px;
+                opacity: 0;
+                z-index: 1;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            `;
+
+            const popup2 = document.createElement('div');
+            popup2.id = 'popup2';
+            popup2.className = 'teaching-popup';
+            popup2.innerHTML = 'This is 6x (coefficient b = 6)';
+            popup2.style.cssText = `
+                position: absolute;
+                background: linear-gradient(135deg, #34c759, #30d158);
+                color: white;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                opacity: 0;
+                z-index: 15;
+                max-width: 200px;
+                line-height: 1.4;
+                box-shadow: 0 8px 24px rgba(52, 199, 89, 0.3);
+            `;
+
+            // Add arrow pointing up to the highlighted text
+            const arrow2 = document.createElement('div');
+            arrow2.style.cssText = `
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #34c759;
+                z-index: 16;
+            `;
+            popup2.appendChild(arrow2);
+
+            // Create highlight and popup for term3 (8)
+            const highlight3 = document.createElement('div');
+            highlight3.id = 'highlight3';
+            highlight3.className = 'highlight-box blue';
+            highlight3.style.cssText = `
+                position: absolute;
+                background: rgba(0, 122, 255, 0.3);
+                border-radius: 6px;
+                opacity: 0;
+                z-index: 1;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            `;
+
+            const popup3 = document.createElement('div');
+            popup3.id = 'popup3';
+            popup3.className = 'teaching-popup';
+            popup3.innerHTML = 'This is 8 (coefficient c = 8)';
+            popup3.style.cssText = `
+                position: absolute;
+                background: linear-gradient(135deg, #007aff, #00d4ff);
+                color: white;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                opacity: 0;
+                z-index: 15;
+                max-width: 200px;
+                line-height: 1.4;
+                box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+            `;
+
+            // Add arrow pointing up to the highlighted text
+            const arrow3 = document.createElement('div');
+            arrow3.style.cssText = `
+                position: absolute;
+                top: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #007aff;
+                z-index: 16;
+            `;
+            popup3.appendChild(arrow3);
+
+            // Position highlights based on actual term positions
+            function positionHighlights() {
+                const equationRect = mathEquation.getBoundingClientRect();
+                const term1Rect = term1.getBoundingClientRect();
+                const term2Rect = term2.getBoundingClientRect();
+                const term3Rect = term3.getBoundingClientRect();
+
+                // Position highlight1 over term1
+                highlight1.style.left = `${term1Rect.left - equationRect.left - 2}px`;
+                highlight1.style.top = `${term1Rect.top - equationRect.top - 2}px`;
+                highlight1.style.width = `${term1Rect.width + 4}px`;
+                highlight1.style.height = `${term1Rect.height + 4}px`;
+
+                // Center popup1 under term1
+                popup1.style.left = `${term1Rect.left - equationRect.left + (term1Rect.width / 2) - 100}px`;
+                popup1.style.top = `${term1Rect.bottom - equationRect.top + 15}px`;
+
+                // Position highlight2 over term2
+                highlight2.style.left = `${term2Rect.left - equationRect.left - 2}px`;
+                highlight2.style.top = `${term2Rect.top - equationRect.top - 2}px`;
+                highlight2.style.width = `${term2Rect.width + 4}px`;
+                highlight2.style.height = `${term2Rect.height + 4}px`;
+
+                // Center popup2 under term2
+                popup2.style.left = `${term2Rect.left - equationRect.left + (term2Rect.width / 2) - 100}px`;
+                popup2.style.top = `${term2Rect.bottom - equationRect.top + 15}px`;
+
+                // Position highlight3 over term3
+                highlight3.style.left = `${term3Rect.left - equationRect.left - 2}px`;
+                highlight3.style.top = `${term3Rect.top - equationRect.top - 2}px`;
+                highlight3.style.width = `${term3Rect.width + 4}px`;
+                highlight3.style.height = `${term3Rect.height + 4}px`;
+
+                // Center popup3 under term3
+                popup3.style.left = `${term3Rect.left - equationRect.left + (term3Rect.width / 2) - 100}px`;
+                popup3.style.top = `${term3Rect.bottom - equationRect.top + 15}px`;
+            }
+
+            // Add elements to DOM
+            mathEquation.appendChild(highlight1);
+            mathEquation.appendChild(popup1);
+            mathEquation.appendChild(highlight2);
+            mathEquation.appendChild(popup2);
+            mathEquation.appendChild(highlight3);
+            mathEquation.appendChild(popup3);
+
+            // Position highlights after a short delay to ensure rendering
+            setTimeout(positionHighlights, 100);
+
+            return true;
+        }
+
+        // Teaching sequence with much slower timing and no overlaps
+        function startTeachingSequence() {
+            console.log('*** STARTING TEACHING SEQUENCE ***');
+
+            // Create highlights first
+            if (!createHighlights()) {
+                console.log('Failed to create highlights');
+                return;
+            }
+
+            // Step 1: Highlight x² term - immediate start
+            setTimeout(() => {
+                console.log('Step 1: Highlighting x² term');
+                const highlight1 = document.getElementById('highlight1');
+                const popup1 = document.getElementById('popup1');
+
+                if (highlight1) {
+                    console.log('Setting highlight1 visible');
+                    highlight1.style.opacity = '1';
+                    highlight1.style.transform = 'scale(1)';
+                } else {
+                    console.log('ERROR: highlight1 not found!');
+                }
+
+                setTimeout(() => {
+                    if (popup1) {
+                        console.log('Setting popup1 visible');
+                        popup1.style.opacity = '1';
+                        popup1.style.transform = 'translateY(0) scale(1)';
+                    } else {
+                        console.log('ERROR: popup1 not found!');
+                    }
+                }, 300);
+            }, 400);
+
+            // Step 2: Hide previous, show -6x term (1.5 seconds later)
+            setTimeout(() => {
+                console.log('Step 2: Highlighting -6x term');
+                hideAllPopups();
+                hideAllHighlights();
+
+                setTimeout(() => {
+                    const highlight2 = document.getElementById('highlight2');
+                    const popup2 = document.getElementById('popup2');
+                    if (highlight2) {
+                        highlight2.style.opacity = '1';
+                        highlight2.classList.add('show');
+                    }
+                    setTimeout(() => {
+                        if (popup2) {
+                            popup2.style.opacity = '1';
+                            popup2.classList.add('show');
+                        }
+                    }, 300);
+                }, 200);
+            }, 1900);
+
+            // Step 3: Hide previous, show +8 term (1.5 seconds later)
+            setTimeout(() => {
+                console.log('Step 3: Highlighting +8 term');
+                hideAllPopups();
+                hideAllHighlights();
+
+                setTimeout(() => {
+                    const highlight3 = document.getElementById('highlight3');
+                    const popup3 = document.getElementById('popup3');
+                    if (highlight3) {
+                        highlight3.style.opacity = '1';
+                        highlight3.classList.add('show');
+                    }
+                    setTimeout(() => {
+                        if (popup3) {
+                            popup3.style.opacity = '1';
+                            popup3.classList.add('show');
+                        }
+                    }, 300);
+                }, 200);
+            }, 3400);
+
+            // Step 4: Hide highlights, show solution steps (1 second later)
+            setTimeout(() => {
+                console.log('Step 4: Showing solution steps');
+                hideAllPopups();
+                hideAllHighlights();
+
+                setTimeout(() => {
+                    const steps = document.getElementById('solutionSteps');
+                    if (steps) {
+                        steps.style.opacity = '1';
+                        steps.classList.add('show');
+                    }
+
+                    // Show each step quickly - 800ms between steps
+                    setTimeout(() => {
+                        const step1 = document.getElementById('step1');
+                        if (step1) {
+                            step1.style.opacity = '1';
+                            step1.classList.add('show');
+                        }
+                    }, 600);
+
+                    setTimeout(() => {
+                        const step2 = document.getElementById('step2');
+                        if (step2) {
+                            step2.style.opacity = '1';
+                            step2.classList.add('show');
+                        }
+                    }, 1400);
+
+                    setTimeout(() => {
+                        const step3 = document.getElementById('step3');
+                        if (step3) {
+                            step3.style.opacity = '1';
+                            step3.classList.add('show');
+                        }
+                    }, 2200);
+                }, 200);
+            }, 4400);
+        }
+
+        // Helper function for answer input interaction
+        function askForHelp() {
+            console.log('User clicked Ask AI Tutor for Help');
+            // Trigger the AI chat if not already active
+            const chatPanel = document.getElementById('chatPanel');
+            if (chatPanel && !chatPanel.classList.contains('expanded')) {
+                toggleChat();
+            }
+        }
+
+        // Animate stats when in view
+        function animateStats() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate numbers
+                        const numberElements = entry.target.querySelectorAll('.stat-visual-number');
+                        numberElements.forEach(el => {
+                            const target = parseFloat(el.getAttribute('data-target'));
+                            animateNumber(el, 0, target, 2000);
+                        });
+
+                        // Animate progress bars
+                        const progressBars = entry.target.querySelectorAll('.progress-bar');
+                        progressBars.forEach(bar => {
+                            const percent = bar.getAttribute('data-percent');
+                            setTimeout(() => {
+                                bar.style.width = percent + '%';
+                            }, 500);
+                        });
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const statsSection = document.querySelector('.stats-visual-container');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        }
+
+        // Animate number counting
+        function animateNumber(element, start, end, duration) {
+            const startTime = performance.now();
+            const isDecimal = end % 1 !== 0;
+
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function
+                const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+                const current = start + (end - start) * easeOutCubic;
+
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Animate methodology comparison
+        function initMethodologyAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate effectiveness bars
+                        const progressFills = entry.target.querySelectorAll('.progress-fill');
+                        progressFills.forEach(fill => {
+                            setTimeout(() => {
+                                const width = fill.getAttribute('data-width');
+                                fill.style.width = width + '%';
+                            }, 500);
+                        });
+
+                        // Animate chart bars
+                        const chartContainer = entry.target.querySelector('.progress-chart-container');
+                        if (chartContainer) {
+                            const chartBars = chartContainer.querySelectorAll('.bar');
+                            const weekLabels = chartContainer.querySelectorAll('.week-label');
+
+                            chartBars.forEach((bar, index) => {
+                                setTimeout(() => {
+                                    const height = bar.getAttribute('data-height');
+                                    if (height) {
+                                        bar.style.height = (height * 2.0) + 'px'; // Convert percentage to pixels for better control
+                                    }
+                                }, 800 + (index * 150));
+                            });
+
+                            // Animate week labels with slight delay after bars
+                            weekLabels.forEach((label, index) => {
+                                setTimeout(() => {
+                                    label.classList.add('animate');
+                                }, 1200 + (index * 100));
+                            });
+                        }
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const methodologySection = document.querySelector('.methodology-container');
+            if (methodologySection) {
+                observer.observe(methodologySection);
+            }
+
+            const progressSection = document.querySelector('.progress-container');
+            if (progressSection) {
+                observer.observe(progressSection);
+            }
+        }
+
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            observeElements();
+            initSocialProof();
+            initDemoObserver();
+            animateStats();
+            initMethodologyAnimations();
+            initTimelineAnimations();
+            addTimelineInteractivity();
+
+            // Clean text animation
+            const texts = [
+                'Elite Preparation',
+                'Expert Personal Tutors',
+                'Science-Based Methods',
+                'Full-Tailored Courses',
+                'Precision Analytics',
+                'Diagnostic Test',
+                'AI-Powered Learning'
+            ];
+            let currentIndex = 0;
+            const textElement = document.getElementById('dynamicText');
+
+            function animateText() {
+                // Fade out current text
+                textElement.classList.add('fade-out');
+
+                setTimeout(() => {
+                    // Change text and prepare for fade in
+                    currentIndex = (currentIndex + 1) % texts.length;
+                    textElement.textContent = texts[currentIndex];
+                    textElement.classList.remove('fade-out');
+                    textElement.classList.add('fade-in');
+
+                    // Fade in new text
+                    requestAnimationFrame(() => {
+                        textElement.classList.remove('fade-in');
+                    });
+                }, 200);
+            }
+
+            // Start animation cycle
+            setInterval(animateText, 3750);
+        });
+
+        // Chart scroll animation
+        function initChartScrollAnimation() {
+            const chartContainer = document.querySelector('.progress-chart-container');
+            if (!chartContainer) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('scroll-in-view');
+                    } else {
+                        entry.target.classList.remove('scroll-in-view');
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '0px 0px -10% 0px'
+            });
+
+            observer.observe(chartContainer);
+        }
+
+        // Initialize chart scroll animation
+        initChartScrollAnimation();
+
+        // Section fade-in animation
+        function initSectionFadeIn() {
+            const sections = document.querySelectorAll('section:not(.hero)');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Initialize section animations
+        initSectionFadeIn();
+
+
+
+    </script>
+</body>
+</html>
