@@ -27,10 +27,16 @@ const CompleteLandingPage = () => {
   const [visibleMessages, setVisibleMessages] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
   const [answerStatus, setAnswerStatus] = useState(''); // 'correct', 'incorrect', or ''
+  const [blocksAnimating, setBlocksAnimating] = useState(false);
+  const [messyBlocks, setMessyBlocks] = useState([]);
+  const [neatBlocks, setNeatBlocks] = useState([]);
+  const [messyFillers, setMessyFillers] = useState([]);
 
   // Refs for intersection observers
   const demoSectionRef = useRef(null);
   const chartContainerRef = useRef(null);
+  const blocksRef = useRef(null);
+  const animationFrameRef = useRef(null);
 
   // Handle answer input
   const handleAnswerChange = useCallback((e) => {
@@ -268,6 +274,170 @@ const CompleteLandingPage = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Preset animation for blocks with drop effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Preset messy blocks - realistic stacking from bottom up (bucket: 123px wide, height: 200px)
+      const messyFinalPositions = [
+        // Bottom row - resting on floor (y: 170)
+        { x: 8, y: 170, rotation: 5 },
+        { x: 45, y: 170, rotation: -3 },
+        { x: 85, y: 170, rotation: 8 },
+
+        // Second row - resting on/near bottom blocks (y: 138-142)
+        { x: 12, y: 138, rotation: -6 },
+        { x: 48, y: 140, rotation: 4 },
+        { x: 82, y: 142, rotation: -8 },
+
+        // Third row - resting on second row (y: 106-112)
+        { x: 10, y: 106, rotation: 7 },
+        { x: 50, y: 108, rotation: -5 },
+        { x: 83, y: 112, rotation: 6 },
+
+        // Fourth row - resting on third row (y: 74-80)
+        { x: 15, y: 74, rotation: -7 },
+        { x: 48, y: 78, rotation: 8 },
+        { x: 80, y: 80, rotation: -4 },
+
+        // Fifth row - resting on fourth row (y: 42-48)
+        { x: 12, y: 42, rotation: 6 },
+        { x: 50, y: 45, rotation: -5 },
+        { x: 82, y: 48, rotation: 7 },
+
+        // Sixth row - resting on fifth row (y: 10-16)
+        { x: 10, y: 10, rotation: -8 },
+        { x: 48, y: 13, rotation: 6 },
+        { x: 85, y: 16, rotation: -6 }
+      ];
+
+      // Initialize blocks at top with opacity 0
+      const initMessyBlocks = messyFinalPositions.map((pos, i) => ({
+        id: i,
+        x: pos.x,
+        y: -50, // Start above bucket
+        finalY: pos.y,
+        width: 30,
+        height: 30,
+        rotation: pos.rotation,
+        opacity: 0,
+        dropping: false
+      }));
+
+      // Preset neat blocks - perfect stack (4 rows to fill ~75%)
+      const positions = [1, 41, 81];
+      const initNeatBlocks = [];
+      for (let row = 0; row < 4; row++) {
+        for (let col = 0; col < 3; col++) {
+          const idx = row * 3 + col;
+          initNeatBlocks.push({
+            id: idx,
+            x: positions[col],
+            y: -50, // Start above bucket
+            finalY: 160 - (row * 40),
+            width: 40,
+            height: 40,
+            rotation: 0,
+            opacity: 0,
+            dropping: false
+          });
+        }
+      }
+
+      setMessyBlocks(initMessyBlocks);
+      setNeatBlocks(initNeatBlocks);
+
+      // Animate messy blocks dropping one by one
+      messyFinalPositions.forEach((_, i) => {
+        setTimeout(() => {
+          setMessyBlocks(prev => prev.map((b, idx) =>
+            idx === i ? { ...b, opacity: 1, dropping: true, y: b.finalY } : b
+          ));
+        }, i * 150);
+      });
+
+      // Animate neat blocks dropping one by one (very slow and deliberate)
+      initNeatBlocks.forEach((_, i) => {
+        setTimeout(() => {
+          setNeatBlocks(prev => prev.map((b, idx) =>
+            idx === i ? { ...b, opacity: 1, dropping: true, y: b.finalY } : b
+          ));
+        }, i * 700);
+      });
+
+      // Add smaller filler shapes after main messy blocks finish (18 blocks now)
+      // Main blocks occupy (30x30px, bucket: 123px):
+      // Row 7 (y: 170-200): x: 8-38, 45-75, 85-115
+      // Row 6 (y: 138-168): x: 12-42, 48-78, 82-112
+      // Row 5 (y: 106-136): x: 10-40, 50-80, 83-113
+      // Row 4 (y: 74-104):  x: 15-45, 48-78, 80-110
+      // Row 3 (y: 42-72):   x: 12-42, 50-80, 82-112
+      // Row 2 (y: 10-40):   x: 10-40, 48-78, 85-115
+      setTimeout(() => {
+        const fillerShapes = [
+          // Bottom row gaps (y: 170-200)
+          { x: 2, y: 182, size: 5, shape: 'circle', rotation: 0 },
+          { x: 40, y: 185, size: 4, shape: 'square', rotation: 0 },
+          { x: 77, y: 183, size: 5, shape: 'triangle', rotation: 0 },
+          { x: 116, y: 184, size: 6, shape: 'circle', rotation: 0 },
+
+          // Row 6 gaps (y: 138-168)
+          { x: 2, y: 150, size: 8, shape: 'square', rotation: 0 },
+          { x: 43, y: 152, size: 4, shape: 'circle', rotation: 0 },
+          { x: 79, y: 155, size: 5, shape: 'triangle', rotation: 0 },
+          { x: 113, y: 154, size: 9, shape: 'square', rotation: 0 },
+
+          // Row 5 gaps (y: 106-136)
+          { x: 2, y: 118, size: 6, shape: 'triangle', rotation: 0 },
+          { x: 42, y: 120, size: 6, shape: 'circle', rotation: 0 },
+          { x: 81, y: 122, size: 4, shape: 'square', rotation: 0 },
+          { x: 114, y: 121, size: 7, shape: 'triangle', rotation: 0 },
+
+          // Row 4 gaps (y: 74-104)
+          { x: 2, y: 86, size: 10, shape: 'circle', rotation: 0 },
+          { x: 46, y: 88, size: 4, shape: 'square', rotation: 0 },
+          { x: 111, y: 90, size: 8, shape: 'triangle', rotation: 0 },
+
+          // Row 3 gaps (y: 42-72)
+          { x: 2, y: 54, size: 8, shape: 'square', rotation: 0 },
+          { x: 43, y: 57, size: 5, shape: 'circle', rotation: 0 },
+          { x: 81, y: 60, size: 4, shape: 'triangle', rotation: 0 },
+          { x: 113, y: 58, size: 9, shape: 'square', rotation: 0 },
+
+          // Row 2 gaps (y: 10-40)
+          { x: 2, y: 22, size: 6, shape: 'triangle', rotation: 0 },
+          { x: 42, y: 25, size: 5, shape: 'circle', rotation: 0 },
+          { x: 79, y: 27, size: 4, shape: 'square', rotation: 0 },
+          { x: 116, y: 24, size: 6, shape: 'circle', rotation: 0 }
+        ];
+
+        const initFillers = fillerShapes.map((shape, i) => ({
+          id: i,
+          x: shape.x,
+          y: -30,
+          finalY: shape.y,
+          size: shape.size,
+          shape: shape.shape,
+          rotation: shape.rotation,
+          opacity: 0,
+          dropping: false
+        }));
+
+        setMessyFillers(initFillers);
+
+        // Drop filler shapes one by one
+        fillerShapes.forEach((_, i) => {
+          setTimeout(() => {
+            setMessyFillers(prev => prev.map((f, idx) =>
+              idx === i ? { ...f, opacity: 1, dropping: true, y: f.finalY } : f
+            ));
+          }, i * 120);
+        });
+      }, 2000);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="landing-page">
       {/* Header */}
@@ -416,32 +586,82 @@ const CompleteLandingPage = () => {
           <p className="section-subtitle">Revolutionary methodology that builds complete mastery while competitors focus on isolated problem-solving.</p>
         </div>
 
-        <div className="science-container">
+        <div className="science-container" ref={blocksRef}>
           <div className="comparison-grid">
             <div className="method-card method-traditional">
               <div className="method-header">
+                <div className="method-icon-box method-icon-warning"></div>
                 <h3 className="method-title">Most Courses</h3>
               </div>
-              <div className="method-process">
-                <div className="process-step">Test</div>
-                <div className="process-arrow">→</div>
-                <div className="process-step">Fix mistakes</div>
-                <div className="process-arrow">→</div>
-                <div className="process-step">Plateau at 80%</div>
+              <div className="blocks-container">
+                <div className="block-bucket">
+                  {messyBlocks.map(block => (
+                    <div
+                      key={block.id}
+                      className="block physics-block"
+                      style={{
+                        position: 'absolute',
+                        left: `${block.x}px`,
+                        top: `${block.y}px`,
+                        width: `${block.width}px`,
+                        height: `${block.height}px`,
+                        transform: `rotate(${block.rotation}deg)`,
+                        opacity: block.opacity,
+                        transition: block.dropping
+                          ? 'top 0.5s ease-out, opacity 0.2s ease'
+                          : 'opacity 0.2s ease'
+                      }}
+                    />
+                  ))}
+                  {messyFillers.map(filler => (
+                    <div
+                      key={`filler-${filler.id}`}
+                      className={`filler-shape filler-${filler.shape}`}
+                      style={{
+                        position: 'absolute',
+                        left: `${filler.x}px`,
+                        top: `${filler.y}px`,
+                        width: `${filler.size}px`,
+                        height: `${filler.size}px`,
+                        transform: `rotate(${filler.rotation}deg)`,
+                        opacity: filler.opacity,
+                        transition: filler.dropping
+                          ? 'top 0.4s ease-out, opacity 0.2s ease'
+                          : 'opacity 0.2s ease'
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
               <p className="method-result">Gaps remain, can't reach perfection</p>
             </div>
 
             <div className="method-card method-launch">
               <div className="method-header">
+                <div className="method-icon-box method-icon-success"></div>
                 <h3 className="method-title">Launch Prep</h3>
               </div>
-              <div className="method-process">
-                <div className="process-step">Build foundation</div>
-                <div className="process-arrow">→</div>
-                <div className="process-step">Fill gaps</div>
-                <div className="process-arrow">→</div>
-                <div className="process-step">Reach 100%</div>
+              <div className="blocks-container">
+                <div className="block-bucket">
+                  {neatBlocks.map(block => (
+                    <div
+                      key={block.id}
+                      className="block physics-block neat-block"
+                      style={{
+                        position: 'absolute',
+                        left: `${block.x}px`,
+                        top: `${block.y}px`,
+                        width: `${block.width}px`,
+                        height: `${block.height}px`,
+                        transform: `rotate(${block.rotation}deg)`,
+                        opacity: block.opacity,
+                        transition: block.dropping
+                          ? 'top 0.5s ease-out, opacity 0.2s ease'
+                          : 'opacity 0.2s ease'
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
               <p className="method-result">Complete mastery through foundations</p>
             </div>
@@ -488,13 +708,19 @@ const CompleteLandingPage = () => {
                           className="bar traditional-bar"
                           data-height={data.traditional}
                           data-value={`${data.traditional}%`}
-                          style={{ height: `${data.traditional * 2}px` }}
+                          style={{
+                            '--target-height': `${data.traditional * 2}px`,
+                            animationDelay: `${index * 0.1}s`
+                          }}
                         ></div>
                         <div
                           className="bar launch-prep-bar"
                           data-height={data.launchPrep}
                           data-value={`${data.launchPrep}%`}
-                          style={{ height: `${data.launchPrep * 2}px` }}
+                          style={{
+                            '--target-height': `${data.launchPrep * 2}px`,
+                            animationDelay: `${index * 0.1}s`
+                          }}
                         ></div>
                       </div>
                       <div className="week-label">Week {data.week}</div>
@@ -768,8 +994,8 @@ const CompleteLandingPage = () => {
               <div className="university-visual-badge">Perfect Scorer</div>
             </div>
             <div className="university-visual-card">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/440px-MIT_logo.svg.png" alt="MIT" className="university-logo" />
-              <div className="university-visual-name">MIT</div>
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/6f/Brown_bears_logo.svg/400px-Brown_bears_logo.svg.png" alt="Brown University" className="university-logo" />
+              <div className="university-visual-name">Brown University</div>
               <div className="university-visual-badge">Perfect Scorer</div>
             </div>
           </div>
