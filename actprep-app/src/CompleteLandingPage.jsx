@@ -32,12 +32,43 @@ const CompleteLandingPage = () => {
   const [neatBlocks, setNeatBlocks] = useState([]);
   const [messyFillers, setMessyFillers] = useState([]);
 
+  // Lesson demo animation state
+  const [lessonDemoStep, setLessonDemoStep] = useState(0);
+  const [showLessonDashboard, setShowLessonDashboard] = useState(true);
+  const [showLessonContent, setShowLessonContent] = useState(false);
+  const [lessonFadeOut, setLessonFadeOut] = useState(false);
+  const [highlightContinueBtn, setHighlightContinueBtn] = useState(false);
+  const [highlightLesson, setHighlightLesson] = useState(false);
+  const [typedLines, setTypedLines] = useState([]);
+  const [currentTypingLine, setCurrentTypingLine] = useState('');
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  // Diagnostic demo state
+  const [diagnosticDemoStep, setDiagnosticDemoStep] = useState(0);
+  const [showDiagnosticTest, setShowDiagnosticTest] = useState(false);
+  const [diagnosticQuestion, setDiagnosticQuestion] = useState(1);
+  const [diagnosticProgress, setDiagnosticProgress] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [diagnosticFadeOut, setDiagnosticFadeOut] = useState(false);
+
+  // Practice test demo state
+  const [testDemoStep, setTestDemoStep] = useState(0);
+  const [testHighlight, setTestHighlight] = useState(0);
+
+  // Analytics demo state
+  const [analyticsDemoStep, setAnalyticsDemoStep] = useState(0);
+  const [analyticsHighlight, setAnalyticsHighlight] = useState(0);
+
   // Refs for intersection observers
   const demoSectionRef = useRef(null);
   const chartContainerRef = useRef(null);
   const blocksRef = useRef(null);
   const animationFrameRef = useRef(null);
   const explanationRef = useRef(null);
+  const lessonDemoRef = useRef(null);
+  const diagnosticDemoRef = useRef(null);
+  const testDemoRef = useRef(null);
+  const analyticsDemoRef = useRef(null);
 
   // Handle answer input
   const handleAnswerChange = useCallback((e) => {
@@ -275,6 +306,312 @@ const CompleteLandingPage = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Lesson demo sequence
+  const startLessonDemo = useCallback(() => {
+    if (lessonDemoStep !== 0) return;
+
+    setLessonDemoStep(1);
+
+    // Step 1: Highlight "Continue Learning" button on dashboard
+    setTimeout(() => {
+      setHighlightContinueBtn(true);
+    }, 800);
+
+    // Step 2: Click button and transition to lesson
+    setTimeout(() => {
+      setHighlightContinueBtn(false);
+      setLessonFadeOut(true);
+    }, 2200);
+
+    // Step 3: Switch to lesson content
+    setTimeout(() => {
+      setShowLessonDashboard(false);
+      setLessonFadeOut(false);
+      setTimeout(() => {
+        setShowLessonContent(true);
+
+        // Step 4: Highlight the active lesson in sidebar
+        setTimeout(() => {
+          setHighlightLesson(true);
+        }, 600);
+
+        // Step 5: Start typing animation
+        setTimeout(() => {
+          setHighlightLesson(false);
+
+          const lessonLines = [
+            "Understanding Subject-Verb Agreement",
+            "",
+            "One of the most tested concepts on the ACT English section is subject-verb agreement.",
+            "",
+            "The basic rule: A singular subject takes a singular verb, while a plural subject takes a plural verb.",
+            "",
+            "Common Challenge: Identifying the true subject when phrases come between the subject and verb.",
+            "",
+            "Example: The stack of books IS on the table.",
+            "",
+            "(Not 'are' - the subject is 'stack', not 'books')"
+          ];
+
+          let lineIndex = 0;
+          let charIndex = 0;
+          const completedLines = [];
+
+          const typeNextChar = () => {
+            if (lineIndex >= lessonLines.length) {
+              setIsTypingComplete(true);
+              // Step 6: Reset and restart after typing complete
+              setTimeout(() => {
+                setLessonDemoStep(0);
+                setShowLessonDashboard(true);
+                setShowLessonContent(false);
+                setTypedLines([]);
+                setCurrentTypingLine('');
+                setIsTypingComplete(false);
+
+                setTimeout(() => startLessonDemo(), 2000);
+              }, 2500);
+              return;
+            }
+
+            const currentLine = lessonLines[lineIndex];
+
+            if (charIndex < currentLine.length) {
+              // Continue typing current line
+              setCurrentTypingLine(currentLine.substring(0, charIndex + 1));
+              charIndex++;
+              setTimeout(typeNextChar, 30); // Pokemon-style typing speed
+            } else {
+              // Line complete, move to next line
+              completedLines.push(currentLine);
+              setTypedLines([...completedLines]);
+              setCurrentTypingLine('');
+              lineIndex++;
+              charIndex = 0;
+              setTimeout(typeNextChar, 400); // Pause between lines
+            }
+          };
+
+          typeNextChar();
+        }, 2000);
+      }, 100);
+    }, 2700);
+  }, [lessonDemoStep]);
+
+  // Intersection observer for lesson demo
+  useEffect(() => {
+    if (!lessonDemoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && lessonDemoStep === 0) {
+            setTimeout(() => startLessonDemo(), 500);
+          } else if (!entry.isIntersecting) {
+            // Reset when scrolled out of view
+            setLessonDemoStep(0);
+            setShowLessonDashboard(true);
+            setShowLessonContent(false);
+            setTypedLines([]);
+            setCurrentTypingLine('');
+            setIsTypingComplete(false);
+            setLessonFadeOut(false);
+            setHighlightContinueBtn(false);
+            setHighlightLesson(false);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    observer.observe(lessonDemoRef.current);
+
+    return () => observer.disconnect();
+  }, [lessonDemoStep, startLessonDemo]);
+
+  // Diagnostic demo sequence
+  const startDiagnosticDemo = useCallback(() => {
+    if (diagnosticDemoStep !== 0) return;
+    setDiagnosticDemoStep(1);
+
+    // Step 1: Wait on intro screen
+    setTimeout(() => {
+      setDiagnosticFadeOut(true);
+    }, 2000);
+
+    // Step 2: Transition to test
+    setTimeout(() => {
+      setShowDiagnosticTest(true);
+      setDiagnosticFadeOut(false);
+      setDiagnosticQuestion(1);
+      setDiagnosticProgress(1);
+
+      // Step 3: Simulate answering questions
+      setTimeout(() => {
+        // Select answer A
+        setSelectedAnswer('A');
+      }, 1000);
+
+      setTimeout(() => {
+        // Move to question 2
+        setSelectedAnswer(null);
+        setDiagnosticQuestion(2);
+        setDiagnosticProgress(2);
+      }, 2200);
+
+      setTimeout(() => {
+        // Select answer C
+        setSelectedAnswer('C');
+      }, 3200);
+
+      setTimeout(() => {
+        // Move to question 3
+        setSelectedAnswer(null);
+        setDiagnosticQuestion(3);
+        setDiagnosticProgress(3);
+      }, 4400);
+
+      setTimeout(() => {
+        // Select answer B
+        setSelectedAnswer('B');
+      }, 5400);
+
+      // Step 4: Reset and loop
+      setTimeout(() => {
+        setDiagnosticDemoStep(0);
+        setShowDiagnosticTest(false);
+        setDiagnosticQuestion(1);
+        setDiagnosticProgress(0);
+        setSelectedAnswer(null);
+
+        setTimeout(() => startDiagnosticDemo(), 2000);
+      }, 6600);
+    }, 2500);
+  }, [diagnosticDemoStep]);
+
+  // Intersection observer for diagnostic demo
+  useEffect(() => {
+    if (!diagnosticDemoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && diagnosticDemoStep === 0) {
+            setTimeout(() => startDiagnosticDemo(), 500);
+          } else if (!entry.isIntersecting) {
+            setDiagnosticDemoStep(0);
+            setShowDiagnosticTest(false);
+            setDiagnosticQuestion(1);
+            setDiagnosticProgress(0);
+            setSelectedAnswer(null);
+            setDiagnosticFadeOut(false);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    observer.observe(diagnosticDemoRef.current);
+
+    return () => observer.disconnect();
+  }, [diagnosticDemoStep, startDiagnosticDemo]);
+
+  // Practice test demo sequence
+  const startTestDemo = useCallback(() => {
+    if (testDemoStep !== 0) return;
+    setTestDemoStep(1);
+
+    const tests = [1, 2, 3];
+    let index = 0;
+
+    const highlightNext = () => {
+      if (index < tests.length) {
+        setTestHighlight(tests[index]);
+        index++;
+        setTimeout(highlightNext, 1500);
+      } else {
+        setTimeout(() => {
+          setTestDemoStep(0);
+          setTestHighlight(0);
+          setTimeout(() => startTestDemo(), 1500);
+        }, 1000);
+      }
+    };
+
+    setTimeout(highlightNext, 800);
+  }, [testDemoStep]);
+
+  // Intersection observer for test demo
+  useEffect(() => {
+    if (!testDemoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && testDemoStep === 0) {
+            setTimeout(() => startTestDemo(), 500);
+          } else if (!entry.isIntersecting) {
+            setTestDemoStep(0);
+            setTestHighlight(0);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    observer.observe(testDemoRef.current);
+
+    return () => observer.disconnect();
+  }, [testDemoStep, startTestDemo]);
+
+  // Analytics demo sequence
+  const startAnalyticsDemo = useCallback(() => {
+    if (analyticsDemoStep !== 0) return;
+    setAnalyticsDemoStep(1);
+
+    const items = [1, 2, 3, 4];
+    let index = 0;
+
+    const highlightNext = () => {
+      if (index < items.length) {
+        setAnalyticsHighlight(items[index]);
+        index++;
+        setTimeout(highlightNext, 1300);
+      } else {
+        setTimeout(() => {
+          setAnalyticsDemoStep(0);
+          setAnalyticsHighlight(0);
+          setTimeout(() => startAnalyticsDemo(), 1500);
+        }, 1000);
+      }
+    };
+
+    setTimeout(highlightNext, 800);
+  }, [analyticsDemoStep]);
+
+  // Intersection observer for analytics demo
+  useEffect(() => {
+    if (!analyticsDemoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && analyticsDemoStep === 0) {
+            setTimeout(() => startAnalyticsDemo(), 500);
+          } else if (!entry.isIntersecting) {
+            setAnalyticsDemoStep(0);
+            setAnalyticsHighlight(0);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    observer.observe(analyticsDemoRef.current);
+
+    return () => observer.disconnect();
+  }, [analyticsDemoStep, startAnalyticsDemo]);
 
   // Intersection observer for sections fade-in
   useEffect(() => {
@@ -527,6 +864,639 @@ const CompleteLandingPage = () => {
             <div className="total-signups">
               <span>{signupCount.toLocaleString()}</span> students on waitlist
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Showcase Section */}
+      <section className="features-showcase-section">
+        <div className="features-showcase-container">
+          <div className="features-showcase-header">
+            <h2 className="features-showcase-title">The science-backed way to build complete mastery from the ground up and achieve 35+ scores.</h2>
+          </div>
+
+          <div className="features-vertical-layout">
+              {/* Feature 1: Expert-Crafted Lessons - LEFT */}
+              <div className="feature-row feature-left" ref={lessonDemoRef}>
+                  <div className="slide-preview">
+                    <div className="preview-header">
+                      <div className="preview-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="preview-content feature-ai-learning" style={{position: 'relative', overflow: 'hidden'}}>
+                      <>
+                      {/* Dashboard View */}
+                      {showLessonDashboard && (
+                        <div className={`lesson-dashboard-view ${lessonFadeOut ? 'fade-out' : ''}`}>
+                          <div className="feature-nav">
+                            <div className="feature-logo">Launch Prep</div>
+                            <div className="feature-nav-items">
+                              <span className="nav-item active">Dashboard</span>
+                              <span className="nav-item">Tests</span>
+                              <span className="nav-item">Lessons</span>
+                            </div>
+                            <div className="feature-user">SC</div>
+                          </div>
+
+                          <div className="dashboard-content">
+                            <h1 className="dashboard-welcome">Welcome back, Sarah!</h1>
+
+                            <div className="dashboard-stats-row">
+                              <div className="stat-card-mini">
+                                <div className="stat-label-mini">Current Score</div>
+                                <div className="stat-value-mini">28</div>
+                              </div>
+                              <div className="stat-card-mini">
+                                <div className="stat-label-mini">Target Score</div>
+                                <div className="stat-value-mini">34</div>
+                              </div>
+                              <div className="stat-card-mini">
+                                <div className="stat-label-mini">Study Streak</div>
+                                <div className="stat-value-mini">8 days</div>
+                              </div>
+                            </div>
+
+                            <div className="dashboard-continue-card">
+                              <div className="continue-card-header">
+                                <div className="continue-icon">📚</div>
+                                <div className="continue-text-group">
+                                  <div className="continue-title">Continue Learning</div>
+                                  <div className="continue-subtitle">Quadratic Functions • 3 of 8 complete</div>
+                                </div>
+                              </div>
+                              <button className={`continue-btn-dashboard ${highlightContinueBtn ? 'btn-highlight' : ''}`}>
+                                Continue →
+                              </button>
+                            </div>
+
+                            <div className="dashboard-upcoming">
+                              <h3 className="section-title-mini">Upcoming Lessons</h3>
+                              <div className="upcoming-lesson-item">
+                                <span className="upcoming-lesson-title">Polynomial Operations</span>
+                                <span className="upcoming-lesson-badge">Locked</span>
+                              </div>
+                              <div className="upcoming-lesson-item">
+                                <span className="upcoming-lesson-title">Rational Expressions</span>
+                                <span className="upcoming-lesson-badge">Locked</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Lesson Content View */}
+                      {showLessonContent && (
+                        <div className="lesson-content-view">
+                          <div className="feature-nav">
+                            <div className="feature-logo">Launch Prep</div>
+                            <div className="feature-nav-items">
+                              <span className="nav-item">Dashboard</span>
+                              <span className="nav-item">Tests</span>
+                              <span className="nav-item active">Lessons</span>
+                            </div>
+                            <div className="feature-user">SC</div>
+                          </div>
+
+                          <div className="feature-main-with-sidebar">
+                        <div className="lesson-sidebar">
+                          <div className="sidebar-section-title">English - Unit 2</div>
+                          <div className="lesson-list-compact">
+                            <div className="lesson-item completed">
+                              <div className="lesson-check">✓</div>
+                              <div className="lesson-item-text">
+                                <div className="lesson-item-title">Punctuation Rules</div>
+                                <div className="lesson-item-meta">12 topics</div>
+                              </div>
+                            </div>
+                            <div className="lesson-item completed">
+                              <div className="lesson-check">✓</div>
+                              <div className="lesson-item-text">
+                                <div className="lesson-item-title">Sentence Structure</div>
+                                <div className="lesson-item-meta">10 topics</div>
+                              </div>
+                            </div>
+                            <div className={`lesson-item active ${highlightLesson ? 'lesson-highlight' : ''}`}>
+                              <div className="lesson-active-indicator"></div>
+                              <div className="lesson-item-text">
+                                <div className="lesson-item-title">Subject-Verb Agreement</div>
+                                <div className="lesson-item-meta">4 of 9 complete</div>
+                              </div>
+                            </div>
+                            <div className="lesson-item locked">
+                              <div className="lesson-lock">🔒</div>
+                              <div className="lesson-item-text">
+                                <div className="lesson-item-title">Pronoun Usage</div>
+                                <div className="lesson-item-meta">8 topics</div>
+                              </div>
+                            </div>
+                            <div className="lesson-item locked">
+                              <div className="lesson-lock">🔒</div>
+                              <div className="lesson-item-text">
+                                <div className="lesson-item-title">Modifier Placement</div>
+                                <div className="lesson-item-meta">7 topics</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="feature-main-content">
+                          <div className="lesson-header-detailed">
+                            <div className="lesson-breadcrumb">
+                              <span className="breadcrumb-item">English</span>
+                              <span className="breadcrumb-separator">›</span>
+                              <span className="breadcrumb-item">Grammar</span>
+                              <span className="breadcrumb-separator">›</span>
+                              <span className="breadcrumb-item active">Subject-Verb Agreement</span>
+                            </div>
+                            <h2 className="feature-heading">Subject-Verb Agreement</h2>
+                            <div className="lesson-meta-row">
+                              <div className="lesson-badge">Lesson 18 of 82</div>
+                              <div className="lesson-progress-bar">
+                                <div className="lesson-progress-fill" style={{width: '44%'}}></div>
+                              </div>
+                              <span className="progress-percentage">44%</span>
+                            </div>
+                          </div>
+
+                          <div className="lesson-content-card">
+                            <div className="pokemon-text-container">
+                              {typedLines.map((line, index) => (
+                                <div key={index} className={`typed-line ${line === '' ? 'empty-line' : ''}`}>
+                                  {line || '\u00A0'}
+                                </div>
+                              ))}
+                              {currentTypingLine && (
+                                <div className="typing-line">
+                                  {currentTypingLine}
+                                  <span className="typing-cursor"></span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="lesson-footer-actions">
+                            <button className="action-btn secondary">
+                              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                                <path d="M7 12V1M1 7h12" stroke="currentColor" strokeWidth="2"/>
+                              </svg>
+                              Ask AI Tutor
+                            </button>
+                            <div className="footer-right-actions">
+                              <button className="action-btn tertiary">Previous</button>
+                              <button className="action-btn primary">Continue →</button>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        </div>
+                      )}
+                      </>
+                    </div>
+                  </div>
+                  <div className="slide-info">
+                    <h3 className="slide-title">80+ Comprehensive Science-Backed Lessons</h3>
+                    <p className="slide-description">Masterfully crafted by expert perfect score tutors. Every lesson builds complete understanding from foundational concepts to advanced application.</p>
+                  </div>
+                </div>
+
+              {/* Feature 2: Diagnostic Assessment - RIGHT */}
+              <div className="feature-row feature-right" ref={diagnosticDemoRef}>
+                  <div className="slide-preview">
+                    <div className="preview-header">
+                      <div className="preview-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="preview-content feature-practice">
+                      <div className="feature-nav">
+                        <div className="feature-logo">Launch Prep</div>
+                        <div className="feature-nav-items">
+                          <span className="nav-item">Dashboard</span>
+                          <span className="nav-item active">Tests</span>
+                          <span className="nav-item">Lessons</span>
+                        </div>
+                        <div className="feature-user">SC</div>
+                      </div>
+
+                      <div className="feature-main" style={{position: 'relative', overflow: 'hidden'}}>
+                        <>
+                        {!showDiagnosticTest && (
+                        <div className={`diagnostic-intro ${diagnosticFadeOut ? 'fade-out' : ''}`}>
+                          <div className="diagnostic-header-bar">
+                            <div className="diagnostic-icon-badge">🎯</div>
+                            <div className="diagnostic-title-section">
+                              <h1 className="feature-heading">Full Diagnostic Assessment</h1>
+                              <p className="diagnostic-subtitle">Complete ACT simulation • Adaptive difficulty • Instant analysis</p>
+                            </div>
+                          </div>
+                          <p className="diagnostic-description">This comprehensive evaluation identifies your exact performance level across all ACT sections and generates your personalized study plan.</p>
+
+                          <div className="diagnostic-stats-grid">
+                            <div className="diagnostic-stat">
+                              <div className="stat-icon">📝</div>
+                              <div className="stat-content">
+                                <div className="stat-number">215</div>
+                                <div className="stat-text">Questions</div>
+                              </div>
+                            </div>
+                            <div className="diagnostic-stat">
+                              <div className="stat-icon">⏱️</div>
+                              <div className="stat-content">
+                                <div className="stat-number">2h 55m</div>
+                                <div className="stat-text">Duration</div>
+                              </div>
+                            </div>
+                            <div className="diagnostic-stat">
+                              <div className="stat-icon">📊</div>
+                              <div className="stat-content">
+                                <div className="stat-number">4</div>
+                                <div className="stat-text">Sections</div>
+                              </div>
+                            </div>
+                            <div className="diagnostic-stat">
+                              <div className="stat-icon">🎓</div>
+                              <div className="stat-content">
+                                <div className="stat-number">Real</div>
+                                <div className="stat-text">ACT Format</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="diagnostic-sections-detailed">
+                            <div className="section-detail-item">
+                              <div className="section-header-row">
+                                <span className="section-dot english-dot"></span>
+                                <span className="section-name">English</span>
+                                <span className="section-duration">45 min</span>
+                              </div>
+                              <div className="section-description">75 questions • Grammar, usage, punctuation, and rhetoric</div>
+                            </div>
+                            <div className="section-detail-item">
+                              <div className="section-header-row">
+                                <span className="section-dot math-dot"></span>
+                                <span className="section-name">Mathematics</span>
+                                <span className="section-duration">60 min</span>
+                              </div>
+                              <div className="section-description">60 questions • Algebra, geometry, and trigonometry</div>
+                            </div>
+                            <div className="section-detail-item">
+                              <div className="section-header-row">
+                                <span className="section-dot reading-dot"></span>
+                                <span className="section-name">Reading</span>
+                                <span className="section-duration">35 min</span>
+                              </div>
+                              <div className="section-description">40 questions • Literary narrative, humanities, and science passages</div>
+                            </div>
+                            <div className="section-detail-item">
+                              <div className="section-header-row">
+                                <span className="section-dot science-dot"></span>
+                                <span className="section-name">Science</span>
+                                <span className="section-duration">35 min</span>
+                              </div>
+                              <div className="section-description">40 questions • Data interpretation and scientific reasoning</div>
+                            </div>
+                          </div>
+
+                          <button className="start-test-btn-large">Begin Assessment →</button>
+                        </div>
+                        )}
+
+                        {showDiagnosticTest && (
+                          <div className="test-interface">
+                            <div className="test-header">
+                              <div className="test-section-badge">English • Section 1</div>
+                              <div className="test-progress-info">
+                                <span className="question-counter">Question {diagnosticQuestion} of 75</span>
+                                <div className="progress-bar-mini">
+                                  <div className="progress-fill-mini" style={{width: `${(diagnosticProgress / 75) * 100}%`}}></div>
+                                </div>
+                              </div>
+                              <div className="test-timer">42:18</div>
+                            </div>
+
+                            <div className="test-question-area">
+                              <div className="passage-text">
+                                <p className="passage-line">The history of the American West is filled with stories of pioneers {diagnosticQuestion === 1 && <span className="underlined-text">who's</span>}{diagnosticQuestion === 2 && <span className="underlined-text">courage and determination</span>}{diagnosticQuestion === 3 && <span className="underlined-text">has shaped</span>} legacy continues to inspire us today.</p>
+                              </div>
+
+                              <div className="question-prompt">
+                                {diagnosticQuestion === 1 && "Which choice best maintains the grammatical pattern of the sentence?"}
+                                {diagnosticQuestion === 2 && "Which transition word best connects this idea to the previous sentence?"}
+                                {diagnosticQuestion === 3 && "Which verb form agrees with the subject of this sentence?"}
+                              </div>
+
+                              <div className="answer-choices">
+                                <div className={`answer-choice ${selectedAnswer === 'A' ? 'selected' : ''}`}>
+                                  <span className="choice-letter">A</span>
+                                  <span className="choice-text">NO CHANGE</span>
+                                </div>
+                                <div className={`answer-choice ${selectedAnswer === 'B' ? 'selected' : ''}`}>
+                                  <span className="choice-letter">B</span>
+                                  <span className="choice-text">{diagnosticQuestion === 1 ? "whose" : diagnosticQuestion === 2 ? "However," : "have shaped"}</span>
+                                </div>
+                                <div className={`answer-choice ${selectedAnswer === 'C' ? 'selected' : ''}`}>
+                                  <span className="choice-letter">C</span>
+                                  <span className="choice-text">{diagnosticQuestion === 1 ? "whom" : diagnosticQuestion === 2 ? "Therefore," : "had shaped"}</span>
+                                </div>
+                                <div className={`answer-choice ${selectedAnswer === 'D' ? 'selected' : ''}`}>
+                                  <span className="choice-letter">D</span>
+                                  <span className="choice-text">{diagnosticQuestion === 1 ? "which" : diagnosticQuestion === 2 ? "Moreover," : "will shape"}</span>
+                                </div>
+                              </div>
+
+                              <div className="test-nav-buttons">
+                                <button className="test-nav-btn secondary">← Previous</button>
+                                <button className="test-nav-btn primary">Next →</button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="slide-info">
+                    <h3 className="slide-title">Diagnostic Assessment</h3>
+                    <p className="slide-description">Comprehensive evaluation that identifies your exact strengths and knowledge gaps. Our diagnostic creates your personalized learning path from day one.</p>
+                  </div>
+                </div>
+
+              {/* Feature 3: Full-Length Practice Tests - LEFT */}
+              <div className="feature-row feature-left" ref={testDemoRef}>
+                  <div className="slide-preview">
+                    <div className="preview-header">
+                      <div className="preview-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="preview-content feature-practice">
+                      <div className="feature-nav">
+                        <div className="feature-logo">Launch Prep</div>
+                        <div className="feature-nav-items">
+                          <span className="nav-item">Dashboard</span>
+                          <span className="nav-item active">Tests</span>
+                          <span className="nav-item">Lessons</span>
+                        </div>
+                        <div className="feature-user">SC</div>
+                      </div>
+
+                      <div className="feature-main">
+                        <div className="tests-header-section">
+                          <h1 className="feature-heading">Practice Tests</h1>
+                          <div className="test-progress-summary">
+                            <div className="progress-metric">
+                              <div className="metric-value-large">3/7</div>
+                              <div className="metric-label-small">Tests Completed</div>
+                            </div>
+                            <div className="progress-metric">
+                              <div className="metric-value-large">+6</div>
+                              <div className="metric-label-small">Point Improvement</div>
+                            </div>
+                            <div className="progress-metric">
+                              <div className="metric-value-large">86%</div>
+                              <div className="metric-label-small">Avg Accuracy</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="test-history-clean">
+                          <div className="test-history-header">
+                            <span className="history-title">Test History</span>
+                            <button className="start-test-btn">+ New Test</button>
+                          </div>
+
+                          <div className="test-list-clean">
+                            <div className={`test-item-clean ${testHighlight === 1 ? 'highlighted' : ''}`}>
+                              <div className="test-item-left">
+                                <div className="test-number">Test #3</div>
+                                <div className="test-date-small">Yesterday • 2h 51m</div>
+                              </div>
+                              <div className="test-item-center">
+                                <div className="section-scores-mini">
+                                  <span className="mini-score english">34</span>
+                                  <span className="mini-score math">31</span>
+                                  <span className="mini-score reading">33</span>
+                                  <span className="mini-score science">30</span>
+                                </div>
+                              </div>
+                              <div className="test-item-right">
+                                <div className="test-score-large">32</div>
+                                <div className="score-change positive">+3</div>
+                              </div>
+                              <button className="review-btn-small">Review</button>
+                            </div>
+
+                            <div className={`test-item-clean ${testHighlight === 2 ? 'highlighted' : ''}`}>
+                              <div className="test-item-left">
+                                <div className="test-number">Test #2</div>
+                                <div className="test-date-small">1 week ago • 2h 48m</div>
+                              </div>
+                              <div className="test-item-center">
+                                <div className="section-scores-mini">
+                                  <span className="mini-score english">32</span>
+                                  <span className="mini-score math">28</span>
+                                  <span className="mini-score reading">30</span>
+                                  <span className="mini-score science">27</span>
+                                </div>
+                              </div>
+                              <div className="test-item-right">
+                                <div className="test-score-large">29</div>
+                                <div className="score-change positive">+3</div>
+                              </div>
+                              <button className="review-btn-small">Review</button>
+                            </div>
+
+                            <div className={`test-item-clean ${testHighlight === 3 ? 'highlighted' : ''}`}>
+                              <div className="test-item-left">
+                                <div className="test-number">Test #1 (Diagnostic)</div>
+                                <div className="test-date-small">2 weeks ago • 2h 55m</div>
+                              </div>
+                              <div className="test-item-center">
+                                <div className="section-scores-mini">
+                                  <span className="mini-score english">30</span>
+                                  <span className="mini-score math">24</span>
+                                  <span className="mini-score reading">28</span>
+                                  <span className="mini-score science">23</span>
+                                </div>
+                              </div>
+                              <div className="test-item-right">
+                                <div className="test-score-large">26</div>
+                                <div className="score-change baseline">Baseline</div>
+                              </div>
+                              <button className="review-btn-small">Review</button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="next-test-info-card">
+                          <div className="next-test-header">
+                            <span className="next-test-icon">📝</span>
+                            <div>
+                              <div className="next-test-title">Ready for Test #4?</div>
+                              <div className="next-test-subtitle">4 practice tests remaining • Recommended: Complete by Mar 15</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="slide-info">
+                    <h3 className="slide-title">7 Full-Length Practice Tests</h3>
+                    <p className="slide-description">Complete ACT simulations with real timing and difficulty. Track score progression and practice individual sections to build test-day confidence.</p>
+                  </div>
+                </div>
+
+              {/* Feature 4: Performance Analytics - RIGHT */}
+              <div className="feature-row feature-right" ref={analyticsDemoRef}>
+                  <div className="slide-preview">
+                    <div className="preview-header">
+                      <div className="preview-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                    <div className="preview-content feature-analytics">
+                      <div className="feature-nav">
+                        <div className="feature-logo">Launch Prep</div>
+                        <div className="feature-nav-items">
+                          <span className="nav-item active">Dashboard</span>
+                          <span className="nav-item">Tests</span>
+                          <span className="nav-item">Lessons</span>
+                        </div>
+                        <div className="feature-user">SC</div>
+                      </div>
+
+                      <div className="feature-main">
+                        <h1 className="feature-heading">Performance Dashboard</h1>
+
+                        <div className="analytics-summary-cards">
+                          <div className={`summary-card primary ${analyticsHighlight === 1 ? 'highlighted' : ''}`}>
+                            <div className="summary-label">Current Score</div>
+                            <div className="summary-value-huge">32</div>
+                            <div className="summary-change positive">+6 from baseline</div>
+                          </div>
+                          <div className={`summary-card ${analyticsHighlight === 2 ? 'highlighted' : ''}`}>
+                            <div className="summary-label">Target Score</div>
+                            <div className="summary-value-huge">36</div>
+                            <div className="summary-change">4 points to go</div>
+                          </div>
+                          <div className={`summary-card ${analyticsHighlight === 3 ? 'highlighted' : ''}`}>
+                            <div className="summary-label">Study Streak</div>
+                            <div className="summary-value-huge">12</div>
+                            <div className="summary-change">days</div>
+                          </div>
+                        </div>
+
+                        <div className={`score-progression-card ${analyticsHighlight === 4 ? 'highlighted' : ''}`}>
+                          <div className="progression-header">
+                            <span className="progression-title">Score Progression</span>
+                            <div className="progression-controls">
+                              <span className="progression-trend">↑ +6 points</span>
+                              <select className="time-range-select">
+                                <option>All time</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="progression-bars-simple">
+                            <div className="progression-bar-item">
+                              <div className="bar-value">26</div>
+                              <div className="bar-visual" style={{height: '50%'}}></div>
+                              <div className="bar-label-bottom">Test 1</div>
+                              <div className="bar-date">Feb 10</div>
+                            </div>
+                            <div className="progression-bar-item">
+                              <div className="bar-value">29</div>
+                              <div className="bar-visual" style={{height: '62%'}}></div>
+                              <div className="bar-label-bottom">Test 2</div>
+                              <div className="bar-date">Feb 17</div>
+                            </div>
+                            <div className="progression-bar-item active">
+                              <div className="bar-value">32</div>
+                              <div className="bar-visual" style={{height: '75%'}}></div>
+                              <div className="bar-label-bottom">Test 3</div>
+                              <div className="bar-date">Feb 24</div>
+                            </div>
+                            <div className="progression-bar-item projected">
+                              <div className="bar-value">35</div>
+                              <div className="bar-visual projected-bar" style={{height: '90%'}}></div>
+                              <div className="bar-label-bottom">Projected</div>
+                              <div className="bar-date">Mar 10</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="section-breakdown-card">
+                          <div className="breakdown-header">Section Performance</div>
+                          <div className="section-breakdown-list">
+                            <div className="breakdown-item">
+                              <span className="section-indicator english"></span>
+                              <span className="section-name-small">English</span>
+                              <div className="breakdown-bar">
+                                <div className="breakdown-fill" style={{width: '94%'}}></div>
+                              </div>
+                              <span className="section-score-value">34</span>
+                            </div>
+                            <div className="breakdown-item">
+                              <span className="section-indicator reading"></span>
+                              <span className="section-name-small">Reading</span>
+                              <div className="breakdown-bar">
+                                <div className="breakdown-fill" style={{width: '92%'}}></div>
+                              </div>
+                              <span className="section-score-value">33</span>
+                            </div>
+                            <div className="breakdown-item">
+                              <span className="section-indicator math"></span>
+                              <span className="section-name-small">Math</span>
+                              <div className="breakdown-bar">
+                                <div className="breakdown-fill" style={{width: '86%'}}></div>
+                              </div>
+                              <span className="section-score-value">31</span>
+                            </div>
+                            <div className="breakdown-item">
+                              <span className="section-indicator science"></span>
+                              <span className="section-name-small">Science</span>
+                              <div className="breakdown-bar">
+                                <div className="breakdown-fill" style={{width: '83%'}}></div>
+                              </div>
+                              <span className="section-score-value">30</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="insights-row">
+                          <div className="insight-box strength">
+                            <div className="insight-emoji">💪</div>
+                            <div className="insight-content-box">
+                              <div className="insight-title">Top Strength</div>
+                              <div className="insight-value">English Grammar</div>
+                              <div className="insight-stat">94% accuracy</div>
+                            </div>
+                          </div>
+                          <div className="insight-box focus">
+                            <div className="insight-emoji">🎯</div>
+                            <div className="insight-content-box">
+                              <div className="insight-title">Focus Area</div>
+                              <div className="insight-value">Science Reasoning</div>
+                              <div className="insight-stat">12 lessons assigned</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="slide-info">
+                    <h3 className="slide-title">Performance Analytics</h3>
+                    <p className="slide-description">Deep insights into your strengths and weaknesses. Visual progress tracking helps you understand exactly where to focus your study time.</p>
+                  </div>
+                </div>
           </div>
         </div>
       </section>
