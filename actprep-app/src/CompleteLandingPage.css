@@ -64,6 +64,8 @@
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
@@ -73,6 +75,15 @@ body {
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+}
+
+#root {
+  width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
 }
 
@@ -130,11 +141,21 @@ h4, .text-h4 {
 .landing-page {
   width: 100%;
   min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 section {
   padding: 100px var(--space-6);
   width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+section > * {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .section-container {
@@ -269,8 +290,9 @@ section {
   top: -50%;
   left: 50%;
   transform: translateX(-50%);
-  width: 1000px;
-  height: 1000px;
+  width: min(1000px, 100vw);
+  height: min(1000px, 100vw);
+  max-width: 100%;
   background: radial-gradient(circle, rgba(100, 150, 200, 0.12) 0%, rgba(120, 160, 200, 0.06) 30%, transparent 70%);
   pointer-events: none;
   animation: auraFloat 6s ease-in-out infinite;
@@ -282,8 +304,9 @@ section {
   position: absolute;
   top: -30%;
   right: -10%;
-  width: 800px;
-  height: 800px;
+  width: min(800px, 80vw);
+  height: min(800px, 80vw);
+  max-width: 100%;
   background: radial-gradient(circle, rgba(120, 160, 200, 0.1) 0%, rgba(140, 170, 210, 0.05) 40%, transparent 70%);
   pointer-events: none;
   animation: auraFloatRight 7s ease-in-out infinite;
@@ -598,8 +621,8 @@ section {
 .orb-1 {
   top: 10%;
   left: 20%;
-  width: 400px;
-  height: 400px;
+  width: min(400px, 40vw);
+  height: min(400px, 40vw);
   background: radial-gradient(circle, rgba(33, 150, 243, 0.2), transparent);
   animation: orbFloat1 10s ease-in-out infinite;
 }
@@ -607,8 +630,8 @@ section {
 .orb-2 {
   bottom: 20%;
   right: 15%;
-  width: 500px;
-  height: 500px;
+  width: min(500px, 50vw);
+  height: min(500px, 50vw);
   background: radial-gradient(circle, rgba(100, 181, 246, 0.15), transparent);
   animation: orbFloat2 12s ease-in-out infinite;
 }
@@ -616,8 +639,8 @@ section {
 .orb-3 {
   top: 50%;
   left: 50%;
-  width: 350px;
-  height: 350px;
+  width: min(350px, 35vw);
+  height: min(350px, 35vw);
   background: radial-gradient(circle, rgba(66, 165, 245, 0.18), transparent);
   animation: orbFloat3 8s ease-in-out infinite;
 }
@@ -3192,7 +3215,7 @@ section {
 
 .university-carousel {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   gap: var(--space-6);
 }
 
@@ -3719,7 +3742,8 @@ section.fade-in {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   border: 1px solid #E0E0E0;
-  width: 720px;
+  width: min(720px, 90vw);
+  max-width: 100%;
   height: 450px;
   display: flex;
   flex-direction: column;
@@ -7945,6 +7969,10 @@ section.fade-in {
 
   .demo-interface {
     font-size: 0.875rem;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
   }
 
   .dashboard-stats {
@@ -8124,6 +8152,10 @@ section.fade-in {
 
   .demo-interface {
     font-size: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 350px;
   }
 
   .app-header {
@@ -8299,6 +8331,10 @@ section.fade-in {
 
   .demo-interface {
     font-size: 0.7rem;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 300px;
   }
 
   .stat-card {
