@@ -193,59 +193,129 @@ const CompleteLandingPage = () => {
     return () => clearInterval(interval);
   }, [dynamicTexts.length]);
 
+  // Use refs to avoid circular dependencies and store timeouts
+  const loopDemoRef = useRef(null);
+  const demoTimeoutsRef = useRef([]);
+  const lessonTimeoutsRef = useRef([]);
+  const diagnosticTimeoutsRef = useRef([]);
+  const testTimeoutsRef = useRef([]);
+  const analyticsTimeoutsRef = useRef([]);
+
+  // Clear all demo timeouts
+  const clearDemoTimeouts = useCallback(() => {
+    demoTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    demoTimeoutsRef.current = [];
+  }, []);
+
+  const clearLessonTimeouts = useCallback(() => {
+    lessonTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    lessonTimeoutsRef.current = [];
+  }, []);
+
+  const clearDiagnosticTimeouts = useCallback(() => {
+    diagnosticTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    diagnosticTimeoutsRef.current = [];
+  }, []);
+
+  const clearTestTimeouts = useCallback(() => {
+    testTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    testTimeoutsRef.current = [];
+  }, []);
+
+  const clearAnalyticsTimeouts = useCallback(() => {
+    analyticsTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    analyticsTimeoutsRef.current = [];
+  }, []);
+
   // Teaching sequence
   const startTeachingSequence = useCallback(() => {
     const steps = [0, 1200, 2400, 3600, 4800, 6000, 7200];
     steps.forEach((delay, index) => {
-      setTimeout(() => setAnimationStep(index), delay);
+      const timeout = setTimeout(() => setAnimationStep(index), delay);
+      demoTimeoutsRef.current.push(timeout);
     });
+
+    // After teaching sequence completes, loop back to dashboard
+    const loopTimeout = setTimeout(() => {
+      // Reset to dashboard
+      setShowLesson(false);
+      setIsChatExpanded(false);
+      setAnimationStep(0);
+      setUserAnswer('');
+      setAnswerStatus('');
+
+      const showDashTimeout = setTimeout(() => {
+        setShowDashboard(true);
+        // Restart the demo sequence
+        const restartTimeout = setTimeout(() => {
+          if (loopDemoRef.current) {
+            loopDemoRef.current();
+          }
+        }, 1000);
+        demoTimeoutsRef.current.push(restartTimeout);
+      }, 500);
+      demoTimeoutsRef.current.push(showDashTimeout);
+    }, 8400);
+    demoTimeoutsRef.current.push(loopTimeout);
   }, []);
 
-  // Demo sequence
+  // Demo sequence loop helper
+  const startDashboardDemoLoop = useCallback(() => {
+    // Reset messages
+    setVisibleMessages(0);
+    setButtonClicked(false);
+
+    // Start fade out animation
+    const t3 = setTimeout(() => {
+      setDashboardFadeOut(true);
+    }, 1000);
+    demoTimeoutsRef.current.push(t3);
+
+    // Transition to lesson after fade completes
+    const t4 = setTimeout(() => {
+      setShowDashboard(false);
+      setDashboardFadeOut(false);
+      const t5 = setTimeout(() => {
+        setShowLesson(true);
+        const t6 = setTimeout(() => {
+          setIsChatExpanded(true);
+          // Start showing messages one by one
+          const t7 = setTimeout(() => {
+            setVisibleMessages(1);
+            const t8 = setTimeout(() => {
+              setVisibleMessages(2);
+              const t9 = setTimeout(() => {
+                setVisibleMessages(3);
+                const t10 = setTimeout(() => {
+                  setVisibleMessages(4);
+                  const t11 = setTimeout(() => startTeachingSequence(), 1000);
+                  demoTimeoutsRef.current.push(t11);
+                }, 1000);
+                demoTimeoutsRef.current.push(t10);
+              }, 1000);
+              demoTimeoutsRef.current.push(t9);
+            }, 1000);
+            demoTimeoutsRef.current.push(t8);
+          }, 800);
+          demoTimeoutsRef.current.push(t7);
+        }, 500);
+        demoTimeoutsRef.current.push(t6);
+      }, 100);
+      demoTimeoutsRef.current.push(t5);
+    }, 1500);
+    demoTimeoutsRef.current.push(t4);
+  }, [startTeachingSequence]);
+
+  // Assign to ref
+  loopDemoRef.current = startDashboardDemoLoop;
+
+  // Demo sequence starter
   const startDashboardDemo = useCallback(() => {
     if (isDemoStarted) return;
     setIsDemoStarted(true);
-
-    // Reset messages
-    setVisibleMessages(0);
-
-    // Highlight and click the Continue Learning button
-    setTimeout(() => {
-      setButtonClicked(true);
-      setTimeout(() => setButtonClicked(false), 300);
-    }, 1500);
-
-    // Start fade out animation
-    setTimeout(() => {
-      setDashboardFadeOut(true);
-    }, 2000);
-
-    // Transition to lesson after fade completes
-    setTimeout(() => {
-      setShowDashboard(false);
-      setDashboardFadeOut(false);
-      setTimeout(() => {
-        setShowLesson(true);
-        setTimeout(() => {
-          setIsChatExpanded(true);
-          // Start showing messages one by one with slower timing
-          setTimeout(() => {
-            setVisibleMessages(1);
-            setTimeout(() => {
-              setVisibleMessages(2);
-              setTimeout(() => {
-                setVisibleMessages(3);
-                setTimeout(() => {
-                  setVisibleMessages(4);
-                  setTimeout(() => startTeachingSequence(), 1500);
-                }, 1400);
-              }, 1400);
-            }, 1400);
-          }, 1000);
-        }, 800);
-      }, 100);
-    }, 2500);
-  }, [isDemoStarted, startTeachingSequence]);
+    clearDemoTimeouts();
+    startDashboardDemoLoop();
+  }, [isDemoStarted, startDashboardDemoLoop, clearDemoTimeouts]);
 
   // Intersection observer for demo
   useEffect(() => {
@@ -256,16 +326,30 @@ const CompleteLandingPage = () => {
         entries.forEach(entry => {
           if (entry.isIntersecting && !isDemoStarted) {
             setTimeout(() => startDashboardDemo(), 500);
+          } else if (!entry.isIntersecting && isDemoStarted) {
+            // Clear all timeouts and reset when scrolling out of view
+            clearDemoTimeouts();
+            setIsDemoStarted(false);
+            setShowDashboard(true);
+            setShowLesson(false);
+            setDashboardFadeOut(false);
+            setButtonClicked(false);
+            setHighlightMathTab(false);
+            setAnimationStep(0);
+            setVisibleMessages(0);
+            setIsChatExpanded(false);
+            setUserAnswer('');
+            setAnswerStatus('');
           }
         });
       },
-      { threshold: 0.3, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
     );
 
     observer.observe(demoSectionRef.current);
 
     return () => observer.disconnect();
-  }, [isDemoStarted, startDashboardDemo]);
+  }, [isDemoStarted, startDashboardDemo, clearDemoTimeouts]);
 
   // Intersection observer for chart
   useEffect(() => {
@@ -311,33 +395,37 @@ const CompleteLandingPage = () => {
   const startLessonDemo = useCallback(() => {
     if (lessonDemoStep !== 0) return;
 
+    clearLessonTimeouts();
     setLessonDemoStep(1);
 
     // Step 1: Highlight "Continue Learning" button on dashboard
-    setTimeout(() => {
+    const t1 = setTimeout(() => {
       setHighlightContinueBtn(true);
     }, 800);
+    lessonTimeoutsRef.current.push(t1);
 
     // Step 2: Click button and transition to lesson
-    setTimeout(() => {
+    const t2 = setTimeout(() => {
       setHighlightContinueBtn(false);
       setLessonFadeOut(true);
     }, 2200);
+    lessonTimeoutsRef.current.push(t2);
 
     // Step 3: Switch to lesson content
-    setTimeout(() => {
+    const t3 = setTimeout(() => {
       setShowLessonDashboard(false);
       setLessonFadeOut(false);
-      setTimeout(() => {
+      const t4 = setTimeout(() => {
         setShowLessonContent(true);
 
         // Step 4: Highlight the active lesson in sidebar
-        setTimeout(() => {
+        const t5 = setTimeout(() => {
           setHighlightLesson(true);
         }, 600);
+        lessonTimeoutsRef.current.push(t5);
 
         // Step 5: Start typing animation
-        setTimeout(() => {
+        const t6 = setTimeout(() => {
           setHighlightLesson(false);
 
           const lessonLines = [
@@ -362,7 +450,7 @@ const CompleteLandingPage = () => {
             if (lineIndex >= lessonLines.length) {
               setIsTypingComplete(true);
               // Step 6: Reset and restart after typing complete
-              setTimeout(() => {
+              const t7 = setTimeout(() => {
                 setLessonDemoStep(0);
                 setShowLessonDashboard(true);
                 setShowLessonContent(false);
@@ -370,8 +458,10 @@ const CompleteLandingPage = () => {
                 setCurrentTypingLine('');
                 setIsTypingComplete(false);
 
-                setTimeout(() => startLessonDemo(), 2000);
+                const t8 = setTimeout(() => startLessonDemo(), 2000);
+                lessonTimeoutsRef.current.push(t8);
               }, 2500);
+              lessonTimeoutsRef.current.push(t7);
               return;
             }
 
@@ -381,7 +471,8 @@ const CompleteLandingPage = () => {
               // Continue typing current line
               setCurrentTypingLine(currentLine.substring(0, charIndex + 1));
               charIndex++;
-              setTimeout(typeNextChar, 30); // Pokemon-style typing speed
+              const t = setTimeout(typeNextChar, 20);
+              lessonTimeoutsRef.current.push(t);
             } else {
               // Line complete, move to next line
               completedLines.push(currentLine);
@@ -389,15 +480,19 @@ const CompleteLandingPage = () => {
               setCurrentTypingLine('');
               lineIndex++;
               charIndex = 0;
-              setTimeout(typeNextChar, 400); // Pause between lines
+              const t = setTimeout(typeNextChar, 200);
+              lessonTimeoutsRef.current.push(t);
             }
           };
 
           typeNextChar();
         }, 2000);
+        lessonTimeoutsRef.current.push(t6);
       }, 100);
+      lessonTimeoutsRef.current.push(t4);
     }, 2700);
-  }, [lessonDemoStep]);
+    lessonTimeoutsRef.current.push(t3);
+  }, [lessonDemoStep, clearLessonTimeouts]);
 
   // Intersection observer for lesson demo
   useEffect(() => {
@@ -409,7 +504,8 @@ const CompleteLandingPage = () => {
           if (entry.isIntersecting && lessonDemoStep === 0) {
             setTimeout(() => startLessonDemo(), 500);
           } else if (!entry.isIntersecting) {
-            // Reset when scrolled out of view
+            // Clear timeouts and reset when scrolled out of view
+            clearLessonTimeouts();
             setLessonDemoStep(0);
             setShowLessonDashboard(true);
             setShowLessonContent(false);
@@ -428,67 +524,72 @@ const CompleteLandingPage = () => {
     observer.observe(lessonDemoRef.current);
 
     return () => observer.disconnect();
-  }, [lessonDemoStep, startLessonDemo]);
+  }, [lessonDemoStep, startLessonDemo, clearLessonTimeouts]);
 
   // Diagnostic demo sequence
   const startDiagnosticDemo = useCallback(() => {
     if (diagnosticDemoStep !== 0) return;
+    clearDiagnosticTimeouts();
     setDiagnosticDemoStep(1);
 
     // Step 1: Wait on intro screen
-    setTimeout(() => {
+    const t1 = setTimeout(() => {
       setDiagnosticFadeOut(true);
     }, 2000);
+    diagnosticTimeoutsRef.current.push(t1);
 
     // Step 2: Transition to test
-    setTimeout(() => {
+    const t2 = setTimeout(() => {
       setShowDiagnosticTest(true);
       setDiagnosticFadeOut(false);
       setDiagnosticQuestion(1);
       setDiagnosticProgress(1);
 
       // Step 3: Simulate answering questions
-      setTimeout(() => {
-        // Select answer A
+      const t3 = setTimeout(() => {
         setSelectedAnswer('A');
       }, 1000);
+      diagnosticTimeoutsRef.current.push(t3);
 
-      setTimeout(() => {
-        // Move to question 2
+      const t4 = setTimeout(() => {
         setSelectedAnswer(null);
         setDiagnosticQuestion(2);
         setDiagnosticProgress(2);
       }, 2200);
+      diagnosticTimeoutsRef.current.push(t4);
 
-      setTimeout(() => {
-        // Select answer C
+      const t5 = setTimeout(() => {
         setSelectedAnswer('C');
       }, 3200);
+      diagnosticTimeoutsRef.current.push(t5);
 
-      setTimeout(() => {
-        // Move to question 3
+      const t6 = setTimeout(() => {
         setSelectedAnswer(null);
         setDiagnosticQuestion(3);
         setDiagnosticProgress(3);
       }, 4400);
+      diagnosticTimeoutsRef.current.push(t6);
 
-      setTimeout(() => {
-        // Select answer B
+      const t7 = setTimeout(() => {
         setSelectedAnswer('B');
       }, 5400);
+      diagnosticTimeoutsRef.current.push(t7);
 
       // Step 4: Reset and loop
-      setTimeout(() => {
+      const t8 = setTimeout(() => {
         setDiagnosticDemoStep(0);
         setShowDiagnosticTest(false);
         setDiagnosticQuestion(1);
         setDiagnosticProgress(0);
         setSelectedAnswer(null);
 
-        setTimeout(() => startDiagnosticDemo(), 2000);
+        const t9 = setTimeout(() => startDiagnosticDemo(), 2000);
+        diagnosticTimeoutsRef.current.push(t9);
       }, 6600);
+      diagnosticTimeoutsRef.current.push(t8);
     }, 2500);
-  }, [diagnosticDemoStep]);
+    diagnosticTimeoutsRef.current.push(t2);
+  }, [diagnosticDemoStep, clearDiagnosticTimeouts]);
 
   // Intersection observer for diagnostic demo
   useEffect(() => {
@@ -500,6 +601,7 @@ const CompleteLandingPage = () => {
           if (entry.isIntersecting && diagnosticDemoStep === 0) {
             setTimeout(() => startDiagnosticDemo(), 500);
           } else if (!entry.isIntersecting) {
+            clearDiagnosticTimeouts();
             setDiagnosticDemoStep(0);
             setShowDiagnosticTest(false);
             setDiagnosticQuestion(1);
@@ -515,11 +617,12 @@ const CompleteLandingPage = () => {
     observer.observe(diagnosticDemoRef.current);
 
     return () => observer.disconnect();
-  }, [diagnosticDemoStep, startDiagnosticDemo]);
+  }, [diagnosticDemoStep, startDiagnosticDemo, clearDiagnosticTimeouts]);
 
   // Practice test demo sequence
   const startTestDemo = useCallback(() => {
     if (testDemoStep !== 0) return;
+    clearTestTimeouts();
     setTestDemoStep(1);
 
     const tests = [1, 2, 3];
@@ -529,18 +632,22 @@ const CompleteLandingPage = () => {
       if (index < tests.length) {
         setTestHighlight(tests[index]);
         index++;
-        setTimeout(highlightNext, 1500);
+        const t = setTimeout(highlightNext, 1500);
+        testTimeoutsRef.current.push(t);
       } else {
-        setTimeout(() => {
+        const t1 = setTimeout(() => {
           setTestDemoStep(0);
           setTestHighlight(0);
-          setTimeout(() => startTestDemo(), 1500);
+          const t2 = setTimeout(() => startTestDemo(), 1500);
+          testTimeoutsRef.current.push(t2);
         }, 1000);
+        testTimeoutsRef.current.push(t1);
       }
     };
 
-    setTimeout(highlightNext, 800);
-  }, [testDemoStep]);
+    const t = setTimeout(highlightNext, 800);
+    testTimeoutsRef.current.push(t);
+  }, [testDemoStep, clearTestTimeouts]);
 
   // Intersection observer for test demo
   useEffect(() => {
@@ -552,6 +659,7 @@ const CompleteLandingPage = () => {
           if (entry.isIntersecting && testDemoStep === 0) {
             setTimeout(() => startTestDemo(), 500);
           } else if (!entry.isIntersecting) {
+            clearTestTimeouts();
             setTestDemoStep(0);
             setTestHighlight(0);
           }
@@ -563,11 +671,12 @@ const CompleteLandingPage = () => {
     observer.observe(testDemoRef.current);
 
     return () => observer.disconnect();
-  }, [testDemoStep, startTestDemo]);
+  }, [testDemoStep, startTestDemo, clearTestTimeouts]);
 
   // Analytics demo sequence
   const startAnalyticsDemo = useCallback(() => {
     if (analyticsDemoStep !== 0) return;
+    clearAnalyticsTimeouts();
     setAnalyticsDemoStep(1);
 
     const items = [1, 2, 3, 4];
@@ -577,18 +686,22 @@ const CompleteLandingPage = () => {
       if (index < items.length) {
         setAnalyticsHighlight(items[index]);
         index++;
-        setTimeout(highlightNext, 1300);
+        const t = setTimeout(highlightNext, 1300);
+        analyticsTimeoutsRef.current.push(t);
       } else {
-        setTimeout(() => {
+        const t1 = setTimeout(() => {
           setAnalyticsDemoStep(0);
           setAnalyticsHighlight(0);
-          setTimeout(() => startAnalyticsDemo(), 1500);
+          const t2 = setTimeout(() => startAnalyticsDemo(), 1500);
+          analyticsTimeoutsRef.current.push(t2);
         }, 1000);
+        analyticsTimeoutsRef.current.push(t1);
       }
     };
 
-    setTimeout(highlightNext, 800);
-  }, [analyticsDemoStep]);
+    const t = setTimeout(highlightNext, 800);
+    analyticsTimeoutsRef.current.push(t);
+  }, [analyticsDemoStep, clearAnalyticsTimeouts]);
 
   // Intersection observer for analytics demo
   useEffect(() => {
@@ -600,6 +713,7 @@ const CompleteLandingPage = () => {
           if (entry.isIntersecting && analyticsDemoStep === 0) {
             setTimeout(() => startAnalyticsDemo(), 500);
           } else if (!entry.isIntersecting) {
+            clearAnalyticsTimeouts();
             setAnalyticsDemoStep(0);
             setAnalyticsHighlight(0);
           }
@@ -611,7 +725,7 @@ const CompleteLandingPage = () => {
     observer.observe(analyticsDemoRef.current);
 
     return () => observer.disconnect();
-  }, [analyticsDemoStep, startAnalyticsDemo]);
+  }, [analyticsDemoStep, startAnalyticsDemo, clearAnalyticsTimeouts]);
 
   // Intersection observer for sections fade-in
   useEffect(() => {
@@ -1505,8 +1619,8 @@ const CompleteLandingPage = () => {
       <section className="timeline-section">
         <div className="timeline-container">
           <div className="timeline-header">
-            <h2 className="timeline-title">Your Learning Journey</h2>
-            <p className="timeline-description">Four progressive steps designed to take you from baseline to perfect score</p>
+            <h2 className="timeline-title">Your Path to Victory</h2>
+            <p className="timeline-description">Stay ahead of the competition with our proven system that transforms ambitious students into top performers</p>
           </div>
 
           <div className="journey-layout">
@@ -1596,8 +1710,8 @@ const CompleteLandingPage = () => {
       {/* Features Section */}
       <section id="features" className="features-section">
         <div className="section-header">
-          <h2 className="section-title">Innovative Learning Architecture</h2>
-          <p className="section-subtitle">Revolutionary methodology that builds complete mastery while competitors focus on isolated problem-solving.</p>
+          <h2 className="section-title">Build Your Foundation for Success</h2>
+          <p className="section-subtitle">While others cram and forget, you'll build unshakeable foundations that turn every concept into lasting mastery—giving you the competitive edge on test day.</p>
         </div>
 
         <div className="science-container" ref={blocksRef}>
@@ -1797,9 +1911,9 @@ const CompleteLandingPage = () => {
               <div>
                 <div className="demo-title-wrapper">
                   <span className="new-badge">New</span>
-                  <h2 className="section-title demo-title">See Launch Prep in Action</h2>
+                  <h2 className="section-title demo-title">Integrated AI Tutoring</h2>
                 </div>
-                <p className="section-subtitle">Live demo of our AI-powered ACT prep platform</p>
+                <p className="section-subtitle">AI that learns your patterns, adapts to your pace, and guides you 24/7</p>
               </div>
             </div>
             <div className="demo-screen">
