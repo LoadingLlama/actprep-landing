@@ -7864,37 +7864,51 @@ section.fade-in {
 
 /* Mobile Landscape & Tablet Portrait (600px - 768px) */
 @media (max-width: 768px) {
+  /* Universal overflow prevention */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
   /* Typography adjustments */
   h1, .text-h1 {
-    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    word-wrap: break-word;
   }
 
   h2, .text-h2 {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+    word-wrap: break-word;
   }
 
   .section-subtitle {
-    font-size: 1rem;
+    font-size: 0.875rem;
+    word-wrap: break-word;
   }
 
   /* Hero Section */
   .hero {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
     min-height: auto;
   }
 
   .hero-content {
     max-width: 100%;
     text-align: center;
+    padding: 0 0.5rem;
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 0.875rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-cta {
@@ -7967,22 +7981,18 @@ section.fade-in {
     border-radius: 12px;
   }
 
-  .demo-interface {
-    width: 100%;
-    max-width: 100%;
-    height: 420px;
-    transform-origin: top center;
+  .demo-showcase {
+    display: flex;
+    justify-content: center;
     overflow: hidden;
   }
 
-  .dashboard-interface,
-  .lesson-interface,
-  .diagnostic-interface,
-  .test-interface,
-  .analytics-interface {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
+  .demo-interface {
+    width: 900px;
+    height: 550px;
+    transform: scale(0.4);
+    transform-origin: top center;
+    margin: -165px 0 -165px 0;
   }
 
   .dashboard-stats {
@@ -8056,19 +8066,33 @@ section.fade-in {
     font-size: 14px;
   }
 
+  /* Universal overflow prevention */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  p, h1, h2, h3, h4, h5, h6, span, div, a {
+    max-width: 100%;
+  }
+
   /* Hero Section */
   .hero {
-    padding: 3rem 1rem 2rem;
+    padding: 2rem 0.75rem 1.5rem;
   }
 
   .hero-title {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-stats {
@@ -8078,34 +8102,47 @@ section.fade-in {
   }
 
   .stat-number {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
   }
 
   .waitlist-offer {
-    padding: 1rem;
-    margin-top: 1.5rem;
+    padding: 0.75rem;
+    margin-top: 1rem;
   }
 
   .offer-text {
+    font-size: 0.75rem;
+  }
+
+  .btn {
     font-size: 0.875rem;
+    padding: 0.75rem 1.25rem;
   }
 
   /* Sections spacing */
   section {
-    padding: 2.5rem 1rem !important;
+    padding: 2rem 0.75rem !important;
   }
 
   .section-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .section-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .section-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   /* Features Showcase */
@@ -8168,22 +8205,18 @@ section.fade-in {
     padding: 0.25rem 0.5rem;
   }
 
-  .demo-interface {
-    width: 100%;
-    max-width: 100%;
-    height: 380px;
-    transform-origin: top center;
+  .demo-showcase {
+    display: flex;
+    justify-content: center;
     overflow: hidden;
   }
 
-  .dashboard-interface,
-  .lesson-interface,
-  .diagnostic-interface,
-  .test-interface,
-  .analytics-interface {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
+  .demo-interface {
+    width: 900px;
+    height: 550px;
+    transform: scale(0.38);
+    transform-origin: top center;
+    margin: -170px 0 -170px 0;
   }
 
   .app-header {
@@ -8437,30 +8470,48 @@ section.fade-in {
 
 /* Extra Small Mobile (320px and below) */
 @media (max-width: 360px) {
+  /* Universal overflow prevention */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  body {
+    font-size: 13px;
+  }
+
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero-subtitle {
+    font-size: 0.7rem;
   }
 
   .section-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
-  .demo-interface {
-    width: 100%;
-    max-width: 100%;
-    height: 340px;
-    transform-origin: top center;
+  .section-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .demo-showcase {
+    display: flex;
+    justify-content: center;
     overflow: hidden;
   }
 
-  .dashboard-interface,
-  .lesson-interface,
-  .diagnostic-interface,
-  .test-interface,
-  .analytics-interface {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
+  .demo-interface {
+    width: 900px;
+    height: 550px;
+    transform: scale(0.35);
+    transform-origin: top center;
+    margin: -179px 0 -179px 0;
   }
 
   .stat-card {
@@ -8468,12 +8519,25 @@ section.fade-in {
   }
 
   .goal-number {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .goal-label {
+    font-size: 0.7rem;
   }
 
   .btn {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* Ensure all cards fit */
+  .feature-demo-card,
+  .method-card,
+  .goal-item,
+  .university-card {
+    max-width: 100%;
+    overflow: hidden;
   }
 }
 
