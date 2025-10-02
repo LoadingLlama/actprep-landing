@@ -8076,9 +8076,10 @@ section.fade-in {
 
 /* Mobile Portrait (320px - 600px) */
 @media (max-width: 600px) {
-  /* Base adjustments */
+  /* UNIFIED MOBILE TYPOGRAPHY SYSTEM */
   body {
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   /* Universal overflow prevention */
@@ -8088,8 +8089,45 @@ section.fade-in {
     box-sizing: border-box;
   }
 
-  p, h1, h2, h3, h4, h5, h6, span, div, a, button {
-    max-width: 100%;
+  /* Typography Scale - Consistent 1.2 ratio */
+  h1, .hero-title {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  h2, .section-title {
+    font-size: 1.25rem !important;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1.05rem !important;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 0.95rem !important;
+    line-height: 1.4;
+  }
+
+  p, .hero-subtitle, .section-subtitle {
+    font-size: 0.875rem !important;
+    line-height: 1.5;
+  }
+
+  .text-sm, .stat-label, .offer-text {
+    font-size: 0.75rem !important;
+  }
+
+  .stat-number {
+    font-size: 1.75rem !important;
+  }
+
+  .btn {
+    font-size: 0.875rem !important;
+    padding: 0.625rem 1rem;
   }
 
   /* Force all containers to respect viewport */
@@ -8101,37 +8139,23 @@ section.fade-in {
     overflow-x: hidden;
   }
 
-  /* Hero Section */
+  /* UNIFIED SPACING SYSTEM */
   .hero {
-    padding: 2rem 0.75rem 1.5rem;
+    padding: 2.5rem 1rem 2rem;
   }
 
-  .hero-title {
-    font-size: 1.35rem;
-    margin-bottom: 0.75rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  section {
+    padding: 2.5rem 1rem !important;
   }
 
-  .hero-subtitle {
-    font-size: 0.8rem;
+  .section-header {
     margin-bottom: 1.5rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
   }
 
   .hero-stats {
     flex-direction: column;
-    gap: 1rem;
-    padding: 1.5rem;
-  }
-
-  .stat-number {
-    font-size: 1.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.75rem;
+    gap: 0.75rem;
+    padding: 1rem;
   }
 
   .waitlist-offer {
@@ -8139,38 +8163,7 @@ section.fade-in {
     margin-top: 1rem;
   }
 
-  .offer-text {
-    font-size: 0.75rem;
-  }
-
-  .btn {
-    font-size: 0.875rem;
-    padding: 0.75rem 1.25rem;
-  }
-
-  /* Sections spacing */
-  section {
-    padding: 2rem 0.75rem !important;
-  }
-
-  .section-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .section-subtitle {
-    font-size: 0.8rem;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  /* Features Showcase */
+  /* Cards and UI Components - Unified Sizing */
   .feature-nav {
     padding: 0.75rem;
     gap: 0.5rem;
@@ -8178,15 +8171,32 @@ section.fade-in {
 
   .feature-tab {
     padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
+    font-size: 0.875rem !important;
   }
 
   .feature-demo-screen {
     min-height: 250px;
-    padding: 0.75rem;
+    padding: 1rem;
   }
 
-  /* Timeline/Journey */
+  .method-card,
+  .goal-item,
+  .university-card,
+  .feature-demo-card {
+    padding: 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .method-title,
+  .goal-label {
+    font-size: 0.875rem !important;
+  }
+
+  .goal-number {
+    font-size: 1.75rem !important;
+  }
+
+  /* Timeline/Journey - Consistent with overall scale */
   .explanation-item {
     padding: 1.25rem;
   }
@@ -8194,28 +8204,20 @@ section.fade-in {
   .explanation-number {
     width: 36px;
     height: 36px;
-    font-size: 1rem;
+    font-size: 1.05rem !important;
   }
 
   .explanation-title {
-    font-size: 1.125rem;
+    font-size: 1.05rem !important;
   }
 
   .explanation-text {
-    font-size: 0.875rem;
+    font-size: 0.875rem !important;
   }
 
   /* Comparison Cards */
-  .method-card {
-    padding: 1.25rem;
-  }
-
-  .method-title {
-    font-size: 1rem;
-  }
-
   .method-features {
-    font-size: 0.875rem;
+    font-size: 0.875rem !important;
   }
 
   /* Demo Section */
@@ -8335,69 +8337,8 @@ section.fade-in {
     font-size: 0.625rem;
   }
 
-  /* Diagnostic Interface */
-  .diagnostic-intro {
-    padding: 0.75rem;
-  }
-
-  .diagnostic-title {
-    font-size: 0.9rem;
-  }
-
-  .diagnostic-subtitle {
-    font-size: 0.7rem;
-  }
-
-  .diagnostic-description {
-    font-size: 0.7rem;
-  }
-
-  .diagnostic-stat {
-    font-size: 0.7rem;
-  }
-
-  .test-question {
-    padding: 0.75rem;
-    font-size: 0.75rem;
-  }
-
-  /* Analytics Interface */
-  .analytics-title {
-    font-size: 0.9rem;
-  }
-
-  .analytics-subtitle {
-    font-size: 0.7rem;
-  }
-
-  .analytics-card {
-    padding: 0.625rem;
-  }
-
-  .strength-item {
-    padding: 0.375rem;
-    font-size: 0.7rem;
-  }
-
-  /* Stats Grid */
-  .goals-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .goal-item {
-    padding: 1.5rem;
-  }
-
-  .goal-number {
-    font-size: 1.75rem;
-  }
-
-  .goal-label {
-    font-size: 0.875rem;
-  }
-
-  /* Universities */
+  /* Grids */
+  .goals-grid,
   .university-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
